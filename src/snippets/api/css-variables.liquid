@@ -1,0 +1,46 @@
+{% comment %}
+
+  Add theme settings here to allow users to customize the css
+
+  e.g.
+
+  :root {
+    --color-primary: {{ settings.color_primary }};
+    --color-accent: {{ settings.color_accent }};
+  }
+
+{% endcomment %}
+
+<style>
+  {{ settings.font_heading | font_face }}
+  {{ settings.font_heading_bold | font_face }}
+  {{ settings.font_primary | font_face }}
+  {{ settings.font_primary_light | font_face }}
+  {{ settings.font_primary_bold | font_face }}
+
+  :root {
+    --color-default-white: {{ settings.color_default_white }};
+    --color-default-black: {{ settings.color_default_black }};
+    --color-default-gray: {{ settings.color_default_gray }};
+    --color-palette-1: {{ settings.color_palette_1 }};
+    --color-palette-2: {{ settings.color_palette_2 }};
+    --color-palette-3: {{ settings.color_palette_3 }};
+    --color-palette-4: {{ settings.color_palette_4 }};
+    --color-palette-5: {{ settings.color_palette_5 }};
+    --color-body-text: {{ settings.color_body_text }};
+    --color-body-background: {{ settings.color_body_background }};
+    --font-primary: {{ settings.font_primary.family }}, {{ settings.font_primary.fallback_families }};
+    --font-primary-light-weight: {{ settings.font_primary_light.weight }};
+    --font-primary-bold-weight: {{ settings.font_primary_bold.weight }};
+    --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    --font-heading-bold-weight: {{ settings.font_heading_bold.weight }};
+    --size-main-container: {{ settings.main_container_size }}px;
+    --size-spacing-base: {{ settings.base_spacing_size }}px;
+    --size-font-base: {{ settings.font_size_base }}px;
+    --size-font-minor: {{ settings.font_size_minor }}px;
+    --size-font-major: {{ settings.font_size_major }}px;
+    --size-font-super: {{ settings.font_size_super }}px;
+    --size-line-height-base: {{ settings.base_line_height }};
+    --duration-transition: {{ settings.transition_duration }}ms;
+  }
+</style>

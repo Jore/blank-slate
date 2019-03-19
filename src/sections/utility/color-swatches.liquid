@@ -1,0 +1,43 @@
+<style type="text/css">
+
+  {%- for swatch in section.blocks -%}
+
+    .swatch-{{- swatch.settings.title | handle }} {
+      background-color: {{- swatch.settings.color -}};
+      border: 2px solid {{ swatch.settings.color -}};
+    }
+
+  {%- endfor -%}
+
+</style>
+
+
+{% schema %}
+  {
+    "name": "Color Swatches",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "color",
+        "name": "Color",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Color Name"
+          },
+          {
+            "id": "color",
+            "type": "color",
+            "label": "Swatch Color"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Swatch Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

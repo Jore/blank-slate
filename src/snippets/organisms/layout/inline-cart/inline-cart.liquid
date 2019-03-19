@@ -1,0 +1,82 @@
+{%- comment -%}
+
+  Arguments:
+  - inline_cart_heading
+  - inline_cart_close_icon
+  - inline_cart_button_one_enabled
+  - inline_cart_button_one_text
+  - inline_cart_button_one_href
+  - inline_cart_button_one_classes
+  - inline_cart_button_two_enabled
+  - inline_cart_button_two_text
+  - inline_cart_button_two_href
+  - inline_cart_button_two_classes
+
+{%- endcomment -%}
+
+
+{%- capture inline_cart_header_content -%}
+
+  {%- include 'button',
+    icon: inline_cart_close_icon,
+    classes: 'button--reset',
+    attrs: 'data-close-inline-cart' -%}
+
+{%- endcapture -%}
+
+{%- include 'header',
+  title: inline_cart_heading,
+  level: 3,
+  content: inline_cart_header_content,
+  classes: '',
+  attrs: '' %}
+
+<div class="oo-inline-cart--contents" data-inline-cart-contents>
+
+  {%- include 'inline-cart-contents' -%}
+
+</div>
+
+
+<footer class="oo-inline-cart--footer">
+
+  <div class="oo-inline-cart-subtotal">
+
+    {%- include 'heading',
+      title: 'Subtotal:',
+      level: 3,
+      classes: '',
+      attrs: '' -%}
+
+    {%- include 'price',
+      _price: cart.total_price,
+      type: 'cart.total_price',
+      classes: '',
+      attrs: '' -%}
+
+  </div>
+
+
+  {%- if inline_cart_button_one_enabled == true-%}
+
+    {%- include 'link',
+      content: inline_cart_button_one_text,
+      button: true,
+      href: inline_cart_button_one_href,
+      classes: inline_cart_button_one_classes,
+      attrs: '' -%}
+
+  {%- endif -%}
+
+
+  {%- if inline_cart_button_two_enabled == true -%}
+
+    {%- include 'link',
+      content: inline_cart_button_two_text,
+      button: true,
+      href: inline_cart_button_two_href,
+      classes: inline_cart_button_two_classes,
+      attrs: '' -%}
+
+  {%- endif -%}
+</footer>

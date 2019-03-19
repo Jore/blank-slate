@@ -1,0 +1,139 @@
+{%- include 'section',
+  section_name: 'Inline Cart',
+  section_snippet: 'inline-cart' -%}
+
+{% schema %}
+  {
+    "name": "Inline Cart",
+    "class": "inline-cart-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "Your Shopping Cart"
+      },
+      {
+        "type": "header",
+        "content": "Line Items"
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "header",
+        "content": "Button One"
+      },
+      {
+        "type": "color",
+        "id": "button_one_text_color",
+        "label": "Button One Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button_one_bg_color",
+        "label": "Button One Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button_one_border_color",
+        "label": "Button One Border Color"
+      },
+      {
+        "id": "button_one_text",
+        "type": "text",
+        "label": "Button One Text",
+        "info": "optional"
+      },
+      {
+        "id": "button_one_href",
+        "type": "url",
+        "label": "Button One href",
+        "info": "optional"
+      },
+      {
+        "id": "button_one_classes",
+        "type": "text",
+        "label": "Button One Classes",
+        "placeholder": "button--primary",
+        "info": "Space separated custom class names"
+      },
+      {
+        "id": "button_one_attrs",
+        "type": "text",
+        "label": "Button One Attributes",
+        "info": "Attributes for button one"
+      },
+      {
+        "type": "header",
+        "content": "Button Two"
+      },
+      {
+        "type": "color",
+        "id": "button_two_text_color",
+        "label": "Button Two Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button_two_bg_color",
+        "label": "Button Two Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button_two_border_color",
+        "label": "Button Two Border Color"
+      },
+      {
+        "id": "button_two_text",
+        "type": "text",
+        "label": "Button Two Text",
+        "info": "optional"
+      },
+      {
+        "id": "button_two_href",
+        "type": "url",
+        "label": "Button Two href",
+        "info": "optional"
+      },
+      {
+        "id": "button_two_classes",
+        "type": "text",
+        "label": "Button Two Classes",
+        "placeholder": "button--secondary",
+        "info": "Space separated custom class names"
+      },
+      {
+        "id": "button_two_attrs",
+        "type": "text",
+        "label": "Button Two Attributes",
+        "info": "Attributes for button one"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "type": "text",
+        "id": "block_classes",
+        "label": "Block Classes",
+        "placeholder": "rounded-corners",
+        "info": "Class string applied to the block"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Block Name",
+        "info": "Updates the title of the block in the admin sidebar"
+      }
+    ]
+  }
+{% endschema %}

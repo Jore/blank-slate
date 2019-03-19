@@ -1,0 +1,33 @@
+{%- if heading != blank -%}
+
+  {%- capture header_content -%}
+    {%- if sub_heading != blank -%}
+      {%- capture _sub_heading_classes -%}
+        {{ section_name | handle }}-sub-heading {{ sub_heading_classes -}}
+      {%- endcapture -%}
+
+      {%- include 'heading',
+        level: 4,
+        _heading: sub_heading,
+        classes: _sub_heading_classes,
+        attrs: '' -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- capture _heading_classes -%}
+    {{ section_name | handle }}-heading {{ heading_classes -}}
+  {%- endcapture -%}
+
+  {%- capture _header_classes -%}
+    flex-12 {{ section_name | handle }}-header {% include 'classes' -%}
+  {%- endcapture -%}
+
+  {%- include 'header',
+    level: 3,
+    heading: heading,
+    content: header_content
+    heading_classes: _heading_classes,
+    classes: _header_classes,
+    attrs: '' -%}
+
+{%- endif -%}

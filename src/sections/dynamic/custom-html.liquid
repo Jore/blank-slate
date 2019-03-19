@@ -1,0 +1,64 @@
+{%- include 'section',
+  section_name: 'Custom HTML',
+  container: 'grid'
+  content: section.settings.content -%}
+
+{% schema %}
+  {
+    "name": "Custom HTML",
+    "class": "home-page-custom-html",
+    "settings": [
+      {
+         "type": "header",
+         "content": "Custom HTML"
+      },
+      {
+        "type": "paragraph",
+        "content": "This section adds custom HTML directly to the theme. Read more [here](https://help.shopify.com/en/themes/development/theme-editor/settings-schema#html)."
+      },
+      {
+        "type": "header",
+        "content": "Section Settings"
+      },
+      {
+        "type": "html",
+        "id": "content",
+        "label": "Custom HTML"
+      },
+      {
+        "type": "color",
+        "id": "section_background_color",
+        "label": "Section Background color"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "SVG Divider",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom HTML",
+        "category": "HTML",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,19 @@
+{% comment %}
+
+  Required arguments:
+  - options
+
+  Optional arguments:
+
+{% endcomment %}
+
+<script type="application/json" data-from-shopify="option">
+{
+  "data": [
+    {%- for option in options -%}
+      {%- include 'option-object',
+        option: option -%}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>

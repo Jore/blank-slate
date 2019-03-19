@@ -1,0 +1,101 @@
+{%- comment -%}
+
+  Arguments:
+  - snippet
+  - condition
+
+{%- endcomment -%}
+
+
+{%- assign is_block = true -%}
+{%- assign count = 0 -%}
+{%- assign matches = nil -%}
+{%- assign group_items = nil -%}
+{%- assign groups_names = nil -%}
+
+
+{%- for block in blocks -%}
+
+
+  {%- include 'default-arguments', context: 'block' -%}
+
+
+  {%- if limit != blank and count == limit -%}
+    {%- break -%}
+  {%- endif -%}
+
+  {%- if condition != blank -%}
+    {%- include condition -%}
+  {%- endif -%}
+
+
+  {%- if block.settings.group_name != blank -%}
+
+    {%- assign group_name = block.settings.group_name -%}
+    {%- assign group_item = group_name | append: '--' | append: block.id -%}
+    {%- assign group_items = group_items | append: group_item | append: ',' -%}
+
+  {%- elsif snippet != blank -%}
+
+    {%- capture _classes -%}
+      {% include 'classes', with_block: true -%}
+    {%- endcapture -%}
+
+    {%- include snippet, classes: _classes -%}
+
+  {%- else -%}
+
+    {%- comment -%}
+
+      error:  you probably forgot to pass `blocks_snippet` argument to `sections` snippet
+
+    {%- endcomment -%}
+
+  {%- endif -%}
+
+  {%- assign count = count | plus: 1 -%}
+{%- endfor -%}
+
+
+
+{%- if group_items != blank -%}
+  {%- assign group_items_array = group_items | split: ',' | sort -%}
+  {%- assign previous_group_name = nil -%}
+
+  {%- for group_item in group_items_array -%}
+    {%- assign group_parts = group_item | split: '--' -%}
+    {%- assign group_name = group_parts[0] -%}
+    {%- assign block_id = group_parts[1] -%}
+
+    {%- if group_name != previous_group_name -%}
+      {%- if forloop.first != true -%}</section>{%- endif -%}
+      <section class="{%- include 'classes', with_block: true %} {{ group_name | handle -}}">
+    {%- endif -%}
+
+    {%- for block in blocks -%}
+      {%- if block.id == block_id -%}
+
+        {%- capture _classes -%}
+          {% include 'classes', with_group: true -%}
+        {%- endcapture -%}
+
+        {%- include 'override-styles' -%}
+        {%- include snippet, classes: _classes -%}
+        {%- break -%}
+
+      {%- else -%}
+
+        {%- continue -%}
+
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if forloop.last == true -%}
+      </section>
+    {%- endif -%}
+
+    {%- assign previous_group_name = group_name -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign is_block = nil -%}

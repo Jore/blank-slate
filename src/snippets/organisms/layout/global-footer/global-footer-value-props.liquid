@@ -1,0 +1,41 @@
+{% comment %}
+
+  Required arguments:
+  -
+
+  Optional arguments:
+  -
+
+{% endcomment %}
+
+
+{%- capture global_footer_value_props_content -%}
+  {%- include 'icon-with-text',
+    icon: 'airplane',
+    text: 'Free Shipping Worldwide',
+    classes: 'xs-flex-full m-flex-3',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'truck',
+    text: 'Free Returns Worldwide On Orders Over $500',
+    classes: 'xs-flex-full m-flex-3',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'ribbon',
+    text: '24 Month Warranty On All Products',
+    classes: 'xs-flex-full m-flex-3',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'lock',
+    text: '100% Safe & Secure Checkout',
+    classes: 'xs-flex-full m-flex-3',
+    attrs: '' -%}
+{%- endcapture -%}
+
+
+{%- include 'container-grid',
+  name: 'Footer Value Props',
+  content: global_footer_value_props_content,
+  classes: '',
+  attrs: '' -%}
+

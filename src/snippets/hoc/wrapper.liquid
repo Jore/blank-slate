@@ -1,0 +1,66 @@
+{%- comment -%}
+
+  Required arguments:
+  - title
+
+  Optional arguments:
+  - level
+  - content
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+
+<header class="oo-header {{ classes -}}" {{ attrs -}}>
+
+  {%- include 'heading',
+    level: level,
+    title: title,
+    classes: '',
+    attrs: '' -%}
+
+  {{- content -}}
+
+</header>
+
+
+{%- comment -%}{%- endcomment -%}
+
+
+{%- comment -%}
+
+  Required arguments:
+  - href
+
+  Optional arguments:
+  - content
+  - button
+  - target
+  - icon
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+<a class="oo-link {% if button != blank -%}oo-button{%- endif %} {{ classes -}}"
+  href="{{- href -}}"
+  {%- if target != blank -%}target="{{- target -}}"{%- endif -%}
+  {{ attrs -}}>
+
+  {%- if icon != blank -%}
+
+    {%- include 'icon',
+      name: icon,
+      classes: '',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+  {%- if content != blank -%}
+
+    {{- content -}}
+
+  {%- endif -%}
+
+</a>

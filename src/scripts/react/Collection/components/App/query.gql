@@ -1,0 +1,50 @@
+#import "../../fragments.gql"
+
+query areProductsLoaded {
+  productsLoaded @client
+}
+
+query getCollectionProducts {
+  collectionProducts @client {
+    ...CollectionProductData
+  }
+}
+
+query _getCollectionProducts {
+  _collectionProducts @client {
+    ...CollectionProductData
+  }
+}
+
+query getProducts {
+  collectionProducts @cilent
+}
+
+query getActiveSort {
+  activeSort @cilent
+}
+
+query productData {
+  cursor @client
+  productsLoaded @client
+  collectionProducts @client {
+    ...CollectionProductData
+  }
+}
+
+query fetchProducts ($step: Int!, $handle: String!, $cursor: String) {
+  collectionByHandle (handle: $handle) {
+    products (first: $step, after: $cursor ) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        cursor
+        product: node {
+          ...ProductInfo
+        }
+      }
+    }
+  }
+}

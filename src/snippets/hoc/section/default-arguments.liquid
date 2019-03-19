@@ -1,0 +1,219 @@
+{%- comment -%}
+
+  Assigns default variables for the provided context so you don't have have to. In your schema, if you set the `id` property to one of the following values below, it will be automatically available to you in the given context:
+
+  Context: 'section'
+  - blocks
+  - enabled
+  - children_classes
+  - is_slider
+  - heading
+  - heading_classes
+  - sub_heading
+  - sub_heading_classes
+  - button_one_text
+  - button_one_href
+  - button_one_classes
+  - button_two_text
+  - button_two_href
+  - button_two_classes
+  - content
+  - limit
+
+  Context: 'block'
+  -
+
+
+
+
+  You can overwrite these default values by passing in an argument of the same name:
+
+  e.g.
+
+  {%- include 'section',
+    section_snippet: 'row-case-statement',
+    blocks: instagram_array,
+    sub_heading: 'Shop Instagram' -%}
+
+
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- assign _product = product -%}
+{%- endif -%}
+
+{%- if collection != blank -%}
+  {%- assign _collection = collection -%}
+{%- endif -%}
+
+{%- if context == 'section' -%}
+  {%- if blocks == blank -%}
+    {%- assign blocks = section.blocks -%}
+  {%- endif -%}
+
+  {%- if enabled == blank -%}
+    {%- assign enabled = section.settings.enabled -%}
+  {%- endif -%}
+
+  {%- if children_classes == blank -%}
+    {%- assign children_classes = section.settings.children_classes -%}
+  {%- endif -%}
+
+  {%- if is_slider == blank -%}
+    {%- assign is_slider = section.settings.is_slider -%}
+  {%- endif -%}
+
+  {%- if heading == blank -%}
+    {%- assign heading = section.settings.heading -%}
+  {%- endif -%}
+
+  {%- if heading_classes == blank -%}
+    {%- assign heading_classes = section.settings.heading_classes -%}
+  {%- endif -%}
+
+  {%- if sub_heading == blank -%}
+    {%- assign sub_heading = section.settings.sub_heading -%}
+  {%- endif -%}
+
+  {%- if sub_heading_classes == blank -%}
+    {%- assign sub_heading_classes = section.settings.sub_heading_classes -%}
+  {%- endif -%}
+
+  {%- if button_one_text == blank -%}
+    {%- assign button_one_text = section.settings.button_one_text -%}
+  {%- endif -%}
+
+  {%- if button_one_href == blank -%}
+    {%- assign button_one_href = section.settings.button_one_href -%}
+  {%- endif -%}
+
+  {%- if button_one_classes == blank -%}
+    {%- assign button_one_classes = section.settings.button_one_classes -%}
+  {%- endif -%}
+
+  {%- if button_one_attrs == blank -%}
+    {%- assign button_one_attrs = section.settings.button_one_attrs -%}
+  {%- endif -%}
+
+  {%- if button_two_text == blank -%}
+    {%- assign button_two_text = section.settings.button_two_text -%}
+  {%- endif -%}
+
+  {%- if button_two_href == blank -%}
+    {%- assign button_two_href = section.settings.button_two_href -%}
+  {%- endif -%}
+
+  {%- if button_two_classes == blank -%}
+    {%- assign button_two_classes = section.settings.button_two_classes -%}
+  {%- endif -%}
+
+  {%- if button_two_attrs == blank -%}
+    {%- assign button_two_attrs = section.settings.button_two_attrs -%}
+  {%- endif -%}
+
+  {%- if content == blank -%}
+    {%- assign content = section.settings.content -%}
+  {%- endif -%}
+
+  {%- if limit == blank -%}
+    {%- assign limit = section.settings.limit -%}
+  {%- endif -%}
+
+{%- endif -%}
+
+
+{%- if context == 'block' -%}
+
+  {%- if snippet == blank -%}
+    {%- assign snippet = block.settings.snippet -%}
+  {%- endif -%}
+
+  {%- if primary_image == blank -%}
+    {%- assign primary_image = block.settings.primary_image -%}
+  {%- endif -%}
+
+  {%- if primary_image_size == blank -%}
+    {%- assign primary_image_size = block.settings.primary_image_size -%}
+  {%- endif -%}
+
+  {%- if primary_image_srcset == blank -%}
+    {%- assign primary_image_srcset = block.settings.primary_image_srcset -%}
+  {%- endif -%}
+
+  {%- if primary_image_sizes == blank -%}
+    {%- assign primary_image_sizes = block.settings.primary_image_sizes -%}
+  {%- endif -%}
+
+  {%- if primary_image_attrs == blank -%}
+    {%- assign primary_image_attrs = block.settings.primary_image_attrs -%}
+  {%- endif -%}
+
+  {%- if second_image == blank -%}
+    {%- assign second_image = block.settings.second_image -%}
+  {%- endif -%}
+
+  {%- if second_image_size == blank -%}
+    {%- assign second_image_size = block.settings.second_image_size -%}
+  {%- endif -%}
+
+  {%- if second_image_srcset == blank -%}
+    {%- assign second_image_srcset = block.settings.second_image_srcset -%}
+  {%- endif -%}
+
+  {%- if second_image_sizes == blank -%}
+    {%- assign second_image_sizes = block.settings.second_image_sizes -%}
+  {%- endif -%}
+
+  {%- if overlay_content_classes == blank -%}
+    {%- assign overlay_content_classes = block.settings.overlay_content_classes -%}
+  {%- endif -%}
+
+  {%- if overlay_heading == blank -%}
+    {%- assign overlay_heading = block.settings.overlay_heading -%}
+  {%- endif -%}
+
+  {%- if overlay_heading_classes == blank -%}
+    {%- assign overlay_heading_classes = block.settings.overlay_heading_classes -%}
+  {%- endif -%}
+
+  {%- if overlay_sub_heading == blank -%}
+    {%- assign overlay_sub_heading = block.settings.overlay_sub_heading -%}
+  {%- endif -%}
+
+  {%- if overlay_sub_heading_classes == blank -%}
+    {%- assign overlay_sub_heading_classes = block.settings.overlay_sub_heading_classes -%}
+  {%- endif -%}
+
+  {%- if button_one_text == blank -%}
+    {%- assign button_one_text = block.settings.button_one_text -%}
+  {%- endif -%}
+
+  {%- if button_one_href == blank -%}
+    {%- assign button_one_href = block.settings.button_one_href -%}
+  {%- endif -%}
+
+  {%- if button_one_classes == blank -%}
+    {%- assign button_one_classes = block.settings.button_one_classes -%}
+  {%- endif -%}
+
+  {%- if button_one_attrs == blank -%}
+    {%- assign button_one_attrs = block.settings.button_one_attrs -%}
+  {%- endif -%}
+
+  {%- if button_two_text == blank -%}
+    {%- assign button_two_text = block.settings.button_two_text -%}
+  {%- endif -%}
+
+  {%- if button_two_href == blank -%}
+    {%- assign button_two_href = block.settings.button_two_href -%}
+  {%- endif -%}
+
+  {%- if button_two_classes == blank -%}
+    {%- assign button_two_classes = block.settings.button_two_classes -%}
+  {%- endif -%}
+
+  {%- if button_two_attrs == blank -%}
+    {%- assign button_two_attrs = block.settings.button_two_attrs -%}
+  {%- endif -%}
+
+{%- endif -%}

@@ -1,0 +1,51 @@
+{% comment %}
+
+  Arguments:
+
+{% endcomment %}
+
+
+{%- capture _section_name -%}
+  {%- include 'name', context: 'section', handle: true -%}
+{%- endcapture -%}
+
+{%- capture _section_context -%}
+  {%- include 'section-context' -%}
+{%- endcapture -%}
+
+
+{%- if _section_context == 'block' -%}
+  {%- assign _parent_selector = '#shopify-block-' | append: block.id -%}
+  {%- assign _settings = block.settings -%}
+{%- else -%}
+  {%- assign _section_context = 'section' -%}
+  {%- assign _parent_selector = '#shopify-section-' | append: section.id -%}
+  {%- assign _settings = section.settings -%}
+{%- endif -%}
+
+
+{%- assign context = _section_name | append: '-' | append: _section_context -%}
+
+
+{%- capture overrides_string -%}
+  {%- include 'style-overrides', context: context -%}
+{%- endcapture -%}
+
+{%- assign overrides = overrides_string | strip | split: ',' -%}
+
+{%- for override in overrides -%}
+  {%- assign _style_parts = override | strip | split: '::' -%}
+  {%- assign _css_property = _style_parts[0] -%}
+  {%- assign _setting_name = _style_parts[1] -%}
+  {%- assign _selector = _style_parts[2] | prepend: ' ' | prepend: _parent_selector -%}
+  {%- assign _css_property_value = _settings[_setting_name] -%}
+
+  {%- unless _css_property_value == blank or _css_property_value == 'rgba(0,0,0,0)' and _css_property != 'background-color' -%}
+
+    <style type="text/css">
+      {{ _selector }} { {{ _css_property }}: {{ _css_property_value }} !important; }
+    </style>
+
+  {%- endunless -%}
+{%- endfor -%}
+

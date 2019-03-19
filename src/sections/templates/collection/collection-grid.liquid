@@ -1,0 +1,101 @@
+{%- include 'section',
+  section_name: 'Collection Grid',
+  section_snippet: 'collection-grid'
+  container: 'none',
+  products_shown: section.settings.products_shown,
+  react: section.settings.use_react,
+  filter_with_options: section.settings.filter_with_options,
+  include_options: section.settings.include_options,
+  exclude_options: section.settings.exclude_options,
+  filter_with_tags: section.settings.filter_with_tags,
+  tag_delimiter: section.settings.tag_delimiter,
+  include_tags: section.settings.include_tags,
+  exclude_tags: section.settings.exclude_tags, -%}
+
+{% schema %}
+  {
+    "name": "Collection Grid",
+    "class": "collection-grid-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "React"
+      },
+      {
+        "id": "use_react",
+        "type": "checkbox",
+        "label": "Enable filtering and sorting with React.js",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Products Shown"
+      },
+      {
+        "id": "products_shown",
+        "type": "range",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "label": "Products Shown",
+        "default": 25
+      },
+      {
+        "type": "header",
+        "content": "Filtering - Product Options"
+      },
+      {
+        "id": "filter_with_options",
+        "type": "checkbox",
+        "label": "Use product options as filters",
+        "default": false
+      },
+      {
+        "id": "include_options",
+        "type": "text",
+        "label": "Include options",
+        "placeholder": "Color, Size",
+        "info": "If you want to include only certain options, list them (comma separated) here"
+      },
+      {
+        "id": "exclude_options",
+        "type": "text",
+        "label": "Exclude options",
+        "placeholder": "Gender",
+        "info": "If you want to exclude certain options, list them (comma separated) here"
+      },
+      {
+        "type": "header",
+        "content": "Filtering - Product Tags"
+      },
+      {
+        "id": "filter_with_tags",
+        "type": "checkbox",
+        "label": "Use product tags as filters",
+        "default": true
+      },
+      {
+        "id": "tag_delimiter",
+        "type": "text",
+        "label": "Tag delimiter",
+        "placeholder": "::",
+        "info": "The delimiter used to separate filter tag group and value e.g. `color::red`"
+      },
+      {
+        "id": "include_tags",
+        "type": "text",
+        "label": "Include tags",
+        "placeholder": "neck, hem",
+        "info": "If you want to include only certain tags as filters, list the groups (without delimiter, comma separated) here"
+      },
+      {
+        "id": "exclude_tags",
+        "type": "text",
+        "label": "Exclude tags",
+        "placeholder": "style",
+        "info": "If you want to exclude only certain tags as filters, list the groups (without delimiter, comma separated) here"
+      }
+    ],
+    "blocks": []
+  }
+{% endschema %}

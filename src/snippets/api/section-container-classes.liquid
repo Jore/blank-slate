@@ -1,0 +1,7 @@
+{%- assign container_classes = section.settings.container_classes | split: ' ' -%}
+
+<script>
+  window.prg.sections[{{- section.id | json -}}] = { classes: [{%- for class in container_classes -%}'{{ class }}',{%- endfor -%}] };
+</script>
+
+{%- assign container_classes = nil -%}

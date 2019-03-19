@@ -1,0 +1,40 @@
+{% comment %}
+
+  Required arguments:
+  -
+
+  Optional arguments:
+  -
+
+{% endcomment %}
+
+
+{%- capture product_benefits_contents -%}
+  {%- include 'icon-with-text',
+    icon: 'airplane',
+    text: 'Free Shipping Worldwide',
+    classes: '',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'truck',
+    text: 'Free Returns Worldwide',
+    classes: '',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'ribbon',
+    text: '24-Month Warranty',
+    classes: '',
+    attrs: '' -%}
+  {%- include 'icon-with-text',
+    icon: 'lock',
+    text: '100% Secure Checkout',
+    classes: '',
+    attrs: '' -%}
+{%- endcapture -%}
+
+
+{%- include 'container-grid',
+  name: 'Product Benefits',
+  content: product_benefits_contents,
+  classes: '',
+  attrs: '' -%}

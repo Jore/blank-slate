@@ -1,0 +1,29 @@
+{% comment %}
+
+  Insert your styles with Liquid below.
+
+
+  Import additional stylesheets into this sheet using CSS imports:
+
+  // @import url('../core/form.scss');
+
+{% endcomment %}
+
+
+
+{%- comment -%}
+.swatch-lace {
+  background-image: url('{{ "lace.jpg" | asset_url }}');
+}
+{%- endcomment -%}
+
+
+{%- comment -%}
+@font-face {
+  font-family: 'Akzidenz-Grotesk BQ';
+  src: url('{{ "AkzidenzGroteskBQ-Light.woff2" | asset_url }}') format('woff2'),
+      url('{{ "AkzidenzGroteskBQ-Light.woff" | asset_url }}') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+{%- endcomment -%}

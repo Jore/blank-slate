@@ -1,0 +1,143 @@
+{%- comment -%}
+
+  Required arguments:
+  - primary_image
+
+  Optional arguments:
+  - primary_image_size
+  - primary_image_srcset
+  - primary_image_sizes
+  - second_image
+  - second_image_size
+  - second_image_srcset
+  - second_image_sizes
+  - third_image
+  - third_image_size
+  - third_image_srcset
+  - third_image_sizes
+  - hero_title
+  - hero_subtitle
+  - button_one_text
+  - button_one_href
+  - button_one_classes
+  - button_two_text
+  - button_two_href
+  - button_two_classes
+  - is_slider
+
+  - lazyload
+  - classes
+
+{%- endcomment -%}
+
+<section class="oo-hero {{ name | handle }}  {{ classes -}}" {{ attrs -}}>
+
+  {% comment %}
+
+    can also use `is_slider` - if hero has more than one slide is_slider == true
+
+    e.g.
+
+    {%- if is_slider == false and second_image != blank or third_image != blank -%}{%- endif -%}
+
+  {% endcomment %}
+
+
+  {%- if second_image != blank or third_image != blank -%}
+
+    {%- capture sources -%}
+
+      {%- include 'source',
+        resource: primary_image,
+        srcset: primary_image_srcset,
+        size: primary_image_size,
+        sizes: primary_image_sizes -%}
+
+      {%- if second_image != blank -%}
+
+        {%- include 'source',
+          resource: second_image,
+          srcset: second_image_srcset,
+          size: second_image_size,
+          sizes: second_image_sizes -%}
+
+      {%- elsif third_image != blank -%}
+
+        {%- include 'source',
+          resource: third_image,
+          srcset: third_image_srcset,
+          size: third_image_size,
+          sizes: third_image_sizes -%}
+
+      {%- endif -%}
+
+      {%- include 'image',
+        resource: primary_image,
+        wrapper: false,
+        srcset: primary_image_srcset,
+        size: primary_image_size,
+        classes: '',
+        attrs: '' -%}
+
+    {%- endcapture -%}
+
+    {%- include 'image',
+      sources: sources,
+      picture: true,
+      classes: '',
+      attrs: '' -%}
+
+  {%- else -%}
+
+    {%- include 'image',
+      wrapper: false,
+      resource: primary_image,
+      size: primary_image_size,
+      srcset: primary_image_srcset,
+      sizes: primary_image_sizes,
+      classes: '',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+
+  {%- capture heading_content -%}
+    {%- if hero_subtitle != blank -%}
+      <div class="oo-heading--content">{{ hero_subtitle }}</div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+
+  {%- include 'header',
+    title: hero_title,
+    level: 3,
+    content: heading_content,
+    classes: '',
+    attrs: '' -%}
+
+  {%- assign heading_content = nil -%}
+
+
+  {%- if button_one_text != blank -%}
+
+    {%- include 'link',
+      button: true,
+      href: button_one_href,
+      content: button_one_text,
+      classes: button_one_classes,
+      attrs: '' -%}
+
+  {%- endif -%}
+
+
+  {%- if button_two_text != blank -%}
+
+    {%- include 'link',
+      button: true,
+      href: button_two_href,
+      content: button_two_text,
+      classes: button_two_classes,
+      attrs: '' -%}
+
+  {%- endif -%}
+</section>

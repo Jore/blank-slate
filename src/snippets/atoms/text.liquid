@@ -1,0 +1,28 @@
+{%- assign COMPONENT_NAME = 'text' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - content
+
+  Optional arguments:
+  - rte
+
+{%- endcomment -%}
+
+
+{%- assign tag = 'p' -%}
+{%- if rte == true -%}
+  {%- assign tag = 'div' -%}
+{%- endif -%}
+
+<{{- tag }} class="oo-text {% if rte == true %}rte{% endif %} {{ classes -}}" {{ attrs -}}>
+
+  {{- content -}}
+
+</{{- tag -}}>
+
+{%- assign tag = nil -%}
+{%- assign classes = nil -%}
+
+{%- assign COMPONENT_NAME = nil -%}

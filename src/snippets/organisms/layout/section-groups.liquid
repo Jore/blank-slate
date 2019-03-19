@@ -1,0 +1,49 @@
+{%- comment -%}
+
+  Required arguments:
+  - section_name
+
+  Optional arguments:
+
+{%- endcomment -%}
+
+
+{%- assign case_statement_name = section_name | append: '-case-statement' -%}
+
+{%- for block in section.blocks -%}
+
+  {%- if block.settings.group_name != blank -%}
+    {%- assign group_name = block.settings.group_name -%}
+    {%- assign groups = groups | append: group_name | append: '--' | append: block.type -%}
+    {%- assign group_names = group_names | append: group_name | append: ',' -%}
+
+  {%- else -%}
+
+    {%- include case_statement_name -%}
+
+  {%- endif -%}
+
+{%- endfor -%}
+
+
+{%- assign groups = groups | split: ',' | sort -%}
+{%- assign group_names = group_names | split: ',' | uniq -%}
+
+
+{%- for group_name in group_names -%}
+  <section class="{{- section_name -}}--block-group {{ group_name -}}">
+
+    {%- for block in section.blocks -%}
+      {%- for group in groups -%}
+        {%- if group contains block.type and group contains group_name -%}
+
+          {%- include case_statement_name -%}
+
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+
+  </section>
+{%- endfor -%}
+
+{%- assign case_statement_name = nil -%}

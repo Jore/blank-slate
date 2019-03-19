@@ -1,0 +1,238 @@
+{%- include 'section',
+  section_name: 'Product Add To Cart',
+  section_snippet: 'product-add-to-cart',
+  container: 'form',
+  method: 'post',
+  action: '/cart/add',
+  enctype: 'multipart/form-data',
+  add_to_cart_button_text: section.settings.add_to_cart_button_text,
+  add_to_cart_button_classes: section.settings.add_to_cart_button_classes
+  add_to_cart_button_attrs: section.settings.add_to_cart_button_attrs,
+  default_show_option_name: section.settings.default_show_option_name,
+  default_show_selected_value: section.settings.default_show_selected_value,
+  default_option_group_type: section.settings.default_option_group_type -%}
+
+
+{% schema %}
+  {
+    "name": "Product Add To Cart",
+    "class": "product-add-to-cart-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Add to Cart Button"
+      },
+      {
+        "id": "add_to_cart_button_text",
+        "type": "text",
+        "label": "Add to cart button text",
+        "default": "Add to Cart"
+      },
+      {
+        "id": "add_to_cart_button_classes",
+        "type": "text",
+        "label": "Add to Cart Button Classes",
+        "placeholder": "button--primary",
+        "info": "Space separated custom class names"
+      },
+      {
+        "id": "add_to_cart_button_attrs",
+        "type": "text",
+        "label": "Add to Cart Button Attributes",
+        "info": "Attributes for button one"
+      },
+      {
+        "type": "header",
+        "content": "Option Group Defaults"
+      },
+      {
+        "type": "paragraph",
+        "content": "If there isn't a block with a matching option name below, the following values will be used for the option group."
+      },
+      {
+        "id": "default_show_option_name",
+        "type": "checkbox",
+        "label": "Show option name",
+        "default": true
+      },
+      {
+        "id": "default_show_selected_value",
+        "type": "checkbox",
+        "label": "Show selected option value",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "default_option_group_type",
+        "options": [
+          { "value": "select", "label": "Select Box"},
+          { "value": "swatches", "label": "Swatches"}
+        ],
+        "label": "Default option group input type"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "text",
+        "id": "children_classes",
+        "label": "Children Classes",
+        "placeholder": "flex-12 m-flex-4",
+        "info": "Class string applied to every block in section"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "Best Sellers Row",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "select",
+        "name": "Select Box",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Option Group Name",
+            "placeholder": "Color"
+          },
+          {
+            "type": "header",
+            "content": "Options"
+          },
+          {
+            "id": "show_option_name",
+            "type": "checkbox",
+            "label": "Show option name",
+            "default": true
+          },
+          {
+            "id": "show_selected_value",
+            "type": "checkbox",
+            "label": "Show selected option value",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "rounded-corners",
+            "info": "Class string applied to the block"
+          }
+        ]
+      },
+      {
+        "type": "swatches",
+        "name": "Swatches",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Option Group Name",
+            "placeholder": "Color"
+          },
+          {
+            "type": "header",
+            "content": "Options"
+          },
+          {
+            "type": "select",
+            "id": "swatch_shape",
+            "options": [
+              { "value": "square", "label": "Square"},
+              { "value": "circle", "label": "Circle"}
+            ],
+            "label": "Swatch Shape"
+          },
+          {
+            "id": "show_option_name",
+            "type": "checkbox",
+            "label": "Show option name",
+            "default": true
+          },
+          {
+            "id": "show_selected_value",
+            "type": "checkbox",
+            "label": "Show selected option value",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "rounded-corners",
+            "info": "Class string applied to the block"
+          }
+        ]
+      },
+      {
+        "type": "custom",
+        "name": "Custom",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Option Group Name",
+            "placeholder": "Color"
+          },
+          {
+            "type": "header",
+            "content": "Options"
+          },
+          {
+            "type": "text",
+            "id": "snippet_name",
+            "label": "Snippet Name",
+            "placeholder": "custom-color-option-group"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "rounded-corners",
+            "info": "Class string applied to the block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

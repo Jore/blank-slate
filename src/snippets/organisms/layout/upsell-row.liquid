@@ -1,0 +1,47 @@
+{% comment %}
+
+  Required arguments:
+  - _collection
+
+  Optional arguments:
+  - limit
+  - title
+
+{% endcomment %}
+
+{%- assign _limit = 4 -%}
+{%- if limit != blank -%}
+  {%- assign _limit = limit -%}
+{%- endif -%}
+
+{%- capture upsell_row_contents -%}
+
+  {%- if title != blank -%}
+
+    {%- include 'header',
+      title: title,
+      classes: 'upsell-row-title flex-full',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+  {%- for _product in _collection limit: _limit -%}
+
+    {%- include 'product-item',
+      _product: _product,
+      with_quickshop: false,
+      classes: 'xs-flex-12 s-flex-6 m-flex-3',
+      attrs: ''  -%}
+
+  {%- endfor -%}
+{%- endcapture -%}
+
+
+{%- include 'container-grid',
+  name: 'Product Page Upsell',
+  content: upsell_row_contents,
+  classes: '',
+  attrs: '' -%}
+
+
+{%- assign _limit = nil -%}

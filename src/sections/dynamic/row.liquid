@@ -1,0 +1,339 @@
+{%- include 'section',
+  section_name: 'Row',
+  blocks_snippet: 'row-case-statement',
+  container: 'grid', -%}
+
+{% schema %}
+  {
+    "name": "Row",
+    "class": "home-page-row",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Row"
+      },
+      {
+        "type": "paragraph",
+        "content": "This is a row of content with an optional heading and sub-heading. The row items are created by adding blocks to the section. Items can be a mix of different types, including: product, collection, snippet, or html."
+      },
+      {
+        "type": "header",
+        "content": "Section Heading"
+      },
+      {
+        "type": "color",
+        "id": "heading_text_color",
+        "label": "Row Heading Text Color"
+      },
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Row Heading",
+        "placeholder": "Best Sellers"
+      },
+      {
+        "id": "heading_classes",
+        "type": "text",
+        "label": "Row Heading Classes",
+        "placeholder": "heading-two",
+        "info": "Class string applied heading element"
+      },
+      {
+        "id": "sub_heading",
+        "type": "text",
+        "label": "Row Sub-heading",
+        "placeholder": "Our best selling products"
+      },
+      {
+        "id": "sub_heading_classes",
+        "type": "text",
+        "label": "Row Sub-heading Classes",
+        "placeholder": "text-three u-text-uppercase",
+        "info": "Class string applied sub-heading element"
+      },
+      {
+        "type": "header",
+        "content": "Section Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_slider",
+        "label": "Section is a slider",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "section_background_color",
+        "label": "Section background color"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "text",
+        "id": "children_classes",
+        "label": "Children Classes",
+        "placeholder": "flex-12 m-flex-4",
+        "info": "Class string applied to every block in section"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "Best Sellers Row",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "is-best-seller",
+            "info": "Class string applied to the block"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "placeholder": "January Best Seller",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "name": "Collection",
+        "limit": 1,
+        "settings": [
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "collection_limit",
+            "type": "range",
+            "min": 1,
+            "max": 50,
+            "default": 4,
+            "step": 1,
+            "label": "Max Products Shown",
+            "info": "If number of products in collection is less than this number, all products will be shown"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Product Classes",
+            "placeholder": "is-best-seller",
+            "info": "Class string applied to all product items from collection"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "placeholder": "Black Collection",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Primary Image"
+          },
+          {
+            "id": "primary_image",
+            "type": "image_picker",
+            "label": "Primary Image"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_size",
+            "label": "Primary Image Size",
+            "placeholder": "1600x",
+            "info": "[width]x[height] - recommended"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_srcset",
+            "label": "Primary Image Srcset",
+            "placeholder": "800x 800w, 1200x 1200w",
+            "info": "<size> <width>x|w"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_sizes",
+            "label": "Primary Image Sizes",
+            "placeholder": "min 380px 100vw, min 1600px 50vw",
+            "info": "<direction> <width>px <slot>px|vw"
+          },
+          {
+            "type": "header",
+            "content": "Secondary Image"
+          },
+          {
+            "id": "second_image",
+            "type": "image_picker",
+            "label": "Second Image"
+          },
+          {
+            "type": "text",
+            "id": "second_image_size",
+            "label": "Second Image Size",
+            "placeholder": "1600x",
+            "info": "[width]x[height] - recommended"
+          },
+          {
+            "type": "text",
+            "id": "second_image_srcset",
+            "label": "Second Image Srcset",
+            "placeholder": "800x 800w, 1200x 1200w",
+            "info": "<size> <width>x|w"
+          },
+          {
+            "type": "text",
+            "id": "second_image_sizes",
+            "label": "Second Image Sizes",
+            "placeholder": "min 380px 100vw, min 1600px 50vw",
+            "info": "<direction> <width>px <slot>px|vw"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "rounded-corners",
+            "info": "Class string applied to the block"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "placeholder": "Employee Photo",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      },
+      {
+        "type": "snippet",
+        "name": "Snippet",
+        "settings": [
+          {
+            "id": "snippet",
+            "type": "text",
+            "label": "Snippet Name",
+            "default": "logo"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "info": "Class string applied to the block"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "placeholder": "Additional Details Snippet",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      },
+      {
+        "type": "html",
+        "name": "HTML",
+        "settings": [
+          {
+            "id": "html",
+            "type": "html",
+            "label": "HTML"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "info": "Class string applied to the block"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Row",
+        "category": "Generic Content",
+        "settings": {},
+        "blocks": []
+      }
+    ]
+  }
+{% endschema %}

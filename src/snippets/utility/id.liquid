@@ -1,0 +1,1 @@
+{%- if prefix != blank -%}{{- prefix | handle -}}-{%- endif -%}{{- 'now' | date: '%N' | modulo: 999999999 | plus: 1 -}}

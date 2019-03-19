@@ -1,0 +1,121 @@
+{%- assign component_name = 'Section' -%}
+
+
+{%- comment -%}
+
+  Usage:
+
+  {%- include 'section',
+    section_name: '<section_name>',
+    section_snippet: '[section_snippet]',
+    blocks_snippet: '[blocks_snippet]',
+    condition_snippet: '[blocks_condition_snippet]',
+    container: '[container_type]' -%}
+
+  - If a `section_snippet` is passed in:
+    - `section_snippet` will be used
+    - `blocks_snippet` can be optionally passed in as well and used as a variable with `section-blocks`
+
+  - If only a `blocks_snippet` is passed in:
+    - `section-blocks` snippet will be used with the `blocks_snippet` value passed in
+    - if the `heading` variable isn't blank, a heading will be added using the default arguments
+
+  - If neither a `section_snippet` or a `blocks_snippet` are passed in:
+    - the `content` variable will be output
+
+  - If a `container_type` is passed in:
+    - the content generated from the above will be wrapped in a container of the type passed in
+    - if the `is_slider` variable is true, the generated content will be put in a slider container
+
+{%- endcomment -%}
+
+
+{%- include 'default-arguments', context: 'section' -%}
+
+
+{%- unless enabled == false -%}
+  {%- include 'override-styles' -%}
+
+  {%- capture section_content -%}
+    {%- if section_snippet != blank -%}
+
+      {%- include section_snippet,
+        snippet: blocks_snippet -%}
+
+    {%- elsif blocks_snippet != blank -%}
+
+      {%- include 'section-heading' -%}
+
+      {%- capture blocks_content -%}
+        {%- include 'section-blocks',
+          snippet: blocks_snippet,
+          condition: condition_snippet -%}
+      {%- endcapture -%}
+
+
+      {%- if is_slider == true -%}
+
+        {%- include 'container',
+          type: 'slider',
+          name: 'Generic Slider',
+          content: blocks_content,
+          classes: '',
+          attrs: '' -%}
+
+      {%- else -%}
+
+        {{ blocks_content }}
+
+      {%- endif -%}
+
+    {%- elsif content != blank -%}
+
+      {{- content -}}
+
+    {%- else -%}
+
+      {%- comment -%}
+
+        error:  forgot to pass `section_snippet`, `blocks_snippet`, or `content` argument to `sections` snippet
+
+      {%- endcomment -%}
+
+    {%- endif -%}
+  {%- endcapture -%}
+
+
+  {%- capture _classes -%}
+    {{- section_name | handle -}}
+  {%- endcapture -%}
+
+  {%- if container == 'none' -%}
+
+    {{ section_content }}
+
+  {%- elsif container != blank -%}
+
+    {%- include 'container',
+      type: container,
+      content: section_content,
+      classes: _classes,
+      attrs: '' -%}
+
+  {%- else -%}
+
+    {%- include 'container',
+      type: 'grid',
+      name: 'Generic Grid',
+      content: section_content,
+      classes: _classes,
+      attrs: '' -%}
+
+  {%- endif -%}
+
+
+  {%- include 'section-container-classes' -%}
+
+
+{%- endunless -%}
+
+
+{%- assign component_name = nil -%}

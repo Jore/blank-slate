@@ -1,0 +1,77 @@
+{%- include 'section',
+  section_name: 'Snippet',
+  container: section.settings.container_type,
+  section_snippet: section.settings.snippet_name -%}
+
+{% schema %}
+  {
+    "name": "Snippet",
+    "class": "home-page-snippet",
+    "settings": [
+      {
+         "type": "header",
+         "content": "Snippet"
+      },
+      {
+        "type": "paragraph",
+        "content": "This section lets you include a snippet as a homepage section."
+      },
+      {
+        "type": "header",
+        "content": "Section Settings"
+      },
+      {
+        "type": "text",
+        "id": "snippet_name",
+        "label": "Snippet Name",
+        "placeholder": "custom-home-page-section"
+      },
+      {
+        "type": "select",
+        "id": "container_type",
+        "options": [
+          { "value": "grid", "label": "Grid"},
+          { "value": "form", "label": "Form"},
+          { "value": "slider", "label": "Slider"},
+          { "value": "product", "label": "Product"},
+          { "value": "none", "label": "None"}
+        ],
+        "label": "Container Type"
+      },
+      {
+        "type": "color",
+        "id": "section_background_color",
+        "label": "Section Background color"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "SVG Divider",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Snippet",
+        "category": "Snippet",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

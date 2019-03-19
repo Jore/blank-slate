@@ -1,0 +1,38 @@
+<style type="text/css">
+
+  {%- for image in section.blocks -%}
+
+    .child-link.{{- image.settings.title | handle }}::before {
+      background-image: url('{%- include 'img-url', resource: image.settings.menu_item_image, size: '376x' -%}');
+    }
+
+  {%- endfor -%}
+
+</style>
+
+
+{% schema %}
+  {
+    "name": "Mega-Menu Images",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Menu Item Name"
+          },
+          {
+            "id": "menu_item_image",
+            "type": "image_picker",
+            "label": "Menu Item Image",
+            "info": "Image should have aspect ratio of 1.27:1 (w:h)"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
