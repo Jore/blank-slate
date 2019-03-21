@@ -8,11 +8,11 @@ class ProductImage extends Component {
     return (
       <a
         href={`/collections/${collection}/products/${handle}`}
-        className="product-item-image oo-image-wrapper"
+        className="product-item-image xx-image-wrapper"
       >
 
         <img
-          className={`oo-image ${(true) ? 'lazyload' : ''}`}
+          className={`xx-image ${(true) ? 'lazyload' : ''}`}
           alt={featuredImage.alt}
           src={(true) ? featuredImage.lqip : featuredImage.src}
           data-srcset={featuredImage.srcset} />

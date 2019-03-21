@@ -1,0 +1,99 @@
+{%- assign component_name = 'Newsletter Signup' -%}
+
+
+{%- comment -%}
+
+  Required arguments:
+
+  Optional arguments:
+  - heading
+  - heading_classes
+  - sub_heading
+  - sub_heading_classes
+  - placeholder
+  - submit_icon
+  - submit_text
+
+{%- endcomment -%}
+
+{%- if submit_icon == blank and submit_text == blank -%}
+  {%- assign submit_icon = 'envelope' -%}
+{%- endif -%}
+
+<section class="newsletter-signup {{ classes -}}" {{ attrs -}}>
+
+  {%- if heading != blank -%}
+
+    {%- capture _sub_heading_content -%}
+      {%- if sub_heading != blank -%}
+        {%- capture _sub_heading_classes -%}
+          newsletter-signup-sub-heading {{ sub_heading_classes -}}
+        {%- endcapture -%}
+
+        {%- include 'heading',
+          level: 4,
+          _heading: sub_heading,
+          classes: _sub_heading_classes,
+          attrs: '' -%}
+
+        {%- assign _sub_heading_classes = nil -%}
+      {%- endif -%}
+    {%- endcapture -%}
+
+
+    {%- capture _heading_classes -%}
+      newsletter-signup-heading {{ heading_classes -}}
+    {%- endcapture -%}
+
+    {%- include 'header',
+      level: 3,
+      heading: heading,
+      content: _sub_heading_content,
+      heading_classes: _heading_classes,
+      classes: 'newsletter-signup',
+      attrs: '' -%}
+
+    {%- assign _heading_classes = nil -%}
+
+  {%- endif -%}
+
+  {%- capture newsletter_signup_content -%}
+
+    {%- capture input_placeholder -%}
+      {%- if placeholder != blank -%}
+        placeholder="{{ placeholder }}"
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- include 'input',
+      id: '',
+      type: 'email',
+      name: 'EMAIL',
+      classes: 'newsletter-signup-email',
+      attrs: input_placeholder -%}
+
+    {%- include 'button',
+      type: 'submit',
+      icon: submit_icon,
+      content: submit_text,
+      classes: 'newsletter-signup-submit',
+      attrs: '' -%}
+
+  {%- endcapture -%}
+
+  {%- include 'container-form',
+    name: 'newsletter-signup',
+    method: 'post',
+    action: 'https://manage.kmail-lists.com/subscriptions/subscribe?a=HhTxnW&g=PZFhYV',
+    content: newsletter_signup_content,
+    classes: 'global-footer__newsletter-signup',
+    attrs: 'name="mc-embedded-subscribe-form" target="_blank"' -%}
+
+</section>
+
+
+{%- assign sub_heading_content = nil -%}
+{%- assign newsletter_signup_content = nil -%}
+{%- assign input_placeholder = nil -%}
+{%- assign submit_icon = nil -%}
+{%- assign component_name = nil -%}

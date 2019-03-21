@@ -1,0 +1,15 @@
+{%- capture product_main_content -%}
+
+  {%- section 'product-images' -%}
+
+  {%- include 'product-meta' -%}
+
+{%- endcapture -%}
+
+
+{%- include 'container',
+  type: 'product',
+  name: 'Product Main',
+  content: product_main_content,
+  classes: 'product-main',
+  attrs: '' -%}

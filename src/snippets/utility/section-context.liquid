@@ -1,0 +1,17 @@
+{%- assign section_type = section.id | times: 2 -%}
+
+{%- unless section.id == blank -%}
+  {%- if is_block == true -%}
+
+    block
+
+  {%- elsif section_type == 0 -%}
+
+    static
+
+  {%- else -%}
+
+    dynamic
+
+  {%- endif -%}
+{%- endunless -%}

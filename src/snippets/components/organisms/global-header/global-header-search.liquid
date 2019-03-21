@@ -1,0 +1,64 @@
+{%- comment -%}
+
+  Required arguments:
+  -
+
+  Optional arguments:
+  - search_icon
+  - placeholder
+
+{%- endcomment -%}
+
+
+{%- capture search_form_content -%}
+  {%- capture input_placeholder -%}
+    required
+    data-search-input
+    placeholder="{{ placeholder }}"
+  {%- endcapture -%}
+
+  {%- include 'input',
+    type: 'hidden',
+    name: 'type',
+    value: 'product',
+    classes: '',
+    attrs: '' -%}
+
+  {%- include 'input',
+    type: 'search',
+    name: 'q',
+    id: '',
+    classes: 'global-header__search-input',
+    attrs: input_placeholder -%}
+
+  {%- capture search_submit_attrs -%}
+    {% if is_mobile == blank -%}
+      data-search-submit
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- include 'button',
+    type: 'submit',
+    icon: search_icon,
+    classes: 'global-header__search-submit',
+    attrs: search_submit_attrs -%}
+
+  {%- assign search_submit_attrs = nil -%}
+
+{%- endcapture -%}
+
+
+{%- if name == blank -%}
+  {%- assign name = 'global-header-search' -%}
+{%- endif -%}
+
+{%- include 'container-form',
+  name: name,
+  method: 'post',
+  action: '/search',
+  content: search_form_content,
+  classes: '',
+  attrs: '' -%}
+
+{%- assign search_form_content = nil -%}
+{%- assign name = nil -%}

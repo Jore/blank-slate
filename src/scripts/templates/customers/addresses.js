@@ -1,4 +1,4 @@
-import 'styles/templates/customers/addresses.scss';
+import 'styles/templates/customers/addresses/index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 

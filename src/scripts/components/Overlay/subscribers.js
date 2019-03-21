@@ -1,16 +1,16 @@
 import prg from 'common/Constants';
-import { showOverlay, hideOverlay, toggleOverlay } from './handlers';
+import overlay from './handlers';
 
 export const initSubscribers = () => {
   PubSub.subscribe(prg.showOverlay, (message, data) => {
-    return showOverlay(data);
+    return overlay.show(data);
   });
 
   PubSub.subscribe(prg.hideOverlay, (message, data) => {
-    return hideOverlay(data);
+    return overlay.hide(data);
   });
 
   PubSub.subscribe(prg.toggleOverlay, (message, data) => {
-    return toggleOverlay(data);
+    return overlay.toggle(data);
   });
 };

@@ -1,4 +1,4 @@
-import 'styles/templates/customers/reset_password.scss';
+import 'styles/templates/customers/reset-password/index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -7,4 +7,3 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
 
 });
-

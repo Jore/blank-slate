@@ -1,0 +1,49 @@
+{%- case block.type -%}
+
+  {%- when 'logo' -%}
+
+    {%- include 'global-header-logo',
+      svg: block.settings.svg,
+      logo_image: block.settings.logo_image,
+      logo_size: block.settings.logo_image_size,
+      logo_srcset: block.settings.logo_image_srcset,
+      logo_sizes: block.settings.logo_image_sizes -%}
+
+  {%- when 'primary_navigaiton' -%}
+
+    {%- include 'menu',
+      _linklist: block.settings.primary_navigation_linklist,
+      parent_classes: 'text-two',
+      child_classes: 'text-two',
+      grandchild_classes: 'text-two',
+      attrs: '' -%}
+
+  {%- when 'secondary_navigaiton' -%}
+
+    {%- include 'menu',
+      _linklist: block.settings.secondary_navigation_linklist,
+      parent_classes: 'text-two',
+      child_classes: 'text-two',
+      grandchild_classes: 'text-two',
+      attrs: '' -%}
+
+  {%- when 'search' -%}
+
+    {%- include 'global-header-search',
+      search_icon: block.settings.search_icon,
+      placeholder: block.settings.placeholder_text -%}
+
+  {%- when 'account' -%}
+
+    {%- include 'global-header-account',
+      account_icon: block.settings.account_icon,
+      account_login_text: block.settings.account_login_text,
+      account_logout_text: block.settings.account_logout_text -%}
+
+  {%- when 'cart' -%}
+
+    {%- include 'global-header-cart',
+      cart_icon: block.settings.cart_icon,
+      cart_content: block.settings.cart_content -%}
+
+{%- endcase -%}

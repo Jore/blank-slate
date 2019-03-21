@@ -5,7 +5,7 @@ export default ({ width: _width, height: _height, fill = "#31373D", }) => {
   const height = (_height) ? _height.toString().replace('px', '') : undefined;
   const style = { width, height, };
   return (
-    <div className="oo-icon icon-add ">
+    <div className="xx-icon icon-add ">
       <svg
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

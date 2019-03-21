@@ -1,0 +1,25 @@
+{%- include 'section',
+  section_name: 'Top Bar',
+  wrapper: 'grid',
+  content: section.settings.content -%}
+
+
+{% schema %}
+  {
+    "name": "Top bar",
+    "class": "top-bar-wrapper text-one",
+    "settings": [
+      {
+        "id": "enabled",
+        "type": "checkbox",
+        "label": "Top bar enabled",
+        "default": true
+      },
+      {
+        "id": "content",
+        "type": "textarea",
+        "label": "Top bar Content"
+      }
+    ]
+  }
+{% endschema %}

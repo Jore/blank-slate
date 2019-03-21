@@ -15,9 +15,17 @@ html {
   background-color: $color-body-background;
 }
 
-body,
 html {
+  height: auto;
+
+  &.full-height {
+    height: 100%;
+  }
+}
+
+body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 @if ($enable-box-sizing-border-box) {

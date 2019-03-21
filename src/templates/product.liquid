@@ -1,47 +1,30 @@
-{%- capture slides -%}
-  {%- for image in product.images -%}
-    {%- include 'image',
-      resouce: image,
-      classes: '',
-      attrs: '' -%}
+<div class="red">red</div>
+<div class="blue">blue</div>
+<div class="green">green</div>
+
+{%- capture _content -%}
+  {%- include 'product-container-json', _product: product -%}
+
+  {%- for _product in collections.frontpage.products -%}
+    {%- include 'product-container-json' -%}
   {%- endfor -%}
-{%- endcapture -%}
 
-{%- assign _product = product -%}
-{%- capture main_product_container_content -%}
-  {%- include 'image-data', images: _product.images -%}
-  {%- include 'option-data', options: _product.options_with_values -%}
-  {%- include 'variant-data', _product: _product, variants: _product.variants -%}
-  {%- include 'product-data', _product: _product -%}
-
-  {%- include 'container',
-    type: 'slider',
-    name: 'Product Images',
-    content: slides,
+  {%- include 'quantity-select',
+    quantity: 1,
     classes: '',
     attrs: '' -%}
+
+  {%- include 'quantity-select',
+    quantity: 2,
+    classes: '',
+    attrs: '' -%}
+
 {%- endcapture -%}
 
 
 {%- include 'container',
   type: 'product',
   name: 'Main Product Container',
-  content: main_product_container_content,
-  classes: '',
-  attrs: '' -%}
-
-
-{%- assign _product = all_products['blue-silk-tuxedo'] -%}
-{%- capture secondary_product_container_content -%}
-  {%- include 'image-data', images: _product.images -%}
-  {%- include 'option-data', options: _product.options_with_values -%}
-  {%- include 'variant-data', _product: _product, variants: _product.variants -%}
-  {%- include 'product-data', _product: _product -%}
-{%- endcapture -%}
-
-{%- include 'container',
-  type: 'product',
-  name: 'Secondary Product Container',
-  content: secondary_product_container_content,
+  content: _content,
   classes: '',
   attrs: '' -%}

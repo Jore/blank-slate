@@ -1,0 +1,15 @@
+.top-bar-wrapper {
+  background-color: $color-black;
+  color: $color-white;
+}
+
+.top-bar {
+  display: none;
+
+  @include mq('large') {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

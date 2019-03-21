@@ -1,0 +1,46 @@
+{% comment %}
+
+  Required arguments:
+
+  Optional arguments:
+  - show_compare_at_price
+
+{% endcomment %}
+
+
+{%- assign _variant = _product.selected_or_first_available_variant -%}
+
+{%- include 'header',
+  heading: _product.title,
+  classes: 'product-heading text-one flex-full u-text-size-16 u-text-size-12',
+  attrs: '' -%}
+
+<div class="product-prices flex-full">
+
+  {%- include 'price',
+    _price: _variant.price,
+    type: 'price',
+    classes: 'u-text-size-12 u-mt-5',
+    filter: 'money_without_trailing_zeros',
+    attrs: '' -%}
+
+  {%- if show_compare_at_price == true -%}
+
+    {%- include 'price',
+      _price: _variant.compare_at_price,
+      type: 'compare_at_price',
+      classes: '',,
+      filter: 'money_without_trailing_zeros',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+</div>
+
+{%- include 'text',
+  content: _product.description,
+  rte: true,
+  classes: 'product-description text-three',
+  attrs: '' -%}
+
+{%- assign _variant = nil -%}

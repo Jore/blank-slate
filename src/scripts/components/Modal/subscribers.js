@@ -1,17 +1,17 @@
 import prg from 'common/Constants';
 
-import { showModal, hideModal } from './handlers';
+import modal from './handlers';
 
 export const initSubscribers = () => {
   PubSub.subscribe(prg.showModal, (message, data) => {
-    return showModal(data);
+    return modal.show(data);
   });
 
   PubSub.subscribe(prg.hideModal, (message, data) => {
-    return hideModal(data);
+    return modal.hide(data);
   });
 
   PubSub.subscribe(prg.hideOverlay, (message, data) => {
-    return hideModal(data);
+    return modal.hide(data);
   });
 };

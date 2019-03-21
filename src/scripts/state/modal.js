@@ -1,12 +1,16 @@
-import State from 'state';
+import { setState } from './handlers';
 
-export const updateModal = data => {
+const updateModalState = data => {
   const { name: id } = data;
-  const change = 'MODAL';
   const container = 'modal';
+  const change = 'modal';
 
   const { name, close } = data;
   const active = (close) ? undefined : name;
 
-  State.set({ id, change, active, container });
+  setState({ id, change, active, container });
+};
+
+export default {
+  updateState: updateModalState,
 };

@@ -8,19 +8,21 @@
 {% endcomment %}
 
 {%- if size == blank -%}
-  {%- assign size = '400x' -%}
-  {%- assign lqip_size = '40x' -%}
+  {%- assign size = '800x' -%}
+  {%- assign lqip_size = '80x' -%}
 {%- else -%}
   {%- assign lqip_size = size | split: 'x' | first | times: 1 | divided_by: 10 | append: 'x' -%}
 {%- endif -%}
 
 {
-  "id": {{- image.id -}},
+  "_id": {{- image.id | json -}},
+  "id": {{- image.id | json -}},
   "alt": {{- image.alt | json -}},
   "lqip": {{- image.src | img_url: lqip_size, scale: 1 | json -}},
   "src": {{- image.src | img_url: size, scale: 1 | json -}},
   "src2x": {{- image.src | img_url: size, scale: 2 | json -}},
-  "src3x": {{- image.src | img_url: size, scale: 3 | json -}}
+  "src3x": {{- image.src | img_url: size, scale: 3 | json -}},
+  "srcset": "{{- image.src | img_url: size, scale: 1 }} 1x, {{- image.src | img_url: size, scale: 2 }} 2x, {{- image.src | img_url: size, scale: 3 }} 3x"
 }
 
 {%- assign size = nil -%}

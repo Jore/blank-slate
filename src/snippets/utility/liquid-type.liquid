@@ -1,0 +1,84 @@
+{%- assign value_json = value | json -%}
+
+{%- capture liquid_type -%}
+  {%- if value == empty -%}
+
+    empty
+
+  {%- elsif value == nil or value == blank -%}
+
+    blanknil
+
+  {%- elsif value[0] -%}
+
+    array
+
+  {%- elsif value_json.first == '"' -%}
+    {%- if value.attached_to_variant? -%}
+
+      variant_image_object
+
+    {%- elsif value.product_id -%}
+
+      product_image_object
+
+    {%- elsif value.src -%}
+      {%- if value.src contains 'collections/' -%}
+
+        collection_image_object
+
+      {%- elsif value.src contains 'blogs/' -%}
+
+        article_image_object
+
+      {%- elsif value contains 'files/' -%}
+
+        file_image_object
+
+      {%- endif -%}
+    {%- else -%}
+      {%- assign img_exts = 'png,jpg,gif' | split: ',' -%}
+      {%- assign img_type = value | split: '.' | last | split: '?' | first -%}
+      {%- if img_exts contains img_type -%}
+        {%- if value contains '/files/' -%}
+
+          file_url
+
+        {%- else -%}
+
+          asset_url
+
+        {%- endif -%}
+      {%- else -%}
+        {%- assign is_svg = value | strip | slice: 0, 4 -%}
+        {%- if is_svg == '<svg' -%}
+
+          svg
+
+        {%- else -%}
+
+          string
+
+        {%- endif -%}
+      {%- endif %}
+    {%- endif -%}
+  {%- elsif value_json.first =='{' -%}
+
+    {{- value | downcase | remove: 'drop' -}}_object
+
+  {%- elsif value_json == 'true' or value_json == 'false' -%}
+
+    boolean
+
+  {%- else -%}
+
+    number
+
+  {%- endif -%}
+{%- endcapture -%}
+
+
+{{- liquid_type | strip -}}
+
+
+{%- assign value_json = nil -%}

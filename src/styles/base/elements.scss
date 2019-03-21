@@ -47,6 +47,10 @@ input {
   &:focus {
     outline: none;
   }
+
+  &::-webkit-input-placeholder {
+    color: inherit;
+  }
 }
 
 a {

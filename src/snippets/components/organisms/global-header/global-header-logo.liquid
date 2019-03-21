@@ -1,0 +1,42 @@
+{%- comment -%}
+
+  Required arguments:
+
+  Optional arguments:
+  - svg
+  - logo_image
+  - logo_size
+  - logo_srcset
+  - logo_sizes
+
+{%- endcomment -%}
+
+
+{%- capture logo_link_content -%}
+
+  {%- if svg != blank-%}
+
+    {%- include 'svg',
+      snippet: svg,
+      classes: '',
+      attrs: '' -%}
+
+  {%- else -%}
+
+    {%- include 'image',
+      resource: logo_image,
+      size: logo_size,
+      srcset: logo_srcset,
+      sizes: logo_sizes,
+      wrapper: false,
+      classes: '',
+      attrs: '' -%}
+
+  {%- endif -%}
+{%- endcapture -%}
+
+
+{%- include 'link',
+  href: '/',
+  content: logo_link_content
+  classes: classes -%}

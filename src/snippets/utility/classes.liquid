@@ -1,0 +1,54 @@
+{%- capture _section_type -%}
+  {%- include 'section-context' -%}
+{%- endcapture -%}
+
+{%- capture _container_name -%}
+  {%- include 'name', context: 'container' -%}
+{%- endcapture -%}
+
+{%- capture snippet_classes -%}
+  {%- if classes != blank -%}
+    {{- classes | strip -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture container_classes -%}
+  {{- container_name | handle }} {{ _container_name | handle }}
+{%- endcapture -%}
+
+{%- capture component_classes -%}
+  xx-{{- component_name | handle }}
+{%- endcapture -%}
+
+{%- capture block_classes -%}
+  {%- include 'name', context: 'section', handle: true %}-block {{ children_classes | strip }} {{ block.settings.block_classes | strip -}}
+{%- endcapture -%}
+
+{%- capture container_component_classes -%}
+  {%- if component_name != blank -%}{{- component_classes | strip }}{%- elsif _container_name != blank-%}{{- container_classes | strip }}{%- endif -%}
+{%- endcapture -%}
+
+
+{%- if with_group == true -%}
+  {{- container_component_classes | strip }} {{ snippet_classes | strip }} {{ children_classes | strip }} {{ block.settings.block_classes | strip -}}
+{%- elsif with_container == true -%}
+  {{- container_component_classes | strip }} {{ snippet_classes | strip -}}
+{%- elsif with_block == true -%}
+  {{- container_component_classes | strip }} {{ snippet_classes | strip }} {{ block_classes | strip }} {% include 'name', context: 'block', handle: true -%}
+{%- else -%}
+  {{- container_component_classes | strip }} {{ snippet_classes | strip -}}
+{%- endif -%}
+
+
+
+
+{%- assign with_block = nil -%}
+{%- assign with_container = nil -%}
+{%- assign with_group = nil -%}
+{%- assign with_section = nil -%}
+{%- assign snippet_classes = nil -%}
+{%- assign container_classes = nil -%}
+{%- assign component_classes = nil -%}
+{%- assign block_classes = nil -%}
+{%- assign container_component_classes = nil -%}
+{%- assign classes = nil -%}

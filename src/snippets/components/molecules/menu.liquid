@@ -1,0 +1,82 @@
+{%- assign component_name = 'Menu' -%}
+
+
+{%- comment -%}
+
+  Required arguments:
+  - _linklist
+
+{%- endcomment -%}
+
+
+<nav class="{% include 'classes' -%}">
+  {%- for parent in linklists[_linklist].links -%}
+    <div class="parent-link {{ parent.handle }} {% if parent.levels > 0 -%}with-children{%- endif -%}">
+
+      {%- capture _parent_classes -%}
+        header--parent-link {{ parent_classes }}
+      {%- endcapture -%}
+
+      {%- include 'link',
+        href: parent.url,
+        content: parent.title,
+        classes: _parent_classes,
+        attrs: '' -%}
+
+      {%- if parent.handle == 'cuts' -%}
+
+        <div class="child-links">
+
+          {%- include 'pick-your-cut',
+            container_classes: 'flex-full flex max-width desktop-nav-shop-by-cut',
+            blocks: linklists.types.links -%}
+
+        </div>
+
+      {%- endif -%}
+
+      {%- if parent.levels > 0 -%}
+        <div class="child-links">
+          {%- for child in parent.links -%}
+            {%- capture child_link_classes -%}
+              child-link {{ child.handle }} {{ child_classes }} {% if child.levels > 0 -%}with-grandchildren{%- endif -%}
+            {%- endcapture -%}
+
+            {%- capture child_link_content -%}
+              {%- include 'text',
+                content: child.title,
+                classes: 'child-link-text text-two',
+                attrs: '' -%}
+
+              {%- if child.levels > 0 -%}
+                <div class="grandchildren-links">
+                  {%- for grandchild in child.links -%}
+                    {%- capture _grandchild_classes -%}
+                      header--grandchild-link {{ grandchild_classes }}
+                    {%- endcapture -%}
+
+                    {%- include 'link',
+                      href: grandchild.url,
+                      content: grandchild.title,
+                      classes: _grandchild_classes,
+                      attrs: '' -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            {%- endcapture -%}
+
+            {%- include 'link',
+              href: child.url,
+              content: child_link_content,
+              classes: child_link_classes,
+              attrs: '' -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  {%- endfor -%}
+</nav>
+
+
+{%- assign component_name = nil -%}

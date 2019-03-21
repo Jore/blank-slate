@@ -1,0 +1,4 @@
+{%- include 'product-data', _product: _product -%}
+{%- include 'image-data', _product: _product, images: _product.images -%}
+{%- include 'variant-data', _product: _product, variants: _product.variants -%}
+{%- include 'option-data', _product: _product, options: _product.options_with_values -%}

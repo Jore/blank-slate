@@ -12,7 +12,7 @@ const Button = props => {
 
   return (
     <button
-      className={`oo-button ${name} button--${type} flex-${size} ${modifier}`}
+      className={`xx-button ${name} button--${type} flex-${size} ${modifier}`}
       data-action={action}
     >
 

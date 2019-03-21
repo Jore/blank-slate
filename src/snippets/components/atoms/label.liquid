@@ -1,0 +1,23 @@
+{%- assign COMPONENT_NAME = 'label' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - content
+
+  Optional arguments:
+  - for
+
+{%- endcomment -%}
+
+
+<label
+  class="xx-label {{ classes -}}"
+  {%- if for -%}for="{{- for -}}"{%- endif -%}
+  {{ attrs -}}>
+
+  {{- content -}}
+
+</label>
+
+{%- assign COMPONENT_NAME = nil -%}

@@ -47,67 +47,86 @@ Copyright © 2018 Shopify. See [LICENSE](https://github.com/Shopify/starter-them
 
 ===
 
-
-# `assets/`
-
-
-
-# `config/`
-
-
-
-# `layout/`
-
-
-
-# `locales/`
-
-
-
-# `scripts/`
-
-
-
-# `sections/`
-
-
-
-# `snippets/`
----
-## `snippets/`
-
-## `api/`
-
-## `icons/`
-
-## `svg/`
-
-## `utility/`
-
-## `atoms/`
-
-## `molecules/`
-
-## `organisms/`
----
-### `layout/`
-
-### `templates/`
-
-
-
-
-
-# `styles/`
-
-
-
-# `templates/`
-
-
-===
-
-- `getContainer()`
-- `getParentContainers()`
-- `getChildrenContainers()`
-
+# Directory Structure
+```
+src
+├── assets
+│   ├── images
+│   └── fonts
+├── config
+│   ├── settings_data.json
+│   └── settings_schema.json
+├── layout
+│   ├── checkout.js
+│   └── theme.js
+├── locales
+│   └── en.default.json
+├── scripts
+│   ├── common
+│   ├── components
+│   │   └── component
+│   │       ├── bindings.js
+│   │       ├── handlers.js
+│   │       ├── index.js
+│   │       ├── settings.js
+│   │       └── subscribers.js
+│   ├── layout
+│   │   ├── checkout.js
+│   │   └── theme.js
+│   ├── react
+│   ├── state
+│   └── templates
+├── sections
+│   ├── dynamic
+│   ├── sections
+│   │   └── partials
+│   ├── static
+│   ├── templates
+│   └── utility
+├── snippets
+│   ├── api
+│   ├── components
+│   │   ├── atoms
+│   │   ├── molecules
+│   │   └── organisms
+│   ├── core
+│   ├── hoc
+│   ├── snippets
+│   ├── svg
+│   ├── templates
+│   └── utility
+├── styles
+│   ├── base
+│   ├── components
+│   ├── helpers
+│   ├── static
+│   ├── templates
+│   ├── vendor
+│   ├── checkout.scss
+│   ├── password.scss
+│   ├── theme.scss
+│   └── theme.scss.liquid
+└── templates
+    ├── customers
+    │   ├── account.liquid
+    │   ├── activate_account.liquid
+    │   ├── addresses.liquid
+    │   ├── login.liquid
+    │   ├── order.liquid
+    │   ├── register.liquid
+    │   └── reset_password.liquid
+    ├── 404.liquid
+    ├── article.liquid
+    ├── blog.liquid
+    ├── cart.ajax-inline-cart.liquid
+    ├── cart.liquid
+    ├── collection.liquid
+    ├── gift_card.liquid
+    ├── index.liquid
+    ├── list-collections.liquid
+    ├── page.liquid
+    ├── password.liquid
+    ├── product.ajax-inventory.liquid
+    ├── product.liquid
+    └── search.liquid
+```

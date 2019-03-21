@@ -2,7 +2,7 @@ import dom from 'common/Dom';
 import prg from 'common/Constants';
 import { getContainer } from 'common/Helpers';
 
-export const updatePrice = data => {
+const updatePrice = data => {
   const { id, data: { price, compare_at_price }} = data;
   const $container = getContainer({ id, asJquery: true });
   const priceElement = $container.find(dom.price)[0];
@@ -11,4 +11,8 @@ export const updatePrice = data => {
 
   priceElement.textContent = dom.priceString(price);
   compareAtPriceElement.textContent = compareAtPriceText;
+};
+
+export default {
+  update: updatePrice,
 };

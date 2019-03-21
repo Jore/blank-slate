@@ -1,0 +1,14 @@
+{% comment %}
+
+  Required arguments:
+  - line_item
+
+  Optional arguments:
+
+{% endcomment %}
+
+<script type="application/json" data-from-shopify="line-item">
+{
+  "data": {%- include 'line-item-object', _product: _product, line_item: line_item -%}
+}
+</script>

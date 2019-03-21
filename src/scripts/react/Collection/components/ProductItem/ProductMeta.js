@@ -9,16 +9,16 @@ const ProductMeta = props => {
       className="product-item-meta"
     >
 
-      <header className="oo-header product-item-header">
-        <h2 className="oo-heading product-item-heading">{title}</h2>
+      <header className="header product-item-header">
+        <h2 className="xx-heading product-item-heading">{title}</h2>
         {vendor &&
-          <p className="oo-text product-item-subheading">
+          <p className="xx-text product-item-subheading">
             {vendor}
           </p>
         }
       </header>
 
-      <div className="oo-price product-item-price">
+      <div className="xx-price product-item-price">
         {(prices.range !== null) ? prices.range : prices.min.string}
       </div>
 

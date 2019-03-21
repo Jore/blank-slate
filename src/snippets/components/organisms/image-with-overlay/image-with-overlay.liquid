@@ -1,0 +1,213 @@
+{%- assign COMPONENT_NAME = 'Image With Overlay' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - primary_image
+
+  Optional arguments:
+  - primary_image_size
+  - primary_image_srcset
+  - primary_image_sizes
+  - second_image
+  - second_image_size
+  - second_image_srcset
+  - second_image_sizes
+  - overlay_content_classes
+  - overlay_content_color
+  - overlay_heading_classes
+  - overlay_heading
+  - overlay_sub_heading_classes
+  - overlay_sub_heading
+  - button_one_classes
+  - button_one_color
+  - button_one_text
+  - button_one_href
+  - button_one_attrs
+  - button_two_classes
+  - button_two_color
+  - button_two_text
+  - button_two_href
+  - button_two_attrs
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+{%- if primary_image_size == blank -%}
+  {%- assign primary_image_size = '1200x' -%}
+{%- endif -%}
+
+{%- if secondary_image_size == blank -%}
+  {%- assign secondary_image_size = '1200x' -%}
+{%- endif -%}
+
+
+<section class="{%- include 'classes' -%}" {% include 'attrs' -%}>
+
+  {%- capture image -%}
+    {%- if second_image != blank and primary_image != blank -%}
+
+      {%- capture sources -%}
+        {%- include 'source',
+          resource: primary_image,
+          srcset: primary_image_srcset,
+          size: primary_image_size,
+          sizes: primary_image_sizes -%}
+
+        {%- include 'source',
+          resource: second_image,
+          srcset: second_image_srcset,
+          size: second_image_size,
+          sizes: second_image_sizes -%}
+      {%- endcapture -%}
+
+      {%- include 'image',
+        sources: sources,
+        resource: primary_image,
+        srcset: primary_image_srcset,
+        size: primary_image_size,
+        classes: '',
+        attrs: primary_image_attrs -%}
+
+    {%- else -%}
+
+      {%- if primary_image == blank and second_image == blank -%}
+        {%- assign primary_image = 'collection-1' | placeholder_svg_tag -%}
+      {%- elsif primary_image == blank and second_image != blank -%}
+        {%- assign primary_image = second_image -%}
+        {%- assign primary_image_size = second_image_size -%}
+        {%- assign primary_image_srcset = second_image_srcset -%}
+        {%- assign primary_image_sizes = second_image_sizes -%}
+      {%- endif -%}
+
+      {%- include 'image',
+        resource: primary_image,
+        wrapper: false,
+        size: primary_image_size,
+        srcset: primary_image_srcset,
+        sizes: primary_image_sizes,
+        classes: '',
+        attrs: primary_image_attrs -%}
+
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- if button_one_href != blank and button_two_href == blank -%}
+
+    {%- include 'link',
+      href: button_one_href,
+      content: image,
+      classes: 'overlay-image-link',
+      attrs: '' -%}
+
+  {%- else -%}
+
+    {{- image -}}
+
+  {%- endif -%}
+
+
+  <div class="overlay-content {{ overlay_content_classes -}}">
+
+    {%- capture _overlay_heading_content -%}
+      {%- if overlay_sub_heading != blank -%}
+        {%- capture _overlay_sub_heading_classes -%}
+          overlay-sub-heading {{ overlay_sub_heading_classes -}}
+        {%- endcapture -%}
+
+        {%- include 'heading',
+          level: 4,
+          _heading: overlay_sub_heading,
+          classes: _overlay_sub_heading_classes,
+          attrs: '' -%}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- capture _overlay_heading_classes -%}
+      overlay-heading {{ overlay_heading_classes -}}
+    {%- endcapture -%}
+
+    {%- include 'header',
+      heading: overlay_heading,
+      level: 3,
+      content: _overlay_heading_content,
+      heading_classes: _overlay_heading_classes,
+      classes: 'overlay-header',
+      attrs: '' -%}
+
+    {%- if button_one_text != blank -%}
+
+      {%- capture _button_one_icon -%}
+        {{- block.settings.button_one_icon -}}
+      {%- endcapture -%}
+
+      {%- capture _button_one_icon_classes -%}
+        {%- if block.settings.button_one_icon != blank -%}
+          link-icon link-icon-{{- block.settings.button_one_icon -}}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- capture _button_one_classes -%}
+        xx-button overlay-button overlay-button-one {{ button_one_classes }} {{ _button_one_icon_classes -}}
+      {%- endcapture -%}
+
+      {%- include 'link',
+        href: button_one_href,
+        content: button_one_text,
+        classes: _button_one_classes,
+        icon: _button_one_icon,
+        attrs: button_one_attrs -%}
+
+    {%- endif -%}
+
+    {%- if button_two_text != blank -%}
+
+      {%- capture _button_two_classes -%}
+        xx-button overlay-button overlay-button--two {{ button_two_classes -}}
+      {%- endcapture -%}
+
+      {%- include 'link',
+        href: button_two_href,
+        content: button_two_text,
+        classes: _button_two_classes,
+        attrs: button_two_attrs -%}
+
+    {%- endif -%}
+
+  </div>
+
+</section>
+
+{%- assign _overlay_heading_content = nil -%}
+{%- assign _overlay_heading_classes = nil -%}
+{%- assign _overlay_sub_heading_classes = nil -%}
+{%- assign _button_one_classes = nil -%}
+{%- assign _button_two_classes = nil -%}
+{%- assign primary_image = nil -%}
+{%- assign primary_image_size = nil -%}
+{%- assign primary_image_srcset = nil -%}
+{%- assign primary_image_sizes = nil -%}
+{%- assign second_image = nil -%}
+{%- assign second_image_size = nil -%}
+{%- assign second_image_srcset = nil -%}
+{%- assign second_image_sizes = nil -%}
+{%- assign overlay_content_classes = nil -%}
+{%- assign overlay_content_color = nil -%}
+{%- assign overlay_heading_classes = nil -%}
+{%- assign overlay_heading = nil -%}
+{%- assign overlay_sub_heading_classes = nil -%}
+{%- assign overlay_sub_heading = nil -%}
+{%- assign button_one_classes = nil -%}
+{%- assign button_one_icon = nil -%}
+{%- assign button_one_color = nil -%}
+{%- assign button_one_text = nil -%}
+{%- assign button_one_href = nil -%}
+{%- assign button_one_attrs = nil -%}
+{%- assign button_two_classes = nil -%}
+{%- assign button_two_color = nil -%}
+{%- assign button_two_text = nil -%}
+{%- assign button_two_href = nil -%}
+{%- assign button_two_attrs = nil -%}
+
+{%- assign COMPONENT_NAME = nil -%}

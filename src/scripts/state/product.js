@@ -1,99 +1,100 @@
 import dom from 'common/Dom';
 import prg from 'common/Constants';
-import { setSearchParm, getChildrenContainers } from 'common/Helpers';
+import { setSearchParm, getChildContainers } from 'common/Helpers';
 
-import State from 'state';
+import { parseContainerData, getState, setState } from './handlers';
 
 const getVariant = id => {
-  const state = State.get(id);
-  const { options, variants } = state._data;
-  const selectedOptions = options
-    .map(option => option.name)
-    .map(name => state[name]);
-  const variant = variants.find(variant =>
-    selectedOptions.every(selectedOption => variant.variant.options.includes(selectedOption)));
-  return variant;
+  const state = getState(id);
+  const { variant: variants } = state._data;
+  const selectedOptions = Object.values(state.options);
+
+  return variants.find(({ options }) =>
+    selectedOptions.every(option => options.includes(option)));
 };
 
-const getInitialOptionValues = options => {
-  return options.reduce((optionValues, option) =>
-    ({ ...optionValues, [option.name]: option.initialValue }), {});
-};
-
-const getInitialVariantData = variants => {
-  const {variant: { id: variantId, price, compare_at_price }, inventory} = variants.find(variant => variant.isInitialVariant);
-  return { variantId, inventory, price, compare_at_price };
-};
-
-export const updateVariant = data => {
-  const { variant: { id: variantId }} = getVariant(data.id);
+const updateVariant = data => {
+  const { id: variantId } = getVariant(data.id);
   const change = 'variant';
   const container = 'product';
 
-  State.set({ ...data, variantId, change, container });
+  setState({ ...data, variantId, change, container });
   PubSub.publish(prg.updateInventory, data);
   PubSub.publish(prg.updatePrice, data);
   setSearchParm('variant', variantId);
 };
 
-export const updateInventory = data => {
+const updateInventory = data => {
+  console.log(`updateInventory`);
+  console.log(data);
   const { inventory } = getVariant(data.id);
   const change = 'inventory';
   const container = 'product';
 
-  State.set({ ...data, inventory, change, container });
+  setState({ ...data, inventory, change, container });
 };
 
-export const updatePrice = data => {
+const updatePrice = data => {
+  console.log(`updatePrice`);
+  console.log(data);
   const { variant: { price, compare_at_price }} = getVariant(data.id);
   const change = 'price';
   const container = 'product';
 
-  State.set({ ...data, price, compare_at_price, change, container });
+  setState({ ...data, price, compare_at_price, change, container });
 };
 
-export const updateProductQuantity = data => {
+const updateQuantity = data => {
+  console.log(`updateQuantity`);
+  console.log(data);
+  const container = 'product';
   const change = 'quantity';
-  const container = 'product';
 
-  State.set({ ...data, change, container });
+  setState({ ...data, change, container });
 };
 
-export const updateOptionGroupValue = data => {
+const updateOptionValue = data => {
+  console.log(`updateOptionValue`);
+  console.log(data);
   const { id, name, value } = data;
-  const change = name;
   const container = 'product';
+  const change = 'option_value';
 
-  State.set({ id, change, container, [name]: value });
+  setState({ id, container, change, [name]: value });
   PubSub.publish(prg.updateVariant, data);
 };
 
+const getInitialOptionValues = products => {
+  const activeProduct = products.find(product => product.active);
 
-export const getProductContainerData = productContainer => {
-  const id = productContainer.dataset.containerId;
-  const { data: images } = JSON.parse($(productContainer).find(dom.imageData).text());
-  const { data: options } = JSON.parse($(productContainer).find(dom.optionData).text());
-  const { data: variants } = JSON.parse($(productContainer).find(dom.variantData).text());
-  const { data: product } = JSON.parse($(productContainer).find(dom.productData).text());
-  const initialOptionValues = getInitialOptionValues(options);
-  const initialVariantData = getInitialVariantData(variants);
-  const quantity = parseInt($(productContainer).find(dom.quantityValue).val(), 10) || null;
-  const { slider: sliders } = getChildrenContainers({ self: productContainer });
-
-  return {
-    _data: { images, options, variants, product },
-    id,
-    change: 'product',
-    container: 'product',
-    ...initialOptionValues,
-    ...initialVariantData,
-    quantity,
-    sliders,
-  };
+  return activeProduct.options.reduce((optionValues, option) =>
+    ({ ...optionValues, [option.name]: option.initialValue, }), {});
 };
 
+const getInitialVariantData = variants => {
+  const { id: variantId, ...initialVariant} = variants.find(variant => variant.isInitialVariant);
 
-export const initProductContainer = container => {
-  const containerData = getProductContainerData(container);
-  State.set(containerData);
+  return { variantId, ...initialVariant };
+};
+
+export const initProductContainer = productContainer => {
+  const { image, option, product, variant: variants, } = parseContainerData(productContainer);
+  const { containerId: id } = productContainer.dataset;
+  const container = 'product';
+  const change = 'init';
+  const options = getInitialOptionValues(product);
+  const variant = getInitialVariantData(variants);
+  const quantity = parseInt($(dom.quantityValue, productContainer).val()) || undefined;
+  const { slider: sliders } = getChildContainers({ self: productContainer });
+  const _data = { image, option, variant: variants, product };
+
+  setState({ id, container, change, options, variant, quantity, sliders, _data, });
+};
+
+export default {
+  updateQuantity,
+  updateOptionValue,
+  updateVariant,
+  updateInventory,
+  updatePrice,
 };

@@ -1,0 +1,92 @@
+{%- comment -%}
+
+  Arguments:
+  - products_shown
+  - react
+  - filter_with_options
+  - include_options
+  - exclude_options
+  - filter_with_tags
+  - tag_delimiter
+  - include_tags
+  - exclude_tags
+
+  make sure to set the query variable in _Collection/components/App/index.js to at least the same number that you paginate by below
+
+{%- endcomment -%}
+
+
+{% paginate collection.products by products_shown %}
+  {%- capture collection_grid_contents -%}
+    {%- for _product in collection.products -%}
+
+      {%- if react == true -%}
+
+        {% comment %}
+
+          Load the Collection Grid up with empty product containers so their contents are parsed and added to `window.prg.state.products`. Use `window.prg.state.products` to pre-render content inside of the Collection Grid.
+
+        {% endcomment %}
+
+        {%- include 'container',
+          type: 'product',
+          name: 'Data Container',
+          content: product_item_content,
+          classes: _classes,
+          attrs: '', -%}
+
+      {%- else -%}
+
+        {%- include 'product-item',
+          classes: 's-flex-6 m-flex-4 l-flex-3',
+          attrs: '' -%}
+
+      {%- endif -%}
+
+    {%- endfor -%}
+  {%- endcapture -%}
+{% endpaginate %}
+
+
+
+{%- capture _attrs -%}
+  data-total-items="{{- collection.all_products_count -}}"
+  data-total-items-shown="{{- products_shown -}}"
+  {%- if react == true -%}
+    data-react-entrypoint="collection"
+    {%- if filter_with_options != blank -%}
+      data-filter-with-options="{{ filter_with_options }}"
+    {%- endif -%}
+    {%- if include_options != blank -%}
+      data-include-options="{{ include_options }}"
+    {%- endif -%}
+    {%- if exclude_options != blank -%}
+      data-exclude-options="{{ exclude_options }}"
+    {%- endif -%}
+    {%- if filter_with_tags != blank -%}
+      data-filter-with-tags="{{ filter_with_tags }}"
+    {%- endif -%}
+    {%- if tag_delimiter != blank -%}
+      data-tag-delimiter="{{ tag_delimiter }}"
+    {%- endif -%}
+    {%- if include_tags != blank -%}
+      data-include-tags="{{ include_tags }}"
+    {%- endif -%}
+    {%- if exclude_tags != blank -%}
+      data-exclude-tags="{{ exclude_tags }}"
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+
+{%- include 'wrapper',
+  type: 'grid'
+  name: 'Collection Grid',
+  content: collection_grid_contents,
+  classes: 'flex-full',
+  attrs: _attrs -%}
+
+
+
+{%- assign _attrs = nil -%}
+

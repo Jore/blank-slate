@@ -1,6 +1,6 @@
 import { getState } from '@shopify/theme-cart';
 
-import State from 'state'
+import { setState, clearState } from './handlers';
 
 export const cacheCart = () => {
   getState()
@@ -8,15 +8,14 @@ export const cacheCart = () => {
 };
 
 const replaceCartState = newCart => {
-  const change = 'CART';
+  const change = 'cart';
   const container = 'cart';
 
-  State.clear('cart');
-
-  State.set({ change, container, ...newCart })
+  clearState('cart');
+  setState({ change, container, ...newCart });
 };
 
-export const updateCart = data => {
+const updateCartState = data => {
   const { action, requestData, responseData } = data;
 
   if (action === 'add') {
@@ -25,4 +24,8 @@ export const updateCart = data => {
   } else if (action === 'remove' || action === 'update') {
     replaceCartState(responseData);
   }
+};
+
+export default {
+  updateState: updateCartState,
 };

@@ -1,0 +1,55 @@
+{%- case block.type -%}
+
+  {%- when 'content' -%}
+
+    {{- content -}}
+
+  {%- when 'logo' -%}
+
+    {%- if block.settings.logo_snippet_name != blank-%}
+
+      {%- capture svg_logo_link_content -%}
+        {%- include block.settings.logo_snippet_name -%}
+      {%- endcapture -%}
+
+      {%- include 'link',
+        content: svg_logo_link_content,
+        href: '/',
+        classes: 'bottom-bar--logo',
+        attrs: '' -%}
+
+    {%- else -%}
+
+      {%- capture bottom_bar_logo_image_content -%}
+        {%- include 'image',
+          resource: block.settings.footer_logo,
+          size: '200x',
+          wrapper: false,
+          classes: '',
+          attrs: '' -%}
+      {%- endcapture -%}
+
+      {%- include 'link',
+        href: '/',
+        content: bottom_bar_logo_image_content
+        classes: 'bottom-bar--logo',
+        attrs: '' -%}
+
+    {%- endif -%}
+
+  {%- when 'social_links' -%}
+
+    {%- assign networks = '' -%}
+    {%- for network in block.settings -%}
+      {%- if block.settings[network] == true  -%}
+        {%- assign network_name = network | remove: '_link' -%}
+        {%- assign networks = networks | append: ' ' | append: network_name | strip -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- include 'social-media-icons',
+      networks: networks,
+      classes: 'bottom-bar--social-media-icons',
+      attrs: '' -%}
+
+{%- endcase -%}

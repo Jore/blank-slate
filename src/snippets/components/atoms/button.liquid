@@ -1,0 +1,83 @@
+{%- assign COMPONENT_NAME = 'button' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - content
+
+  Optional arguments:
+  - type
+  - icon
+
+{%- endcomment -%}
+
+
+<button class="{%- include 'classes', context: 'component' %} {% if icon != blank and content == blank -%}with-icon{%- endif -%}"
+  {%- if type != blank -%}type="{{- type -}}"{%- endif -%}
+  {{ attrs -}}>
+
+  {%- if icon != blank -%}
+
+    {%- include 'icon',
+      name: icon,
+      classes: '',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+  {%- if content != blank -%}
+
+    <div class="button--content">
+
+      {{- content -}}
+
+    </div>
+
+  {%- endif -%}
+
+</button>
+
+{%- assign COMPONENT_NAME = nil -%}
+
+
+
+{%- comment -%}{%- endcomment -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - content
+
+  Optional arguments:
+  - type
+  - icon
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+
+<button class="xx-button {{ classes -}}"
+  {%- if type != blank -%}type="{{- type -}}"{%- endif -%}
+  {{ attrs -}}>
+
+  {%- if icon != blank -%}
+
+    {%- include 'icon',
+      name: icon,
+      classes: '',
+      attrs: '' -%}
+
+  {%- endif -%}
+
+  {%- if content != blank -%}
+
+    <div class="button--content">
+
+      {{- content -}}
+
+    </div>
+
+  {%- endif -%}
+
+</button>

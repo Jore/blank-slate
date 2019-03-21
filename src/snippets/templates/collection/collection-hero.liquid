@@ -1,0 +1,17 @@
+{%- if _collection.image != blank -%}
+
+  {%- include 'image-with-overlay',
+    primary_image: _collection.image,
+    primary_image_size: '3200x',
+    primary_image_srcset: '800x 800w, 1200x 1200w, 1600x 1600w',
+    overlay_content_classes: 'overlay-content--primary',
+    overlay_heading_classes: 'heading-two',
+    overlay_heading: _collection.title,
+    overlay_sub_heading_classes: 'text-three',
+    overlay_sub_heading: '',
+    classes: 'collection-hero u-text-white',
+    attrs: '' -%}
+
+  {%- break -%}
+
+{%- endif -%}

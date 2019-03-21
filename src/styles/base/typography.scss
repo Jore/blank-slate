@@ -18,6 +18,7 @@ body {
   line-height: $font-line-height; /* [1] */
   font-family: $font-primary;
   color: $color-body-text;
+  font-weight: 400;
 }
 
 h1,
@@ -27,9 +28,17 @@ h4,
 h5,
 h6 {
   font-family: $font-heading;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: 1;
+  color: inherit;
   margin: 0;
-  margin-bottom: $oo-base-spacing-size;
-  color: $color-body-text;
+}
+
+p {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 body,
@@ -44,4 +53,82 @@ select {
 
 a:focus {
   color: inherit;
+}
+
+/* ==========================
+   # Heading Styles
+=========================== */
+
+%heading-base {
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.heading-one {
+  @extend %heading-base;
+
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 5.25px;
+
+  @include mq('m') {
+    font-size: 34px;
+    letter-spacing: 7.5px;
+  }
+
+  @include mq('l') {
+    font-size: 44px;
+    letter-spacing: 9.75px;
+  }
+}
+
+.heading-two {
+  @extend %heading-base;
+
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 5.25px;
+}
+
+.heading-three {
+  @extend %heading-base;
+
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+/* =========================
+   # Text Styles
+=========================== */
+
+%text-base {
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 2px;
+}
+
+.text-one {
+  @extend %text-base;
+
+  font-size: 16px;
+}
+
+.text-two {
+  @extend %text-base;
+
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.text-three {
+  @extend %text-base;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  @include mq('s') {
+    font-size: 16px;
+  }
 }

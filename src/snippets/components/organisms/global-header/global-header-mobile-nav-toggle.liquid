@@ -1,0 +1,32 @@
+<div class="global-header-mobile-nav-toggle">
+  {%- capture mobile_nav_toggle_attrs -%}
+    data-mobile-nav-toggle
+    data-toggle="[data-mobile-nav-toggle], [data-mobile-nav]"
+  {%- endcapture -%}
+
+
+  {%- capture show_attrs -%}
+    {{ mobile_nav_toggle_attrs }}
+    data-lock-scroll="[data-mobile-nav]"
+  {%- endcapture -%}
+
+  {%- include 'button',
+    icon: 'hamburger',
+    classes: 'is-active',
+    attrs: show_attrs -%}
+
+  {%- capture hide_attrs -%}
+    {{ mobile_nav_toggle_attrs }}
+    data-unlock-scroll="[data-mobile-nav]"
+  {%- endcapture -%}
+
+  {%- include 'button',
+    icon: 'cancel',
+    classes: '',
+    attrs: hide_attrs -%}
+</div>
+
+
+{%- assign mobile_nav_toggle_attrs = nil -%}
+{%- assign hide_attrs = nil -%}
+{%- assign show_attrs = nil -%}

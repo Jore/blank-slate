@@ -1,0 +1,34 @@
+{%- comment -%}
+
+  Arguments:
+  - lookup_value
+  - option
+
+  {%- include 'option-value-map', lookup_value: , option:  -%}
+
+{%- endcomment -%}
+
+{%- assign downcased_lookup_value = lookup_value | downcase -%}
+{%- assign downcased_option_name = option | downcase -%}
+
+
+{%- assign size_option_map = 's:small, m:medium, l:large, xl:x-large, xxl:xx-large' | split: ', ' -%}
+
+
+{%- if downcased_option_name == 'size' -%}
+  {%- assign map = size_option_map -%}
+{%- else -%}
+  {{- lookup_value -}}
+{%- endif -%}
+
+
+
+{%- for pair in map -%}
+  {%- assign pair_parts = pair | split: ':' -%}
+  {%- assign pair_key = pair_parts[0] -%}
+  {%- assign pair_value = pair_parts[1] -%}
+
+  {%- if downcased_lookup_value == pair_key -%}
+    {{- pair_value -}}
+  {%- endif -%}
+{%- endfor -%}

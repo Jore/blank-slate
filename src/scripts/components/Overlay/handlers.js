@@ -2,7 +2,7 @@ import dom from 'common/Dom';
 import prg from 'common/Constants';
 import { toggleElement } from 'common/Helpers';
 
-export const showOverlay = data => {
+const showOverlay = data => {
   const selector = dom.overlay;
   const className = prg.isActive;
   const action = 'add';
@@ -11,7 +11,7 @@ export const showOverlay = data => {
   return toggleElement({selector, action, animated});
 };
 
-export const hideOverlay = data => {
+const hideOverlay = data => {
   const selector = dom.overlay;
   const className = prg.isActive;
   const action = 'remove';
@@ -20,7 +20,14 @@ export const hideOverlay = data => {
   return toggleElement({selector, action, animated});
 };
 
-export const toggleOverlay = data => {
+const toggleOverlay = data => {
   const overlayActive = $(dom.overlay).is(dom.isActive);
+
   return (overlayActive) ? hideOverlay(data) : showOverlay(data);
+};
+
+export default {
+  show: showOverlay,
+  hide: hideOverlay,
+  toggle: toggleOverlay,
 };

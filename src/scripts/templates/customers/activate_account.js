@@ -1,4 +1,4 @@
-import 'styles/templates/customers/activate_account.scss';
+import 'styles/templates/customers/activate-account/index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 

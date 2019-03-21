@@ -1,49 +1,31 @@
-{%- comment -%}
+{% comment %}
 
   Required arguments:
-  - title
+  - type
+  - content
 
   Optional arguments:
-  - level
-  - content
-  - classes
-  - attrs
+  - name
+  - tag
 
-{%- endcomment -%}
+{% endcomment %}
 
 
-<header class="oo-header {{ classes -}}" {{ attrs -}}>
-
-  {%- include 'heading',
-    level: level,
-    title: title,
-    classes: '',
-    attrs: '' -%}
+<{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif %}
+  class="{{- classes -}}"
+  data-wrapper="{{- type -}}"
+  data-wrapper-name="{%- include 'name' -%}"
+  {{ attrs -}}>
 
   {{- content -}}
 
-</header>
+</{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif -%}>
 
-
-{%- comment -%}{%- endcomment -%}
 
 
 {%- comment -%}
-
-  Required arguments:
-  - href
-
-  Optional arguments:
-  - content
-  - button
-  - target
-  - icon
-  - classes
-  - attrs
-
-{%- endcomment -%}
-
-<a class="oo-link {% if button != blank -%}oo-button{%- endif %} {{ classes -}}"
+<a
+  class="xx-link {% if button != blank -%}xx-button{%- endif %} {{ classes -}}"
   href="{{- href -}}"
   {%- if target != blank -%}target="{{- target -}}"{%- endif -%}
   {{ attrs -}}>
@@ -64,3 +46,48 @@
   {%- endif -%}
 
 </a>
+
+<header
+  class="header {{ classes -}}"
+  {{ attrs -}}>
+
+  {%- include 'heading',
+    level: level,
+    title: title,
+    classes: '',
+    attrs: '' -%}
+
+  {{- content -}}
+
+</header>
+{%- endcomment -%}
+
+
+
+
+{%- comment -%}
+
+  Required arguments:
+  - title
+
+  Optional arguments:
+  - level
+  - content
+  - classes
+  - attrs
+
+{%- endcomment -%}
+{%- comment -%}
+
+  Required arguments:
+  - href
+
+  Optional arguments:
+  - content
+  - button
+  - target
+  - icon
+  - classes
+  - attrs
+
+{%- endcomment -%}

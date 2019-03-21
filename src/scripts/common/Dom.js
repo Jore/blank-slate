@@ -49,6 +49,7 @@ const dom = {
   sliderContainer: '[data-container="slider"]',
 
   // JSON Data
+  shopifyData: '[data-from-shopify]',
   productData: '[data-from-shopify="product"]',
   variantData: '[data-from-shopify="variant"]',
   lineItemData: '[data-from-shopify="line-item"]',

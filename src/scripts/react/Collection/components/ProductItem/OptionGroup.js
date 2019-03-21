@@ -8,7 +8,7 @@ const OptionValue = ({ name, value, }) => {
   const id = `${handlize(name)}-${handlize(value)}-${random(9)}`;
 
   return (
-    <div className="oo-input-group">
+    <div className="input-group">
       <input
         required
         data-option-value
@@ -16,9 +16,9 @@ const OptionValue = ({ name, value, }) => {
         value={value}
         name={name}
         id={id}
-        className="oo-input oo-input--radio u-visually-hidden"
+        className="xx-input xx-input--radio u-visually-hidden"
       />
-      <label className={`oo-label swatch swatch-${handlize(value)}`} htmlFor={id}>{value}</label>
+      <label className={`xx-label swatch swatch-${handlize(value)}`} htmlFor={id}>{value}</label>
     </div>
   );
 };
@@ -34,7 +34,7 @@ class OptionGroup extends Component {
     if (matchingOptions.length) {
 
       return (
-        <div className="oo-option-group flex-justify-center" data-option-group={name}>
+        <div className="option-group flex-justify-center" data-option-group={name}>
 
           {matchingOptions.map(({value}, i) =>
             <OptionValue name={name} value={value} key={`${name}-${value}`} />)}

@@ -1,0 +1,29 @@
+{% comment %}
+
+  Required arguments:
+
+  Optional arguments:
+  - show_compare_at_price
+  - show_option_name
+  - show_selected_value
+  - add_to_cart_button_text
+  - add_to_cart_button_classes
+
+{% endcomment %}
+
+
+{%- capture product_meta_contents -%}
+
+  {%- section 'product-details' -%}
+
+  {%- section 'product-add-to-cart' -%}
+
+{%- endcapture -%}
+
+
+{%- include 'wrapper',
+  type: 'grid',
+  name: 'Product Meta',
+  content: product_meta_contents,
+  classes: '',
+  attrs: '' -%}

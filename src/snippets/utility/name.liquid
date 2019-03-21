@@ -1,0 +1,103 @@
+{%- capture section_type -%}
+  {%- include 'section-context' -%}
+{%- endcapture -%}
+
+{%- comment -%}
+
+ Section Name
+
+{%- endcomment -%}
+
+  {%- assign _section_name = nil -%}
+
+  {%- if section_name != blank -%}
+    {%- assign _section_name = section_name -%}
+  {%- elsif section.settings.title != blank -%}
+    {%- assign _section_name = section.settings.title -%}
+  {%- elsif section_type == 'static' -%}
+    {%- assign _section_name = section.id -%}
+  {%- elsif section_type == 'dynamic' -%}
+    {%- assign _section_name = 'Dynamic Section' -%}
+  {%- endif -%}
+
+
+{%- comment -%}
+
+  Block Name
+
+{%- endcomment -%}
+
+  {%- assign _block_name = nil -%}
+
+  {%- if block.settings.title != blank -%}
+    {%- assign _block_name = block.settings.title -%}
+  {%- elsif block.type != blank -%}
+    {%- assign _block_name = block.type | append: ' Block' -%}
+  {%- endif -%}
+
+
+{%- comment -%}
+
+  Container Name
+
+{%- endcomment -%}
+
+  {%- assign _container_name = nil -%}
+
+  {%- if name != blank -%}
+    {%- assign _container_name = name -%}
+  {%- elsif type != blank -%}
+    {%- assign _container_name = type | append: ' Container' -%}
+  {%- endif -%}
+
+
+{%- comment -%}
+
+ Component Name
+
+{%- endcomment -%}
+
+  {%- assign _component_name = nil -%}
+
+  {%- if COMPONENT_NAME != blank -%}
+    {%- assign _component_name = COMPONENT_NAME -%}
+  {%- endif -%}
+
+
+{%- comment -%}
+
+ Compiled Name
+
+{%- endcomment -%}
+
+  {%- if section_type == blank and _container_name != blank -%}
+    {%- assign _name = _container_name -%}
+  {%- elsif section_type == blank and _component_name != blank -%}
+    {%- assign _name = _component_name -%}
+  {%- elsif section_type == 'block' -%}
+    {%- assign _name = _block_name -%}
+  {%- elsif section_type == 'static' or section_type == 'dynamic' -%}
+    {%- assign _name = _section_name -%}
+  {%- endif -%}
+
+  {%- case context -%}
+    {%- when 'block' -%}
+      {%- assign _name = _block_name -%}
+    {%- when 'section' -%}
+      {%- assign _name = _section_name -%}
+    {%- when 'container' -%}
+      {%- assign _name = _container_name -%}
+    {%- when 'component' -%}
+      {%- assign _name = _component_name -%}
+  {%- endcase -%}
+
+
+{%- if handle == true -%}
+  {{- _name | handle -}}
+{%- else -%}
+  {%- include 'title-case', string: _name -%}
+{%- endif -%}
+
+
+{%- assign section_type = nil -%}
+{%- assign _name = nil -%}

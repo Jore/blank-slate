@@ -1,0 +1,23 @@
+{%- comment -%}
+
+  Arguments:
+  - string
+
+{%- endcomment -%}
+
+{%- assign string_parts = string | split: ' ' -%}
+{%- assign title_cased_string = '' -%}
+
+
+{%- for part in string_parts -%}
+
+  {%- assign _capitalized_part = part | capitalize -%}
+  {%- assign title_cased_string = title_cased_string | append: _capitalized_part | append: ' ' -%}
+
+{%- endfor -%}
+
+{{- title_cased_string -}}
+
+
+{%- assign string_parts = nil -%}
+{%- assign title_cased_string = nil -%}

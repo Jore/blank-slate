@@ -43,7 +43,7 @@ const CollectionFiltering = props => {
   const { apollo, products, loaded } = props;
 
   return (
-    <div className="collection-filtersort collection-filtering flex-half oo-grid">
+    <div className="collection-filtersort collection-filtering flex-half grid">
 
       <Mutation
         mutation={updateFilteredProducts}>

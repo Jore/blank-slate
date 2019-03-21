@@ -4,9 +4,8 @@ import dom from 'common/Dom';
 import prg from 'common/Constants';
 import { getContainer, debounce } from 'common/Helpers';
 
-import State from 'state';
 
-export const updateAddToCartButtons = data => {
+const updateAddToCartButtons = data => {
   const { id, data: { inventory }, state: { quantity }} = data;
   const { handle } = State.get(id);
 
@@ -19,9 +18,9 @@ export const updateAddToCartButtons = data => {
   } else {
     $container.find(dom.addToCart).prop('disabled', false);
   }
-}
+};
 
-export const addToCart = data => {
+const addToCart = data => {
   const { id, quantity, properties } = data;
   const requestData = { id, quantity, properties };
 
@@ -40,7 +39,7 @@ export const addToCart = data => {
     });
 };
 
-export const removeFromCart = data => {
+const removeFromCart = data => {
   const { key } = data;
   const requestData = { key };
 
@@ -59,7 +58,7 @@ export const removeFromCart = data => {
     });
 };
 
-export const updateCart = debounce(data => {
+const updateCart = debounce(data => {
   const { key, quantity: quantityString } = data;
   const quantity = parseInt(quantityString);
   const requestData = { key, quantity };
@@ -78,3 +77,21 @@ export const updateCart = debounce(data => {
       PubSub.publish(topic, data);
     });
 }, 300);
+
+export const init = () => {
+  const productContainers = getContainer({ type: 'product' });
+  const containerIds = productContainers.map(container => container.dataset.containerId);
+  const containerStates = containerIds.map(id => State.get(id));
+
+  containerStates.forEach(state => {
+    const { id, inventory, quantity } = state;
+    updateAddToCartButtons({ id, data: { inventory }, state: { quantity }});
+  });
+};
+
+export default {
+  add: addToCart,
+  update: updateCart,
+  remove: removeFromCart,
+  updateButtons: updateAddToCartButtons,
+};

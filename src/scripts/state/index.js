@@ -7,7 +7,6 @@ import { getState, setState, clearState, } from './handlers';
 import { initProductContainer } from './product';
 import { initLineItemContainer } from './line-item';
 import { initSliderContainer } from './slider';
-
 import { cacheCart } from './cart';
 
 export const state = window.prg.state;
@@ -19,31 +18,15 @@ const parsers = {
 };
 
 const init = data => {
-  cacheCart();
-
-
-  getContainer({})
-    .forEach(container => {
-      const { container: type } = container.dataset;
-      const parser = parsers[type];
-
-      if (parser) {
-        parsers[type](container);
-      }
-    })
-
-  // return [
-  //   ...initProductContainers(data),
-  //   ...initLineItemContainers(data),
-  // ]
+  return getContainer({})
+    .map(container => parsers[container.dataset.container](container));
 };
 
 export default {
-  initSubscribers,
   init,
+  initSubscribers,
   get: getState,
   set: setState,
   clear: clearState,
+  cacheCart,
 };
-
-

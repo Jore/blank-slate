@@ -1,0 +1,36 @@
+{%- comment -%}
+
+  this is just a blank file to ensure that `src/sections/sections/` gets committed to the repository
+
+{%- endcomment -%}
+
+{% schema %}
+  {
+    "name": "Test Section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image w/ Overlay - Test"
+      },
+      {
+        "type": "paragraph",
+        "content": "Image(s) with overlay content (i.e. heading, sub-heading, cta) overlaid. If more than one content block is used, the section can be turned into a slider by enabling the checkbox below. The slider will use the matching settings in `src/scripts/components/Slider/settings.js` or the default settings if none are found."
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {% inject 'partials/section-classes.json' %},
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {% inject 'partials/section-name.json' %},
+      {
+        "type": "header",
+        "content": "Icons"
+      },
+      {% inject 'partials/icons.js' %}
+    ]
+  }
+{% endschema %}

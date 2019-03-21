@@ -1,0 +1,15 @@
+{% comment %}
+
+  Required arguments:
+  - option
+  - value
+
+  Optional arguments:
+
+{% endcomment %}
+
+{
+  "_id": "{{- option.name | handle -}}:{{- value | handle -}}",
+  "name": {{- option.name | json -}},
+  "value": {{- value | json -}}
+}

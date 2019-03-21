@@ -38,6 +38,7 @@
 
 {%- endcomment -%}
 
+
 {%- if product != blank -%}
   {%- assign _product = product -%}
 {%- endif -%}
@@ -118,12 +119,10 @@
   {%- if limit == blank -%}
     {%- assign limit = section.settings.limit -%}
   {%- endif -%}
-
 {%- endif -%}
 
 
 {%- if context == 'block' -%}
-
   {%- if snippet == blank -%}
     {%- assign snippet = block.settings.snippet -%}
   {%- endif -%}
@@ -215,5 +214,4 @@
   {%- if button_two_attrs == blank -%}
     {%- assign button_two_attrs = block.settings.button_two_attrs -%}
   {%- endif -%}
-
 {%- endif -%}

@@ -1,10 +1,8 @@
-import PubSub from 'pubsub-js';
-
 import prg from 'common/Constants';
-import { updateOptionGroupSelectedText } from './handlers';
+import optionGroup from './handlers';
 
 export const initSubscribers = () => {
-  PubSub.subscribe(prg.updateOptionGroupValue, (message, data) => {
-    return updateOptionGroupSelectedText(data);
+  PubSub.subscribe(prg.updateOptionValue, (message, data) => {
+    return optionGroup.updateSelectedText(data);
   });
 };

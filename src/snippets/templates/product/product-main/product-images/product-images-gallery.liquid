@@ -1,0 +1,34 @@
+{%- capture slides -%}
+  {%- for image in _product.images -%}
+    {%- capture slide_attrs -%}
+      data-flickity-lazyload="{{ image.src | img_url: _size }}"
+
+      {%- if group_images != blank -%}
+        {%- assign alt_parts = image.alt | split: alt_tag_delimiter -%}
+        {%- assign _alt = alt_parts | first -%}
+        data-filter-value="{{ alt_parts | last | strip }}"
+        data-slide-index="{{ forloop.index0 }}"
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- include 'image',
+      resource: image,
+      size: '1180x',
+      wrapper: false,
+      lazyload: false,
+      classes: 'gallery-slide width-full',
+      attrs: slide_attrs  -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- include 'container-slider',
+  name: 'Product Gallery',
+  content: slides,
+  group_slides: group_images,
+  filter_group_options: filter_group_options,
+  filter_attr: 'data-filter-value',
+  classes: 'is-lazyloaded',
+  attrs: '' -%}
+
+{%- assign slide_attrs = nil -%}
+{%- assign _alt = nil -%}

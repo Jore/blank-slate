@@ -1,4 +1,4 @@
-import 'styles/templates/customers/login.scss';
+import 'styles/templates/customers/login/index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 

@@ -1,0 +1,12 @@
+.xx-text {
+  margin: 0;
+
+  &.rte p {
+    margin: 0;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

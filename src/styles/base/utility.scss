@@ -1,10 +1,49 @@
-/* ==========================================================================
+/* ====================
+   # CONTAINERS
+==================== */
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+/* ====================
    # FONT
-   ========================================================================== */
+==================== */
+
+.u-text-left {
+  // stylelint-disable-next-line
+  text-align: left !important;
+}
 
 .u-text-center {
   // stylelint-disable-next-line
   text-align: center !important;
+}
+
+.u-text-right {
+  // stylelint-disable-next-line
+  text-align: right !important;
+}
+
+.u-text-uppercase {
+  // stylelint-disable-next-line
+  text-transform: uppercase !important;
+}
+
+.u-text-underline {
+  // stylelint-disable-next-line
+  text-decoration: underline !important;
+}
+
+.u-text-light {
+  // stylelint-disable-next-line
+  font-weight: 300 !important;
+}
+
+.u-text-medium {
+  // stylelint-disable-next-line
+  font-weight: 500 !important;
 }
 
 .u-text-bold {
@@ -13,12 +52,214 @@
 }
 
 .u-text-nowrap {
-  white-space: nowrap;
+  // stylelint-disable-next-line
+  white-space: nowrap !important;
 }
 
-/* ==========================================================================
+/* ====================
+   # FONT COLOR
+==================== */
+
+.u-text-white {
+  // stylelint-disable-next-line
+  color: $color-white !important;
+}
+
+.u-text-black {
+  // stylelint-disable-next-line
+  color: $color-black !important;
+}
+
+.u-text-gray {
+  // stylelint-disable-next-line
+  color: $color-gray-1 !important;
+}
+
+.u-text-light-gray {
+  // stylelint-disable-next-line
+  color: $color-gray-2 !important;
+}
+
+.u-text-bg-white {
+  // stylelint-disable-next-line
+  background-color: $color-white !important;
+}
+
+.u-text-bg-black {
+  // stylelint-disable-next-line
+  background-color: $color-black !important;
+}
+
+.u-text-bg-light-gray {
+  // stylelint-disable-next-line
+  background-color: #f6f6f6 !important;
+}
+
+.u-text-bg-transparent {
+  // stylelint-disable-next-line
+  background-color: transparent !important;
+}
+
+/* ====================
+   # FONT SIZE
+==================== */
+
+.u-text-size-8 {
+  // stylelint-disable-next-line
+  font-size: 8px !important;
+}
+
+.u-text-size-9 {
+  // stylelint-disable-next-line
+  font-size: 9px !important;
+}
+
+.u-text-size-11 {
+  // stylelint-disable-next-line
+  font-size: 11px !important;
+}
+
+.u-text-size-12 {
+  // stylelint-disable-next-line
+  font-size: 12px !important;
+}
+
+.u-text-size-14 {
+  // stylelint-disable-next-line
+  font-size: 14px !important;
+}
+
+.u-text-size-16 {
+  // stylelint-disable-next-line
+  font-size: 16px !important;
+}
+
+.u-text-size-18 {
+  // stylelint-disable-next-line
+  font-size: 18px !important;
+}
+
+.u-text-size-20 {
+  // stylelint-disable-next-line
+  font-size: 20px !important;
+}
+
+.u-text-line-height-1-5 {
+  // stylelint-disable-next-line
+  line-height: 1.5 !important;
+}
+
+/* ====================
+   # MARGINS
+==================== */
+
+.u-mb-5 {
+  // stylelint-disable-next-line
+ margin-bottom: 5px !important;
+}
+
+.u-mb-10 {
+  // stylelint-disable-next-line
+  margin-bottom: 10px !important;
+}
+
+.u-mb-15 {
+  // stylelint-disable-next-line
+  margin-bottom: 15px !important;
+}
+
+.u-mb-20 {
+  // stylelint-disable-next-line
+  margin-bottom: 20px !important;
+}
+
+.u-mb-30 {
+  // stylelint-disable-next-line
+  margin-bottom: 30px !important;
+}
+
+.u-mb-45 {
+  // stylelint-disable-next-line
+  margin-bottom: 45px !important;
+}
+
+.u-mt-5 {
+  // stylelint-disable-next-line
+  margin-top: 5px !important;
+}
+
+.u-mt-20 {
+  // stylelint-disable-next-line
+  margin-top: 20px !important;
+}
+
+.u-mt-25 {
+  // stylelint-disable-next-line
+  margin-top: 25px !important;
+}
+
+.u-mt-30 {
+  // stylelint-disable-next-line
+  margin-top: 30px !important;
+}
+
+.u-mt-45 {
+  // stylelint-disable-next-line
+  margin-top: 45px !important;
+}
+
+.u-clear-margin {
+  // stylelint-disable-next-line
+  margin: 0 !important;
+}
+
+.u-push-down {
+  // stylelint-disable-next-line
+  margin-top: auto !important;
+}
+
+.u-push-left {
+  // stylelint-disable-next-line
+  margin-right: auto !important;
+}
+
+.u-push-right {
+  // stylelint-disable-next-line
+  margin-left: auto !important;
+}
+
+/* ====================
+   # PADDING
+==================== */
+
+.u-p-30 {
+  // stylelint-disable-next-line
+  padding: 30px !important;
+}
+
+.u-p-50 {
+  // stylelint-disable-next-line
+  padding: 50px !important;
+}
+
+.u-pt-45 {
+  // stylelint-disable-next-line
+  padding-top: 45px !important;
+}
+
+.u-pb-45 {
+  // stylelint-disable-next-line
+  padding-bottom: 45px !important;
+}
+
+.u-clear-padding {
+  // stylelint-disable-next-line
+  padding: 0 !important;
+}
+
+/* ====================
    # HIDE
-   ========================================================================== */
+==================== */
 
 /**
  * Hide visually and from screen readers.
@@ -41,56 +282,17 @@
   }
 }
 
-/* ==========================================================================
-   # CONTAINERS
-   ========================================================================== */
-
-.container {
-  max-width: $oo-container-max;
-  margin: 0 auto;
-}
-
-/* ==========================================================================
+/* ====================
    # UTILITY
-   ========================================================================== */
+==================== */
 
 // Skip to content button
 // Overrides .u-visually-hidden when focused
 .u-skip-link:focus {
   @include visually-shown(absolute);
+
   z-index: 10000;
   background-color: $color-body-background;
   color: $color-body-text;
   transition: none;
-}
-
-.u-dev-control {
-  position: relative;
-  z-index: 1000;
-}
-
-.u-clear-padding {
-  // stylelint-disable-next-line
-  margin: 0 !important;
-}
-
-.u-clear-padding {
-  // stylelint-disable-next-line
-  padding: 0 !important;
-}
-
-.u-push-down {
-  margin-top: auto !important;
-}
-
-.u-push- {
-  margin-bottom: auto !important;
-}
-
-.u-push-left {
-  margin-right: auto !important;
-}
-
-.u-push-right {
-  margin-left: auto !important;
 }

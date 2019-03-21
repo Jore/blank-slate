@@ -1,0 +1,59 @@
+{%- include 'option-group',
+  name: 'Color',
+  type: 'swatches',
+  values: ___colors_array,
+  selected_value: ___current_product_color,
+  show_option_name: true,
+  show_selected_value: true,
+  classes: 'flex-full',
+  attrs: '' -%}
+
+
+{%- assign options = '' -%}
+
+{%- for block in blocks -%}
+  {%- if block.type == 'custom' -%}
+
+    {%- if block.settings.snippet_name -%}
+      {%- include block.settings.snippet_name -%}
+      {%- continue -%}
+    {%- endif -%}
+
+  {%- endif -%}
+
+  {%- for option in _product.options_with_values -%}
+    {%- assign section_option_group_name = block.settings.title | handle -%}
+    {%- assign product_option_group_name = option.name | handle -%}
+
+    {%- if section_option_group_name == product_option_group_name -%}
+      {%- assign options = options | append: option.name | append: ',' -%}
+
+      {%- include 'option-group',
+        type: block.type,
+        name: option.name,
+        values: option.values,
+        selected_value: option.selected_value,
+        show_option_name: block.settings.show_option_name,
+        show_selected_value: block.settings.show_selected_value,
+        classes: '',
+        attrs: '' -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+
+{%- for option in _product.options_with_values -%}
+  {%- unless options contains option.name -%}
+    {%- assign options = options | append: option.name | append: ',' -%}
+
+    {%- include 'option-group',
+      type: default_option_group_type,
+      name: option.name,
+      values: option.values,
+      selected_value: option.selected_value,
+      show_option_name: default_show_option_name,
+      show_selected_value: default_show_selected_value,
+      classes: '',
+      attrs: '' -%}
+  {%- endunless -%}
+{%- endfor -%}

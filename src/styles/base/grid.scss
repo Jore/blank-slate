@@ -1,10 +1,14 @@
-.oo-grid {
+.grid {
   display: flex;
   flex-wrap: wrap;
 }
 
 .flex {
   display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .flex-no-wrap {
@@ -19,30 +23,53 @@
   justify-content: center;
 }
 
+.flex-justify-flex-end {
+  justify-content: flex-end;
+}
+
+.flex-justify-space-between {
+  justify-content: space-between;
+}
+
 .flex-auto {
   flex-basis: auto;
 }
 
-@for $i from $columns through 1 {
-  $width: ($i/$columns);
-  $named-width: map-get($named-widths, decimal-round($width, 3, floor));
-  $values: ($i);
+.flex-align-center {
+  align-items: center;
+}
 
-  @if $named-width != null {
-    $values: append($values, $named-width);
-  }
+
+// Creates `.flex|width-1` through `.flex|width-n` class names
+
+@for $i from 24 through 1 {
+  $width: calc( #{$i} / #{$total-columns} * 100%);
+  $values: ($i);
 
   @each $value in $values {
     $flex-selector: flex-#{$value};
     $width-selector: width-#{$value};
 
     .#{$flex-selector} {
-      flex-basis: percentage($width);
+      flex-basis: $width;
     }
 
     .#{$width-selector} {
-      width: percentage($width);
+      width: $width;
     }
+  }
+}
+
+
+// Creates size prefixed class names e.g. `.m-flex-4 .l-width-12`
+
+@for $i from 24 through 1 {
+  $width: calc( #{$i} / #{$total-columns} * 100%);
+  $values: ($i);
+
+  @each $value in $values {
+    $flex-selector: flex-#{$value};
+    $width-selector: width-#{$value};
 
     @each $breakpoint in $breakpoints {
       $screen-width: nth($breakpoint, 1);
@@ -51,19 +78,68 @@
         @if type-of($size) == string {
           .#{$size}-#{$flex-selector} {
             @include mq($screen-width) {
-              flex-basis: percentage($width);
+              flex-basis: $width;
             }
           }
 
           .#{$size}-#{$width-selector} {
             @include mq($screen-width) {
-              width: percentage($width);
+              width: $width;
             }
           }
         }
       }
     }
   }
+}
+
+
+// Creates named width class names e.g. `.flex-full .width-third`
+// todo(ts): these class names need to be mixed in with their numeric counterparts or else it gets tricky to combine the two styles e.g. `flex-12 .s-flex-half .l-flex-3`
+
+@each $pair in $named-widths {
+  $name: nth($pair, 1);
+  $width: nth($pair, 2);
+
+  .flex-#{$name} {
+    flex-basis: percentage($width);
+  }
+
+  .width-#{$name} {
+    width: percentage($width);
+  }
+}
+
+
+// Creates size prefixed class names for named widths e.g. `.m-flex-half`
+
+@each $breakpoint in $breakpoints {
+  $breakpoint-width: nth($breakpoint, 1);
+  $breakpoint-name: nth($breakpoint, 2);
+
+  @each $pair in $named-widths {
+    $name: nth($pair, 1);
+    $width: nth($pair, 2);
+
+    .#{$breakpoint-name}-flex-#{$name} {
+      @include mq($breakpoint-width) {
+        flex-basis: percentage($width);
+      }
+    }
+
+    .#{$breakpoint-name}-width-#{$name} {
+      @include mq($breakpoint-width) {
+        width: percentage($width);
+      }
+    }
+  }
+}
+
+
+// Creates class names used for hiding and showing things at different breakpoints e.g. `.flex-6 .m-flex-hide`
+
+.hide {
+  display: none;
 }
 
 @each $breakpoint in $breakpoints {
@@ -82,38 +158,12 @@
           display: initial;
         }
       }
+
+      .#{$size}-flex {
+        @include mq($screen-width) {
+          display: flex;
+        }
+      }
     }
   }
 }
-
-// .flex-full-grid,
-// .flex-12-grid {
-//   flex-basis: 74%;
-// }
-
-// .flex-9-grid {
-//   flex-basis: 74%;
-// }
-
-// .flex-8-grid {
-//   flex-basis: 66.66%;
-// }
-
-// .flex-half-grid,
-// .flex-6-grid {
-//   flex-basis: 50%;
-// }
-
-// .flex-third-grid,
-// .flex-4-grid {
-//   flex-basis: 33.33%;
-// }
-
-// .flex-quarter-grid,
-// .flex-3-grid {
-//   flex-basis: 25%;
-// }
-
-// .flex-2-grid {
-//   flex-basis: 16.66%;
-// }

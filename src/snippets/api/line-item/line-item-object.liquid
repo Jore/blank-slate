@@ -1,0 +1,10 @@
+{
+  "key": {{- line_item.key | json -}},
+  "properties": {
+    {%- for property in line_item.properties -%}{{- property.first | json -}}: {{- property.last | json -}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}
+  },
+  "variantId": {{- line_item.variant.id | json -}},
+  "price": {{- line_item.variant.price | json -}},
+  "compare_at_price": {{- line_item.variant.compare_at_price | json -}},
+  "inventory": {{- line_item.variant.inventory_quantity | json -}}
+}

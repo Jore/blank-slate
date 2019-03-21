@@ -1,0 +1,27 @@
+{%- assign COMPONENT_NAME = 'price' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - _price
+  - type
+
+{%- endcomment -%}
+
+
+{% comment %}
+
+  add bracket notation to access prices
+
+{% endcomment %}
+
+<div
+  class="xx-price {{ classes -}}"
+  data-price="{{- type -}}"
+  {{ attrs -}}>
+
+  {{- _price | money -}}
+
+</div>
+
+{%- assign COMPONENT_NAME = nil -%}

@@ -1,0 +1,279 @@
+{%- include 'section',
+  section_name: 'Collection Hero',
+  blocks_snippet: 'image-with-overlay',
+  condition_snippet: 'collection-hero-condition',
+  fallback_enabled: section.settings.fallback_enabled -%}
+
+{% schema %}
+  {
+    "name": "Collection Hero",
+    "max_blocks": 1,
+    "class": "collection-hero-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Collection Hero"
+      },
+      {
+        "type": "paragraph",
+        "content": "The collection hero section is used for setting up a fallback image with overlay that's shown whenever a collection without a collection image is viewed."
+      },
+      {
+        "type": "header",
+        "content": "Section Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Collection Hero Enabled",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "fallback_enabled",
+        "label": "Collection Hero Fallback Enabled",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "Best Sellers Row",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "content",
+        "name": "Content",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Primary Image"
+          },
+          {
+            "id": "primary_image",
+            "type": "image_picker",
+            "label": "Primary Image"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_size",
+            "label": "Primary Image Size",
+            "placeholder": "1600x",
+            "info": "[width]x[height] - recommended"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_srcset",
+            "label": "Primary Image Srcset",
+            "placeholder": "800x 800w, 1200x 1200w",
+            "info": "<size> <width>x|w"
+          },
+          {
+            "type": "text",
+            "id": "primary_image_sizes",
+            "label": "Primary Image Sizes",
+            "placeholder": "min 380px 100vw, min 1600px 50vw",
+            "info": "<direction> <width>px <slot>px|vw"
+          },
+          {
+            "type": "header",
+            "content": "Secondary Image"
+          },
+          {
+            "id": "second_image",
+            "type": "image_picker",
+            "label": "Second Image"
+          },
+          {
+            "type": "text",
+            "id": "second_image_size",
+            "label": "Second Image Size",
+            "placeholder": "1600x",
+            "info": "[width]x[height] - recommended"
+          },
+          {
+            "type": "text",
+            "id": "second_image_srcset",
+            "label": "Second Image Srcset",
+            "placeholder": "800x 800w, 1200x 1200w",
+            "info": "<size> <width>x|w"
+          },
+          {
+            "type": "text",
+            "id": "second_image_sizes",
+            "label": "Second Image Sizes",
+            "placeholder": "min 380px 100vw, min 1600px 50vw",
+            "info": "<direction> <width>px <slot>px|vw"
+          },
+          {
+            "type": "header",
+            "content": "Overlay Content"
+          },
+          {
+            "type": "text",
+            "id": "overlay_content_classes",
+            "label": "Overlay Content Classes",
+            "placeholder": "overlay-content--primary"
+          },
+          {
+            "type": "header",
+            "content": "Overlay Text"
+          },
+          {
+            "type": "color",
+            "id": "overlay_text_color",
+            "label": "Overlay Text Color"
+          },
+          {
+            "id": "overlay_heading",
+            "type": "text",
+            "label": "Overlay Heading"
+          },
+          {
+            "type": "text",
+            "id": "overlay_heading_classes",
+            "label": "Overlay Heading Classes",
+            "placeholder": "heading-two"
+          },
+          {
+            "id": "overlay_sub_heading",
+            "type": "text",
+            "label": "Overlay Sub-heading"
+          },
+          {
+            "type": "text",
+            "id": "overlay_sub_heading_classes",
+            "label": "Overlay Sub-heading Classes",
+            "placeholder": "text-one"
+          },
+          {
+            "type": "header",
+            "content": "Button One"
+          },
+          {
+            "type": "color",
+            "id": "button_one_text_color",
+            "label": "Button One Text Color"
+          },
+          {
+            "type": "color",
+            "id": "button_one_bg_color",
+            "label": "Button One Background Color"
+          },
+          {
+            "type": "color",
+            "id": "button_one_border_color",
+            "label": "Button One Border Color"
+          },
+          {
+            "id": "button_one_text",
+            "type": "text",
+            "label": "Button One Text",
+            "info": "optional"
+          },
+          {
+            "id": "button_one_href",
+            "type": "url",
+            "label": "Button One href",
+            "info": "optional"
+          },
+          {
+            "id": "button_one_classes",
+            "type": "text",
+            "label": "Button One Classes",
+            "placeholder": "button--primary",
+            "info": "Space separated custom class names"
+          },
+          {
+            "id": "button_one_attrs",
+            "type": "text",
+            "label": "Button One Attributes",
+            "info": "Attributes for button one"
+          },
+          {
+            "type": "header",
+            "content": "Button Two"
+          },
+          {
+            "type": "color",
+            "id": "button_two_text_color",
+            "label": "Button Two Text Color"
+          },
+          {
+            "type": "color",
+            "id": "button_two_bg_color",
+            "label": "Button Two Background Color"
+          },
+          {
+            "type": "color",
+            "id": "button_two_border_color",
+            "label": "Button Two Border Color"
+          },
+          {
+            "id": "button_two_text",
+            "type": "text",
+            "label": "Button Two Text",
+            "info": "optional"
+          },
+          {
+            "id": "button_two_href",
+            "type": "url",
+            "label": "Button Two href",
+            "info": "optional"
+          },
+          {
+            "id": "button_two_classes",
+            "type": "text",
+            "label": "Button Two Classes",
+            "placeholder": "button--secondary",
+            "info": "Space separated custom class names"
+          },
+          {
+            "id": "button_two_attrs",
+            "type": "text",
+            "label": "Button Two Attributes",
+            "info": "Attributes for button one"
+          },
+          {
+            "type": "header",
+            "content": "Classes"
+          },
+          {
+            "type": "text",
+            "id": "block_classes",
+            "label": "Block Classes",
+            "placeholder": "rounded-corners",
+            "info": "Class string applied to the block"
+          },
+          {
+            "type": "header",
+            "content": "Name"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Block Name",
+            "info": "Updates the title of the block in the admin sidebar"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

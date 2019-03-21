@@ -1,0 +1,45 @@
+{%- comment -%}
+
+  Arguments:
+  - inline_cart_heading
+  - inline_cart_close_icon
+  - inline_cart_button_one_enabled
+  - inline_cart_button_one_text
+  - inline_cart_button_one_href
+  - inline_cart_button_one_classes
+  - inline_cart_button_two_enabled
+  - inline_cart_button_two_text
+  - inline_cart_button_two_href
+  - inline_cart_button_two_classes
+
+{%- endcomment -%}
+
+
+{%- capture inline_cart_contents -%}
+  {%- include 'inline-cart-header' -%}
+
+  {%- if cart.items.size > 0 -%}
+    <div class="inline-cart--contents" data-inline-cart-contents>
+      {% for line_item in cart.items %}
+
+        {%- include 'line-item' -%}
+
+      {% endfor %}
+    </div>
+    {%- include 'inline-cart-footer' -%}
+  {%- else -%}
+    <div class="inline-cart--contents" data-inline-cart-contents>
+
+      <p>Your cart is currently empty.</p>
+
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+
+{%- include 'wrapper',
+  type: 'grid',
+  name: 'Inline Cart',
+  content: inline_cart_contents,
+  classes: '',
+  attrs: '' -%}

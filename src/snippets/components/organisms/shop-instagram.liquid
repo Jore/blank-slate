@@ -1,0 +1,46 @@
+{%- comment -%}
+
+  Arguments:
+  - instagram_tile_count
+
+{%- endcomment -%}
+
+
+{%- capture _shop_instagram_grid_contents -%}
+  {%- capture sub_heading -%}
+    {%- if section.id == 'shop-instagram' -%}
+      {%- include 'link',
+        href: 'https://instagram.com/cutsclothing',
+        content: sub_heading,
+        icon: 'instagram',
+        classes: 'shop-instagram-link u-text-uppercase',
+        attrs: 'target="_blank"' -%}
+    {%- else -%}
+      {{- sub_heading -}}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- include 'section-heading' -%}
+
+  {%- if page.handle contains 'instagram' -%}
+    {%- assign insta_theme = 'lookbook_v2_5' -%}
+  {%- else -%}
+    {%- assign insta_theme = 'showcase_v2_5' -%}
+  {%- endif -%}
+
+  <script src="//foursixty.com/media/scripts/fs.embed.v2.5.js" data-feed-id="cuts-clothing" data-theme="{{- insta_theme -}}" data-page-size="{{- instagram_tile_count -}}"></script>
+{%- endcapture -%}
+
+{%- capture _grid_attrs -%}
+  id="instafeed-{{ section.id }}"
+  data-userid="{{ user_id }}"
+  data-clientid="{{ client_id }}"
+  data-accesstoken="{{ access_token }}"
+{%- endcapture -%}
+
+{%- include 'container-grid',
+  name: 'Shop Instagram',
+  content: _shop_instagram_grid_contents,
+  classes: 'shop-instagram',
+  attrs: _grid_attrs -%}
+

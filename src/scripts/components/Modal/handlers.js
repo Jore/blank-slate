@@ -1,11 +1,12 @@
 import dom from 'common/Dom';
 import { toggleElement } from 'common/Helpers';
 
-import contents from './contents';
+import settings from './settings';
 
 const generateModalMarkup = data => {
   const { name, data: modalData } = data;
-  return contents[name](modalData);
+
+  return settings[name](modalData);
 };
 
 const displayModal = () => {
@@ -28,13 +29,19 @@ const closeModal = () => {
   ]);
 };
 
-export const showModal = data => {
+const showModal = data => {
   const modalContents = generateModalMarkup(data);
   $(dom.modalContents).html(modalContents);
+
   return displayModal();
 };
 
-export const hideModal = data => {
+const hideModal = data => {
   return closeModal()
     .then(() => $(dom.modalContents).empty());
+};
+
+export default {
+  show: showModal,
+  hide: hideModal,
 };

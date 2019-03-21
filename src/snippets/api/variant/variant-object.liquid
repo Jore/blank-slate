@@ -1,5 +1,14 @@
 {
-  "variant": {{ variant | json }},
+  "_id": {{ variant.id | json }},
+  "available": {{ variant.available | json }},
+  "compare_at_price": {{ variant.compare_at_price | json }},
+  "featured_image": {{ variant.featured_image | json }},
+  "id": {{ variant.id | json }},
+  "option1": {{ variant.option1 | json }},
+  "option2": {{ variant.option2 | json }},
+  "option3": {{ variant.option3 | json }},
+  "options": {{ variant.options | json }},
+  "price": {{ variant.price | json }},
   "isInitialVariant": {%- if variant.id == _product.selected_or_first_available_variant.id -%}true{%- else -%}false{%- endif -%},
-  "inventory": {{- variant.inventory_quantity -}}
+  "inventory": {{- variant.inventory_quantity | json -}}
 }

@@ -1,37 +1,42 @@
-import 'styles/theme.scss';
 import 'styles/theme.scss.liquid';
+import 'styles/theme.scss';
 
 import 'lazysizes';
 import PubSub from 'pubsub-js';
 import { focusHash, bindInPageLinks } from '@shopify/theme-a11y';
 
-
-import State from 'state';
-
 import { addSectionContainerClasses } from 'common/Helpers';
 
-State.init();
+import CartControls from 'components/CartControls';
 
 
-// Common a11y fixes
+// Things that can go right away
 focusHash();
 bindInPageLinks();
 
+State.cacheCart();
+State.initSubscribers();
+CartControls.initSubscribers();
 
+
+// Things that need DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
-
+  State.init();
+  CartControls.bindActions();
 
   addSectionContainerClasses();
 });
 
+
+// Things that need window load
 window.addEventListener('load', () => {
 
 });
 
+
+// Dev / Debug
 document.addEventListener('shopify:section:load', addSectionContainerClasses);
-
 PubSub.immediateExceptions = true;
-
 // PubSub.subscribe('PRG', (message, data) => console.log(message, data));
 
 

@@ -1,6 +1,3 @@
-{%- assign component_name = 'Section' -%}
-
-
 {%- comment -%}
 
   Usage:
@@ -36,6 +33,8 @@
 {%- unless enabled == false -%}
   {%- include 'override-styles' -%}
 
+
+
   {%- capture section_content -%}
     {%- if section_snippet != blank -%}
 
@@ -44,78 +43,44 @@
 
     {%- elsif blocks_snippet != blank -%}
 
-      {%- include 'section-heading' -%}
-
-      {%- capture blocks_content -%}
-        {%- include 'section-blocks',
-          snippet: blocks_snippet,
-          condition: condition_snippet -%}
-      {%- endcapture -%}
-
-
-      {%- if is_slider == true -%}
-
-        {%- include 'container',
-          type: 'slider',
-          name: 'Generic Slider',
-          content: blocks_content,
-          classes: '',
-          attrs: '' -%}
-
-      {%- else -%}
-
-        {{ blocks_content }}
-
-      {%- endif -%}
+      {%- include 'section-blocks',
+        snippet: blocks_snippet,
+        condition: condition_snippet -%}
 
     {%- elsif content != blank -%}
 
       {{- content -}}
 
-    {%- else -%}
-
-      {%- comment -%}
-
-        error:  forgot to pass `section_snippet`, `blocks_snippet`, or `content` argument to `sections` snippet
-
-      {%- endcomment -%}
-
     {%- endif -%}
   {%- endcapture -%}
 
 
-  {%- capture _classes -%}
-    {{- section_name | handle -}}
-  {%- endcapture -%}
 
-  {%- if container == 'none' -%}
-
-    {{ section_content }}
-
-  {%- elsif container != blank -%}
+  {%- if container != blank -%}
 
     {%- include 'container',
       type: container,
+      name: _name,
       content: section_content,
-      classes: _classes,
+      classes: '',
+      attrs: '' -%}
+
+  {%- elsif wrapper != blank -%}
+
+    {%- include 'wrapper',
+      type: wrapper,
+      name: _name,
+      content: section_content,
+      classes: '',
       attrs: '' -%}
 
   {%- else -%}
 
-    {%- include 'container',
-      type: 'grid',
-      name: 'Generic Grid',
-      content: section_content,
-      classes: _classes,
-      attrs: '' -%}
+    {{ section_content }}
 
   {%- endif -%}
 
 
+
   {%- include 'section-container-classes' -%}
-
-
 {%- endunless -%}
-
-
-{%- assign component_name = nil -%}

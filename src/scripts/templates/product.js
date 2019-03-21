@@ -1,7 +1,11 @@
 import 'styles/templates/product/index.scss';
 
-document.addEventListener('DOMContentLoaded', () => {
+import OptionGroup from 'components/OptionGroup';
 
+OptionGroup.initSubscribers();
+
+document.addEventListener('DOMContentLoaded', () => {
+  OptionGroup.bindActions();
 });
 
 window.addEventListener('load', () => {

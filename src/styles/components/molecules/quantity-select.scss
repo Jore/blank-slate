@@ -1,0 +1,19 @@
+.quantity-select {
+  display: flex;
+  height: 40px;
+  width: 90px;
+  align-items: center;
+  border: 1px solid $color-gray-2;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+      margin: 0;
+  }
+}
+
+.quantity-select-value {
+  border: 0;
+  text-align: center;
+}

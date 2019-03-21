@@ -14,99 +14,10 @@
 <{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif %}
   class="{{- classes -}}"
   data-container="{{- type -}}"
-  data-container-name="{{- name -}}"
+  data-container-name="{%- include 'name' -%}"
   data-container-id="{%- include 'id' -%}"
   {{ attrs -}}>
 
   {{- content -}}
 
 </{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif -%}>
-
-
-
-{% comment %}
-
-  Required arguments:
-  - name
-  - slides
-
-  Optional arguments:
-  - group_slides
-  - filter_group_options
-  - filter_attr
-  - with_nav
-  - classes
-  - attrs
-
-  {%- if nav_for != blank -%}data-nav-for="{{- nav_for -}}"{%- endif -%}
-  {%- if group_slides == true -%}
-    data-filter-group-options="{{- filter_group_options -}}"
-    data-filter-attr="{{- filter_attr -}}"
-  {%- endif -%}
-
-{% endcomment %}
-
-{% comment %}
-
-  Required arguments:
-  - name
-  - _product
-  - content
-
-  Optional arguments:
-  - tag
-  - type
-  - classes
-  - attrs
-
-  {%- include 'image-data', images: _product.images -%}
-  {%- include 'option-data', options: _product.options_with_values -%}
-  {%- include 'variant-data', _product: _product, variants: _product.variants -%}
-  {%- include 'product-data', _product: _product -%}
-
-{% endcomment %}
-
-{%- comment -%}
-
-  Required arguments:
-  - name
-  - line_item
-  - content
-
-  Optional arguments:
-  - classes
-  - attrs
-
-  {%- include 'line-item-data', line_item: line_item -%}
-
-{%- endcomment -%}
-
-{%- comment -%}
-
-  Required arguments:
-  - name
-  - content
-
-  Optional arguments:
-  - classes
-  - attrs
-
-{%- endcomment -%}
-
-{% comment %}
-
-  Required arguments:
-  - name
-  - method
-  - action
-  - content
-
-  Optional arguments:
-  - classes
-  - attrs
-
-    method="{{- method -}}"
-  action="{{- action -}}"
-  data-form="{{- name -}}"
-
-{% endcomment %}

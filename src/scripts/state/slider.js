@@ -1,3 +1,3 @@
 export const initSliderContainer = () => {
-  console.log(`dong`);
+  console.log(`#shruglife`);
 };

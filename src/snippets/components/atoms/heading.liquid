@@ -1,0 +1,22 @@
+{%- assign COMPONENT_NAME = 'heading' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - content
+
+  Optional arguments:
+  - level
+
+{%- endcomment -%}
+
+
+<h{%- unless level -%}2{% else %}{{- level -}}{%- endunless %}
+  class="xx-heading {{ classes -}}"
+  {{ attrs -}}>
+
+  {{- content -}}
+
+</h{%- unless level -%}2{% else %}{{- level -}}{%- endunless %}>
+
+{%- assign COMPONENT_NAME = nil -%}

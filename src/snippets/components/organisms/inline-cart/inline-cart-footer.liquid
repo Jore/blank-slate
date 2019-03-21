@@ -1,0 +1,27 @@
+<footer class="inline-cart--footer">
+
+  {%- capture _footer_header_content -%}
+    {%- include 'price',
+      _price: cart.total_price,
+      type: 'cart.total_price',
+      classes: 'inline-cart-subtotal text-five u-text-size-14',
+      filter: 'money_without_trailing_zeros',
+      attrs: '' -%}
+  {%- endcapture -%}
+
+  {%- include 'header',
+    heading: 'Subtotal'
+    level: 3,
+    content: _footer_header_content,
+    classes: 'inline-cart-subtotal-group text-five u-text-size-14',
+    attrs: '' -%}
+
+  <p class="inline-cart-footer-message u-text-size-12">Shipping, taxes, and discounts calculated at checkout.</p>
+
+  {%- include 'link',
+    content: 'Checkout',
+    href: '/checkout',
+    classes: 'xx-button button button--black button--content heading-three text-four',
+    attrs: '' -%}
+
+</footer>

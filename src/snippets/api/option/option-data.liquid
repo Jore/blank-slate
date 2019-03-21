@@ -11,8 +11,12 @@
 {
   "data": [
     {%- for option in options -%}
-      {%- include 'option-object',
-        option: option -%}{%- unless forloop.last -%},{%- endunless -%}
+      {%- for value in option.values -%}
+        {%- if value == 'Default Title' -%}{% continue %}{%- endif -%}
+        {%- include 'value-object',
+          option: option,
+          value: value -%}{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}{%- unless forloop.last -%},{%- endunless -%}
     {%- endfor -%}
   ]
 }

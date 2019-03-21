@@ -1,0 +1,58 @@
+{%- comment -%}
+
+  Required arguments:
+  - _product
+  - show_option_name
+  - show_selected_value
+  - add_to_cart_button_text
+  - add_to_cart_button_classes
+  - add_to_cart_button_attrs
+  - default_show_option_name
+  - default_show_selected_value
+  - default_option_group_type
+
+{%- endcomment -%}
+
+
+{%- include 'input',
+  type: 'hidden',
+  name: 'form_type',
+  value: 'product',
+  id: '',
+  classes: '',
+  attrs: '' -%}
+
+{%- include 'input',
+  type: 'hidden',
+  name: 'utf8',
+  value: '✓',
+  id: '',
+  classes: '',
+  attrs: '' -%}
+
+{%- include 'input',
+  type: 'hidden',
+  name: 'id',
+  value: _product.selected_or_first_available_variant.id,
+  id: '',
+  classes: '',
+  attrs: '' -%}
+
+
+{%- include 'product-add-to-cart-options' -%}
+
+
+{%- include 'quantity-select',
+  quantity: 1,
+  content: 'qty',
+  buttons: false,
+  input_classes: 'flex-half width-half',
+  label_classes: 'flex-half u-text-right',
+  classes: 'text-one' -%}
+
+
+{%- include 'button',
+  type: 'submit',
+  content: add_to_cart_button_text,
+  classes: add_to_cart_button_classes,
+  attrs: add_to_cart_button_attrs, -%}

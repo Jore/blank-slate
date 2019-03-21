@@ -1,0 +1,91 @@
+.xx-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: $base-spacing-size calc(#{$base-spacing-size} * 1.75);
+  font-family: $font-heading;
+  font-weight: $font-heading-bold-weight;
+  font-size: $font-size-minor;
+  text-transform: uppercase;
+  line-height: $font-line-height;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-appearance: none;
+
+  &.with-icon {
+    padding: 0;
+  }
+
+  &.icon-last .xx-icon {
+    order: 1;
+  }
+
+  &.button--primary {
+    color: $color-white;
+    background-color: $color-2;
+  }
+
+  &.button--primary-alt {
+    color: $color-2;
+    background-color: transparent;
+    border: 2px solid $color-2;
+    transition: all $transition-duration $transition-timing;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-2;
+    }
+  }
+
+  &.button--secondary {
+    color: $color-white;
+    background-color: $color-5;
+  }
+
+  &.button--secondary-alt {
+    color: $color-5;
+    background-color: transparent;
+    border: 2px solid $color-5;
+    transition: all $transition-duration $transition-timing;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-5;
+    }
+  }
+
+  &.button--black {
+    color: $color-white;
+    background-color: $color-black;
+  }
+
+  &.button--black-alt {
+    color: $color-black;
+    background-color: transparent;
+    border: 2px solid $color-black;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-black;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.25;
+
+    &.add-to-cart-button .button--content {
+      display: none;
+
+      &::after {
+        content: 'Sold Out'
+      }
+    }
+  }
+}
+
+.button--content {
+  width: 100%;
+}

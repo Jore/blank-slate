@@ -1,0 +1,75 @@
+{%- include 'section',
+  section_name: 'Product Images',
+  section_snippet: 'product-images',
+  has_nav: section.settings.has_nav,
+  filter_images: section.settings.filter_images,
+  filter_group_options: section.settings.filter_group_options,
+  alt_tag_delimiter: section.settings.alt_tag_delimiter, -%}
+
+{% schema %}
+  {
+    "name": "Product Images",
+    "class": "product-images-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Images"
+      },
+      {
+        "id": "has_nav",
+        "type": "checkbox",
+        "label": "Product images has navigation?",
+        "default": true
+      },
+      {
+        "id": "filter_images",
+        "type": "checkbox",
+        "label": "Group  and filter images?",
+        "default": true
+      },
+      {
+        "id": "filter_group_options",
+        "type": "text",
+        "label": "Possible Options to group images by",
+        "placeholder": "Optional",
+        "info": "Separate multiple values with '|' (navigation must be enabled)"
+      },
+      {
+        "id": "alt_tag_delimiter",
+        "type": "text",
+        "label": "String to split alt attribute on for filter value",
+        "placeholder": "Optional",
+        "info": "alt tag will be split on this value and the value to the left of the delimiter will be the new alt tag and the value to the right will be the value that's used to filter by"
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "text",
+        "id": "children_classes",
+        "label": "Children Classes",
+        "placeholder": "flex-12 m-flex-4",
+        "info": "Class string applied to every block in section"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "Best Sellers Row",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ]
+  }
+{% endschema %}

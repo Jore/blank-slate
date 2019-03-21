@@ -1,0 +1,100 @@
+{%- comment -%}
+
+  Required arguments:
+  - line_item
+
+  Optional arguments:
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+{%- capture color -%}
+  {%- include 'product-color', _product: line_item.product -%}
+{%- endcapture -%}
+
+{%- capture size -%}
+  {%- include 'option-value-map',
+    lookup_value: line_item.variant.option1,
+    option: 'size' -%}
+{%- endcapture -%}
+
+
+{%- capture line_item_inline_cart_content -%}
+  {%- capture variant_image_content -%}
+    {%- include 'image',
+      resource: line_item,
+      size: '250x',
+      wrapper: false,
+      lazyload: false,
+      classes: '',
+      attrs: '' -%}
+  {%- endcapture -%}
+
+  {%- include 'link',
+    href: line_item.variant.url,
+    content: variant_image_content
+    classes: 'line-item--image-wrapper',
+    attrs: '' -%}
+
+
+
+  <div class="line-item--information-wrapper">
+    {%- capture line_item_subtitle -%}
+      {%- capture color_size -%}
+        {{ color }} / {{ size }}
+      {%- endcapture -%}
+
+      {%- include 'heading',
+        level: 4,
+        _heading: color_size,
+        classes: 'line-item-subheading heading-five',
+        attrs: '' -%}
+    {%- endcapture -%}
+
+    {%- capture line_item_title -%}
+      {{ line_item.product.title | downcase | remove: color }}
+    {%- endcapture -%}
+
+    {%- include 'header',
+      heading: line_item_title,
+      content: line_item_subtitle,
+      level: 3,
+      heading_classes: 'text-two line-item-heading',
+      classes: '',
+      attrs: '' -%}
+
+    {%- include 'quantity-select',
+      quantity: line_item.quantity,
+      content: 'qty',
+      buttons: false,
+      input_classes: 'flex-half width-half',
+      label_classes: 'flex-half u-text-right',
+      classes: 'text-one' -%}
+  </div>
+
+  <div class="line-item--totals">
+    {%- include 'button',
+      icon: 'cancel',
+      classes: 'button--text line-item-remove',
+      attrs: 'data-remove-from-cart' -%}
+
+    {%- include 'price',
+      _price: line_item.price,
+      type: 'line_item.price',
+      filter: 'money_without_trailing_zeros',
+      classes: '',
+      attrs: '' -%}
+  </div>
+
+{%- endcapture -%}
+
+
+{%- include 'container-line-item',
+  name: 'Inline Cart Line Item',
+  line_item: line_item,
+  content: line_item_inline_cart_content,
+  classes: '',
+  attrs: '' -%}
+
+{%- assign line_item_inline_cart_content = nil -%}

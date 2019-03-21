@@ -97,14 +97,11 @@ export const addSectionContainerClasses = ({ detail = {}} = {}) => {
   }
 };
 
-
 export const priceString = priceInCents => `$${(priceInCents / 100).toFixed(2)}`;
-
 
 export const getContainer = ({ self, type, id, name, asjQuery = false }) => {
   let $container;
   let container;
-
 
   if (id) {
     $container = $(`[data-container-id="${id}"]`);
@@ -142,7 +139,7 @@ export const getParentContainers = ({ self, asjQuery = false, containers = {}}) 
   return getParentContainers({ self: $container.parent()[0], containers: parentContainers });
 };
 
-export const getChildrenContainers = ({ self, asjQuery }) => {
+export const getChildContainers = ({ self, asjQuery }) => {
   return $(self).find(dom.container).get().reduce((containers, node) => {
     const { container: type, containerId: id, containerName: name } = node.dataset;
     const containerData = { id, name, node };

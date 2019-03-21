@@ -1,70 +1,27 @@
 import dom from 'common/Dom';
 
-import State from 'state';
+import { parseContainerData, setState } from './handlers';
 
-export const updateLineItemQuantity = data => {
-  const change = 'QUANTITY';
+const updateQuantity = data => {
+  console.log(`updateLineItemQuantity`);
+  console.log(data);
+
+  const change = 'quantity';
   const container = 'line-item';
 
-  State.set({ ...data, change, container });
+  setState({ container, change, ...data, });
 };
 
-const getLineItemContainerData = () => {
-  return $(dom.lineItemContainer).get().map(lineItemContainer => {
-    const id = lineItemContainer.dataset.containerId;
-    const { data } = JSON.parse($(lineItemContainer).find(dom.lineItemData).text());
-    const { key, properties, variant: { variant: { id: variantId, price, compare_at_price }, inventory }} = data;
-    const quantity = parseInt($(lineItemContainer).find(dom.quantityValue).val(), 10);
-    return {
-      _data: data,
-      id,
-      change: 'LINE_ITEM',
-      container: 'line-item',
-      key,
-      properties,
-      variantId,
-      quantity,
-      inventory,
-      price,
-      compare_at_price
-    };
-  });
+export const initLineItemContainer = lineItemContainer => {
+  const lineItem = parseContainerData(lineItemContainer)['line-item'][0];
+  const { containerId: id } = lineItemContainer.dataset;
+  const container = 'line-item';
+  const change = 'init';
+  const quantity = parseInt($(dom.quantityValue, lineItemContainer).val()) || undefined;
+
+  setState({ id, container, change, ...lineItem, _data: lineItem });
 };
 
-export const initLineItemContainers = data => {
-  State.clear('line-item');
-  return getLineItemContainerData()
-    .map(item => {
-      console.log(item);
-      State.set(item)
-    });
-};
-
-
-export const initLineItemContainer = container => {
-  const { container: type, containerName: name, containerId: id } = container.dataset;
-  const { data } = JSON.parse($(container).find(dom.lineItemData).text());
-
-  const {
-    key,
-    properties,
-    variant: { variant: { id: variantId, price, compare_at_price }, inventory }
-  } = data;
-
-  const quantity = parseInt($(lineItemContainer).find(dom.quantityValue).val(), 10);
-
-
-  return {
-    _data: data,
-    id,
-    change: 'LINE_ITEM',
-    container: 'line-item',
-    key,
-    properties,
-    variantId,
-    quantity,
-    inventory,
-    price,
-    compare_at_price
-  };
+export default {
+  updateQuantity,
 };

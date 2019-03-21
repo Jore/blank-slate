@@ -13,7 +13,7 @@ const CollectionGrid = props => {
   return (
     <div className="collection-grid flex-full">
 
-      <section className="collection-filtersort oo-grid flex-full">
+      <section className="collection-filtersort grid flex-full">
 
         <CollectionFiltering products={products} {...props} />
 
@@ -22,7 +22,7 @@ const CollectionGrid = props => {
       </section>
 
       <section
-        className="oo-grid vv-collection-grid flex-full"
+        className="grid vv-collection-grid flex-full"
         data-container="grid"
         data-container-name="Collection Grid"
         data-container-id={`grid-${random(9)}`}

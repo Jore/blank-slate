@@ -21,28 +21,31 @@ const plugins = [
     'jQuery': 'jquery',
     'window.$': 'jquery',
     'window.jQuery': 'jquery',
+    'State': [path.resolve('./src/scripts/state'), 'default'],
   }),
   new CopyWebpackPlugin([
     {
-      from: 'sections/**/*',
+      from: 'sections/**/*.liquid',
       to: '../sections/',
-      flatten: true
+      flatten: true,
+      ignore: [ `${sectionsBase}/*` ],
     },
     {
-      from: 'snippets/**/*',
+      from: 'snippets/**/*.liquid',
       to: '../snippets/',
-      flatten: true
+      flatten: true,
+      ignore: [ `${snippetsBase}/*` ],
     }
-  ], { ignore: [ 'core/*' ] }),
+  ]),
 ];
 
 const alias = {
-  'styles': path.resolve('./src/styles'),
-  'scripts': path.resolve('./src/scripts'),
-  'common': path.resolve('./src/scripts/common'),
-  'components': path.resolve('./src/scripts/components'),
-  'state': path.resolve('./src/scripts/state'),
   'collection': path.resolve('./src/scripts/react/Collection/components'),
+  'components': path.resolve('./src/scripts/components'),
+  'common': path.resolve('./src/scripts/common'),
+  'scripts': path.resolve('./src/scripts'),
+  'state': path.resolve('./src/scripts/state'),
+  'styles': path.resolve('./src/styles'),
 };
 
 const rules = [

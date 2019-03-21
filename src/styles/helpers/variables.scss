@@ -9,11 +9,11 @@
 
   $enable-box-sizing-border-box: true;
 
-  $oo-container-max: var(--size-main-container);
-  $oo-base-spacing-size: var(--size-spacing-base);
+  $container-max: var(--size-main-container);
+  $base-spacing-size: var(--size-spacing-base);
 
-  $oo-transition-duration: var(--duration-transition);
-  $oo-transition-timing: ease-in-out;
+  $transition-duration: var(--duration-transition);
+  $transition-timing: ease-in-out;
 
 // ============================================================================
 //   ______     ______     __         ______     ______     ______
@@ -24,16 +24,22 @@
 //
 // ===========================================================================
 
+  // Blacks, whites, and grays
   $color-white: var(--color-default-white);
   $color-black: var(--color-default-black);
-  $color-gray: var(--color-default-gray);
+  $color-gray-0: var(--color-default-gray);
+  $color-gray-1: #333333;
+  $color-gray-2: #dddddd;
+  $color-gray-3: #999999;
 
+  // Colors managed through theme settings
   $color-1: var(--color-palette-1);
   $color-2: var(--color-palette-2);
   $color-3: var(--color-palette-3);
   $color-4: var(--color-palette-4);
   $color-5: var(--color-palette-5);
 
+  // Primary text and background colors
   $color-body-text: var(--color-body-text);
   $color-body-background: var(--color-body-background);
 
@@ -46,12 +52,16 @@
 //
 // =========================================================================
 
+  // Heading font settings
   $font-heading: var(--font-heading);
   $font-heading-bold-weight: var(--font-heading-bold-weight);
+
+  // Primary font settings
   $font-primary: var(--font-primary);
   $font-primary-light-weight: var(--font-primary-light-weight);
   $font-primary-bold-weight: var(--font-primary-bold-weight);
 
+  // Various font size settings managed through theme settings
   $font-size-base:    var(--size-font-base);
   $font-size-minor:   var(--size-font-minor);
   $font-size-major:   var(--size-font-major);
@@ -68,6 +78,13 @@
 //
 // =========================================================================
 
+  /*
+
+    - move all the values below to one single place (also in styles/theme.scss.liquid)
+    - don't have sass maps in shopify/liquid sass
+
+  */
+
   $breakpoints: (
     480px  xs xsmall,
     600px  s small,
@@ -75,6 +92,16 @@
     992px  l large,
     1280px xl xlarge,
     1440px xxl xxlarge,
+  );
+
+  $named-widths: (
+    eighth  0.125,
+    sixth   0.166,
+    fifth   0.2,
+    quarter 0.25,
+    third   0.333,
+    half    0.5,
+    full    1.0,
   );
 
 // =========================================================================
@@ -86,14 +113,9 @@
 //
 // =========================================================================
 
-  $columns: 12;
+  $total-columns: var(--size-total-columns);
 
-  $named-widths: (
-    1: full,
-    .5: half,
-    .333: third,
-    .25: quarter,
-    .2: fifth,
-    .166: sixth,
-    .125: eighth,
-  );
+  %max-width {
+    max-width: $container-max;
+    margin: 0 auto;
+  }

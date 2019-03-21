@@ -1,57 +1,49 @@
 import prg from 'common/Constants';
 
-import { updateModal } from './modal';
-import { updateCart } from './cart';
+import cart from './cart';
+import modal from './modal';
+import product from './product';
+import lineItem from './line-item';
 
-import {
-  updateProductQuantity,
-  updateOptionGroupValue,
-  updateVariant,
-  updateInventory,
-  updatePrice, } from './product';
-
-import {
-  initLineItemContainers,
-  updateLineItemQuantity, } from './line-item';
 
 export const initSubscribers = () => {
-  PubSub.subscribe(prg.updateInlineCartUI, (message, data) => {
-    return initLineItemContainers(data);
+  PubSub.subscribe(prg.updateQuantity, (message, data) => {
+    return product.updateQuantity(data);
   });
 
-  PubSub.subscribe(prg.updateProductQuantity, (message, data) => {
-    return updateProductQuantity(data);
-  });
-
-  PubSub.subscribe(prg.updateLineItemQuantity, (message, data) => {
-    return updateLineItemQuantity(data);
-  });
-
-  PubSub.subscribe(prg.updateOptionGroupValue, (message, data) => {
-    return updateOptionGroupValue(data);
+  PubSub.subscribe(prg.updateOptionValue, (message, data) => {
+    return product.updateOptionValue(data);
   });
 
   PubSub.subscribe(prg.updateVariant, (message, data) => {
-    return updateVariant(data);
+    return product.updateVariant(data);
   });
 
   PubSub.subscribe(prg.updateInventory, (message, data) => {
-    return updateInventory(data);
+    return product.updateInventory(data);
   });
 
   PubSub.subscribe(prg.updatePrice, (message, data) => {
-    return updatePrice(data);
+    return product.updatePrice(data);
+  });
+
+  PubSub.subscribe(prg.updateInlineCartUI, (message, data) => {
+    return lineItem.initLineItemContainers(data);
+  });
+
+  PubSub.subscribe(prg.updateLineItemQuantity, (message, data) => {
+    return lineItem.updateQuantity(data);
   });
 
   PubSub.subscribe(prg.showModal, (message, data) => {
-    return updateModal(data);
+    return modal.updateState(data);
   });
 
   PubSub.subscribe(prg.hideModal, (message, data) => {
-    return updateModal(data);
+    return modal.updateState(data);
   });
 
   PubSub.subscribe(prg.cartRequestSuccess, (message, data) => {
-    return updateCart(data);
+    return cart.updateState(data);
   });
 };

@@ -1,0 +1,13 @@
+{%- capture _header_content -%}
+  {%- include 'button',
+    icon: 'arrow-left',
+    classes: 'button--reset',
+    attrs: 'data-close-inline-cart' -%}
+{%- endcapture -%}
+
+{%- include 'header',
+  heading: heading,
+  level: 3,
+  content: _header_content,
+  classes: 'heading-three text-four inline-cart-header u-text-size-16 flex',
+  attrs: '' %}

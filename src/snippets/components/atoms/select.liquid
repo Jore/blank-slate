@@ -1,0 +1,43 @@
+{%- assign COMPONENT_NAME = 'dropdown' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  - name
+  - values
+  - selected_value
+
+  Optional arguments:
+  - id
+  - classes
+  - attrs
+
+{%- endcomment -%}
+
+
+<select class="dropdown xx-input--select {{ classes -}}"
+  name="{{- name -}}"
+  value="{{- value -}}"
+  {%- if id != blank or id != '' -%}id="{{- id -}}"{%- endif -%}
+  {{ attrs -}}>
+
+  {%- for value in values -%}
+    {%- assign value_parts = value | split: '::' -%}
+    {%- assign label = value_parts[0] -%}
+    {%- assign _value = value_parts[1] -%}
+
+    {%- if _value == blank -%}
+      {%- assign _value = label -%}
+    {%- endif -%}
+
+    <option value="{{- _value -}}" {%- if selected_value == label -%}selected{%- endif -%}>
+
+      {{- label -}}
+
+    </option>
+
+  {%- endfor -%}
+
+</select>
+
+{%- assign COMPONENT_NAME = nil -%}

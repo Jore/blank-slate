@@ -12,7 +12,7 @@ const CollectionSorting = props => {
   const { apollo, loaded } = props;
 
   return (
-    <div className="collection-filtersort collection-sorting flex-half oo-grid no-wrap">
+    <div className="collection-filtersort collection-sorting flex-half grid no-wrap">
 
       <Mutation
         mutation={UPDATE_SORT_ORDER}>

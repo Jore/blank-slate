@@ -1,0 +1,43 @@
+{%- capture thumbs -%}
+  {%- for image in _product.images -%}
+    {%- capture slide_attrs -%}
+      data-gallery-thumb
+      data-slide-index="{{- forloop.index0 -}}"
+
+      {%- if group_images != blank -%}
+        {%- assign alt_parts = image.alt | split: alt_tag_delimiter -%}
+        {%- assign _alt = alt_parts | first -%}
+        data-filter-value="{{ alt_parts | last | strip }}"
+        data-slide-index="{{ forloop.index0 }}"
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- include 'image',
+      resource: image,
+      size: '175x',
+      lazyload: true,
+      classes: 'gallery-slide-thumb',
+      attrs: slide_attrs  -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture container_attrs -%}
+  data-filter-group-options="{%- if group_images == true -%}{{- filter_group_options -}}{%- endif -%}"
+  data-filter-attr="{%- if group_images == true -%}data-filter-value{%- endif -%}"
+  data-nav-for="Product Gallery"
+{%- endcapture -%}
+
+
+{%- if has_nav == true -%}
+
+  {%- include 'container-slider',
+    name: 'Product Gallery Thumbs',
+    content: thumbs,
+    classes: classes,
+    attrs: container_attrs -%}
+
+{%- endif -%}
+
+
+{%- assign slide_attrs = nil -%}
+{%- assign _alt = nil -%}

@@ -1,0 +1,53 @@
+{%- include 'section',
+  section_name: 'Product Details',
+  section_snippet: 'product-details',
+  wrapper: 'grid',
+  show_compare_at_price: section.settings.show_compare_at_price -%}
+
+{% schema %}
+  {
+    "name": "Product Info",
+    "class": "product-info-wrapper",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Info"
+      },
+      {
+        "id": "show_compare_at_price",
+        "type": "checkbox",
+        "label": "Show compare at price?",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "text",
+        "id": "children_classes",
+        "label": "Children Classes",
+        "placeholder": "flex-12 m-flex-4",
+        "info": "Class string applied to every block in section"
+      },
+      {
+        "type": "header",
+        "content": "Name"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Name",
+        "placeholder": "Best Sellers Row",
+        "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
+      }
+    ]
+  }
+{% endschema %}

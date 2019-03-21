@@ -1,17 +1,20 @@
+import uniqby from 'lodash.uniqby';
+
 import dom from 'common/Dom';
 import prg from 'common/Constants';
-import { setSearchParm, getContainer } from 'common/Helpers';
+import { getContainer } from 'common/Helpers';
 
 import { state } from 'state';
 
 export const getState = key => {
   if (key instanceof Element) {
-    const { containerId } = getContainer({ self: key }).dataset;
-    return getState(containerId);
+    const { containerId: id } = getContainer({ self: key }).dataset;
+    return getState(id);
   }
 
   const { cart, ...states } = state;
-  const ids = Object.entries(states).reduce((allState, [name, values]) => ({ ...allState, ...values }), {});
+  const ids = Object.entries(states)
+    .reduce((allState, [name, values]) => ({ ...allState, ...values }), {});
 
   if (state[key]) {
     return state[key];
@@ -23,26 +26,22 @@ export const getState = key => {
 };
 
 export const setState = data => {
-  const { id, change, container, ...stateChange } = data;
-  let newState;
+  console.log(data);
+  const { id, container, change, ...stateChange } = data;
 
-  if (id && container) {
-    const oldState = state[container][id];
-    newState = { id, ...oldState, ...stateChange };
+  if (!container) return;
+
+  const oldState = (id) ? state[container][id] : state[container];
+  const newState = { ...oldState, ...stateChange };
+
+  if (id) {
     state[container][id] = newState;
   } else if (container) {
-    const oldState = state[container];
-    newState = { ...oldState, ...stateChange };
     state[container] = newState;
   }
 
-  const topic = (container === change)
-    ? `${prg.updateState}.${container.toUpperCase()}`
-    : `${prg.updateState}.${container.toUpperCase()}.${change.toUpperCase()}`;
-
+  const topic = `${prg.updateState}.${container.toUpperCase()}.${change.toUpperCase()}`;
   PubSub.publish(topic, { id, data, state: newState });
-
-  return newState;
 };
 
 export const clearState = key => {
@@ -56,4 +55,16 @@ export const clearState = key => {
   }
 
   return state;
+};
+
+export const parseContainerData = container => {
+  return $(dom.shopifyData, container).get()
+    .reduce((containerData, json) => {
+      const { data } = JSON.parse(json.text);
+      const { fromShopify: type } = json.dataset;
+      const typeData = containerData[type] || [];
+      const newData = uniqby([ ...typeData, data ].flat(), '_id');
+
+      return { ...containerData, [type]: newData }
+    }, {});
 };
