@@ -130,3 +130,5 @@ src
     ├── product.liquid
     └── search.liquid
 ```
+
+"extends": "stylelint-config-standard",
