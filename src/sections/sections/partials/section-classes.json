@@ -1,7 +1,0 @@
-{
-  "id": "container_classes",
-  "type": "text",
-  "label": "Section Container Classes",
-  "placeholder": "flex-12 s-flex-6",
-  "info": "Class string applied to outermost section element"
-}

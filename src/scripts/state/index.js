@@ -1,8 +1,7 @@
-import dom from 'common/Dom';
 import { getContainer } from 'common/Helpers';
 
 import { initSubscribers } from './subscribers';
-import { getState, setState, clearState, } from './handlers';
+import { getState, setState, clearState } from './handlers';
 
 import { initProductContainer } from './product';
 import { initLineItemContainer } from './line-item';
@@ -17,7 +16,7 @@ const parsers = {
   'slider': initSliderContainer,
 };
 
-const init = data => {
+const init = () => {
   return getContainer({})
     .map(container => parsers[container.dataset.container](container));
 };

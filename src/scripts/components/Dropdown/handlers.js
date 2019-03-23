@@ -1,5 +1,8 @@
 import 'selectize/dist/js/standalone/selectize.min.js';
 
+import dom from 'common/Dom';
+import { getContainer } from 'common/Helpers';
+
 import settings from './settings';
 
 const initDropdown = dropdownContainer => {
@@ -11,4 +14,4 @@ const initDropdown = dropdownContainer => {
 
 export const init = () =>
   getContainer({ type: 'dropdown' })
-    .map(dropdownContainer => initSlider(dropdownContainer));
+    .map(dropdownContainer => initDropdown(dropdownContainer));

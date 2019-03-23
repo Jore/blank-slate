@@ -1,5 +1,4 @@
 import dom from 'common/Dom';
-import prg from 'common/Constants';
 import { getContainer } from 'common/Helpers';
 
 const updateOptionGroupSelectedText = data => {

@@ -13,12 +13,12 @@ const productPageSizeOptionSettings = {
   highlight: false,
   closeAfterSelect: true,
   onInitialize: () => $([dom.selectizeInput, dom.selectizeInputInput]).attr('disabled', 'disabled'),
-  onChange: function () {
-    handleOptionValueChange({ currentTarget: this.$input[0] })
+  onChange () {
+    handleOptionValueChange({ currentTarget: this.$input[0] });
   },
 };
 
 export default {
   default: defaultSettings,
   ['Product Page Size Option']: productPageSizeOptionSettings,
-}
+};

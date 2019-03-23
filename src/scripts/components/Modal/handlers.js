@@ -15,7 +15,7 @@ const displayModal = () => {
 
   return Promise.all([
     toggleElement({ selector: dom.overlay, action, animated }),
-    toggleElement({ selector: dom.modal, action, animated })
+    toggleElement({ selector: dom.modal, action, animated }),
   ]);
 };
 
@@ -25,18 +25,19 @@ const closeModal = () => {
 
   return Promise.all([
     toggleElement({ selector: dom.overlay, action, animated }),
-    toggleElement({ selector: dom.modal, action, animated })
+    toggleElement({ selector: dom.modal, action, animated }),
   ]);
 };
 
 const showModal = data => {
   const modalContents = generateModalMarkup(data);
+
   $(dom.modalContents).html(modalContents);
 
   return displayModal();
 };
 
-const hideModal = data => {
+const hideModal = () => {
   return closeModal()
     .then(() => $(dom.modalContents).empty());
 };

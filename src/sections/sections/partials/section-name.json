@@ -1,7 +1,0 @@
-{
-  "id": "title",
-  "type": "text",
-  "label": "Section Name",
-  "placeholder": "Best Sellers Row",
-  "info": "Give the section a specific identifier. Adds handlized version of name to inner section container element and updates the title of the section in the admin sidebar."
-}

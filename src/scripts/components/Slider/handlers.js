@@ -1,15 +1,10 @@
 import Flickity from 'flickity';
 import 'flickity-imagesloaded';
 
-import dom from 'common/Dom';
 import prg from 'common/Constants';
-import { unique, getContainer } from 'common/Helpers';
+import { getContainer } from 'common/Helpers';
 
 import settings from './settings';
-
-const isFlickity = slider => {
-  return slider.constructor.name === 'Flickity';
-};
 
 const updateSliderSlide = data => {
   const { slider, slideTo } = data;
@@ -23,10 +18,10 @@ export const updateContainerSliders = data => {
   const { id, name, value } = data;
   const { sliders } = State.get(id);
   const images = State.get(id)._data.images
-    .filter(image => image[name] == value)
+    .filter(image => image[name] === value)
     .map(image => $('<img />', { src: image.src2x }));
 
-  if (images.length == 0) return;
+  if (images.length === 0) return;
 
   sliders.forEach(slider => {
     const sliderState = State.get(slider);
@@ -35,13 +30,14 @@ export const updateContainerSliders = data => {
 
     if (sliderState.isFlickity) {
       const currentSlides = sliderState.slider.cells.map(cell => cell.element);
+
       sliderState.slider.append(newImages);
       sliderState.slider.remove(currentSlides);
       // sliderState.slider.select(0);
 
       setTimeout(() => {
-        sliderState.slider.resize()
-        sliderState.slider.lazyload()
+        sliderState.slider.resize();
+        sliderState.slider.lazyload();
       }, 100);
 
       PubSub.publish(prg.updateSliderSlide, { slider: sliderState, slideTo: 0 });
@@ -71,7 +67,7 @@ const initSlider = sliderContainer => {
   if (sliderSettings.mq) {
     Object.entries(sliderSettings.mq).forEach(([query, options]) => {
       if (matchMedia(query).matches) {
-        Object.entries(options).forEach(([option, value]) => sliderSettings[option] = value)
+        Object.entries(options).forEach(([option, value]) => sliderSettings[option] = value);
       }
     });
   }

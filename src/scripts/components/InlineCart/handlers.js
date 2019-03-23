@@ -2,7 +2,7 @@ import dom from 'common/Dom';
 import prg from 'common/Constants';
 import { toggleElement, getAlternativeTemplate } from 'common/Helpers';
 
-const updateInlineCartUI = data => {
+const updateInlineCartUI = () => {
   const resource = 'cart';
   const templateName = 'ajax-inline-cart';
 
@@ -14,7 +14,7 @@ const updateInlineCartUI = data => {
     });
 };
 
-const openInlineCart = data => {
+const openInlineCart = () => {
   const action = 'add';
   const animated = true;
 
@@ -22,7 +22,7 @@ const openInlineCart = data => {
     .then(() => toggleElement({ selector: dom.inlineCart, action, animated }));
 };
 
-const closeInlineCart = data => {
+const closeInlineCart = () => {
   const action = 'remove';
   const animated = true;
 

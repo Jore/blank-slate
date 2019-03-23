@@ -1,5 +1,3 @@
-import dom from 'common/Dom';
-import prg from 'common/Constants';
 import { toggleElement } from 'common/Helpers';
 
 const toggle = data => {

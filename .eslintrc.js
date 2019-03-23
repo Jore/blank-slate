@@ -9,6 +9,7 @@ module.exports = {
   },
   "env": {
     "browser": true,
+    "es6": true,
     "jquery": true,
     "node": true
   },
@@ -20,7 +21,7 @@ module.exports = {
     "no-debugger": "off",
     "no-fallthrough": "off",
     "consistent-return": "error",
-    "curly": ["error", "multi"],
+    "curly": ["error", "multi-line"],
     "dot-notation": "error",
     "eqeqeq": ["error", "smart"],
     "no-alert": "error",
@@ -28,7 +29,7 @@ module.exports = {
     "no-eval": "error",
     "no-floating-decimal": "error",
     "no-multi-str": "error",
-    "no-param-reassign": ["error", { "props": true }],
+    "no-param-reassign": ["error", { "props": false }],
     "no-process-env": "error",
     "no-self-compare": "error",
     "no-sequences": "error",
@@ -36,7 +37,11 @@ module.exports = {
     "wrap-iife": ["error", "any"],
     "yoda": ["error", "never"],
     "init-declarations": ["error", "always"],
-    "array-bracket-spacing": ["error", "never", { "singleValue": true, "objectsInArrays": true, "arraysInArrays": true }],
+    "array-bracket-spacing": ["error", "never", {
+      "singleValue": true,
+      "objectsInArrays": false,
+      "arraysInArrays": false
+    }],
     "brace-style": ["error", "1tbs"],
     "camelcase": ["error", { "properties": "always" }],
     "computed-property-spacing": ["error", "never"],
@@ -44,7 +49,11 @@ module.exports = {
     "func-names": ["error", "as-needed"],
     "func-style": ["error", "expression", { "allowArrowFunctions": true }],
     "indent": ["error", 2],
-    "key-spacing": ["error",  { "beforeColon": false, "afterColon": true }],
+    "key-spacing": ["error",  {
+      "beforeColon": false,
+      "afterColon": true,
+      "mode": "minimum"
+    }],
     "keyword-spacing": ["error", { "before": true, "after": true }],
     "newline-after-var": ["error", "always"],
     "no-array-constructor": "error",

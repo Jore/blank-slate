@@ -4,19 +4,19 @@ import dom from 'common/Dom';
 import prg from 'common/Constants';
 import { getContainer } from 'common/Helpers';
 
-const updateParentOptionValue = (parent, filterGroup, filterValue) => {
-  if (!parent || !filterGroup || !filterValue) return false;
+// const updateParentOptionValue = (parent, filterGroup, filterValue) => {
+//   if (!parent || !filterGroup || !filterValue) return false;
 
-  const parentState = State.get(parent);
-  const option = parentState._data.options.find(option => option.name === filterGroup);
+//   const parentState = State.get(parent);
+//   const option = parentState._data.options.find(option => option.name === filterGroup);
 
-  if (option && option.values.includes(filterValue) && parentState[filterGroup] !== filterValue) {
-    const topic = `${prg.updateOptionValue}.${filterGroup.toUpperCase()}`;
-    const data = { id: parentState.id, name: filterGroup, value: filterValue };
+//   if (option && option.values.includes(filterValue) && parentState[filterGroup] !== filterValue) {
+//     const topic = `${prg.updateOptionValue}.${filterGroup.toUpperCase()}`;
+//     const data = { id: parentState.id, name: filterGroup, value: filterValue };
 
-    PubSub.publish(topic, data);
-  }
-};
+//     PubSub.publish(topic, data);
+//   }
+// };
 
 export const updateContainerSliders = (container, index) => {
   const id = container.dataset.containerId;
@@ -32,7 +32,7 @@ export const updateContainerSliders = (container, index) => {
 const handleSliderThumbClick = ({ currentTarget: self }) => {
   const { slideIndex: slideTo } = self.dataset;
   const sliderContainer = getContainer({ self, type: 'slider' });
-  const { navFor, parent, filterGroup } = State.get(sliderContainer);
+  const { navFor } = State.get(sliderContainer);
   const slider = State.get(navFor);
   const topic = prg.updateSliderSlide;
   const data = { slider, slideTo };

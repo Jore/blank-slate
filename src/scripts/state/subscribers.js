@@ -7,7 +7,7 @@ import lineItem from './line-item';
 
 
 export const initSubscribers = () => {
-  PubSub.subscribe(prg.updateQuantity, (message, data) => {
+  PubSub.subscribe(prg.updateProductQuantity, (message, data) => {
     return product.updateQuantity(data);
   });
 

@@ -1,9 +1,12 @@
+// eslint-disable-next-line no-unused-vars
 const modalTitle = (strings, ...values) =>
   `<h2 class="modal-title heading-two u-mb-30">${strings[0]}</h2>`;
 
+// eslint-disable-next-line no-unused-vars
 const modalSubtitle = (strings, ...values) =>
   `<h3 class="modal-subtitle">${strings[0]}</h3>`;
 
+// eslint-disable-next-line no-unused-vars
 const modalBody = (strings, ...values) =>
   `<div class="modal-body">${strings[0]}</div>`;
 
@@ -13,7 +16,7 @@ const modalClose = (classes = '', modalName= '', text = '+') =>
 const notEnoughInventory = data => {
   const { newQuantity, inventory } = data;
   const title = modalTitle`Oops...`;
-  const subtitle = modalSubtitle`We currently don't have enough inventory of that Item.`;
+  // const subtitle = modalSubtitle`We currently don't have enough inventory of that Item.`;
   const body = `<div class="modal-body"><p>You requested ${newQuantity} but we only have ${inventory}. Please Adjust your selection and try again.</p></div>`;
   const close = modalClose('button--secondary', 'not-enough-inventory');
 
@@ -25,12 +28,12 @@ const notEnoughInventory = data => {
 };
 
 
-const freeShipping = data => {
+const freeShipping = () => {
   // const subtitle = modalSubtitle`We currently don't have enough inventory of that Item.`;
   // const body = `<div class="modal-body">You requested 420 but we only have 69. Please Adjust your selection and try again.</div>`;
 };
 
-const sizeGuide = data => {
+const sizeGuide = () => {
   const title = modalTitle`Size Guide`;
   const body = modalBody`
     <table cellspacing="0" class="size-fit-table">

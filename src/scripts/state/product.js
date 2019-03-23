@@ -37,11 +37,11 @@ const updateInventory = data => {
 const updatePrice = data => {
   console.log(`updatePrice`);
   console.log(data);
-  const { variant: { price, compare_at_price }} = getVariant(data.id);
+  const { variant: { price, compare_at_price: compareAtPrice } } = getVariant(data.id);
   const change = 'price';
   const container = 'product';
 
-  setState({ ...data, price, compare_at_price, change, container });
+  setState({ ...data, price, compareAtPrice, change, container });
 };
 
 const updateQuantity = data => {
@@ -68,17 +68,17 @@ const getInitialOptionValues = products => {
   const activeProduct = products.find(product => product.active);
 
   return activeProduct.options.reduce((optionValues, option) =>
-    ({ ...optionValues, [option.name]: option.initialValue, }), {});
+    ({ ...optionValues, [option.name]: option.initialValue }), {});
 };
 
 const getInitialVariantData = variants => {
-  const { id: variantId, ...initialVariant} = variants.find(variant => variant.isInitialVariant);
+  const { id: variantId, ...initialVariant } = variants.find(variant => variant.isInitialVariant);
 
   return { variantId, ...initialVariant };
 };
 
 export const initProductContainer = productContainer => {
-  const { image, option, product, variant: variants, } = parseContainerData(productContainer);
+  const { image, option, product, variant: variants } = parseContainerData(productContainer);
   const { containerId: id } = productContainer.dataset;
   const container = 'product';
   const change = 'init';
@@ -88,7 +88,7 @@ export const initProductContainer = productContainer => {
   const { slider: sliders } = getChildContainers({ self: productContainer });
   const _data = { image, option, variant: variants, product };
 
-  setState({ id, container, change, options, variant, quantity, sliders, _data, });
+  setState({ id, container, change, options, variant, quantity, sliders, _data });
 };
 
 export default {

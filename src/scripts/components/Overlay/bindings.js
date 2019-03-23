@@ -1,7 +1,7 @@
 import dom from 'common/Dom';
 import prg from 'common/Constants';
 
-const handleOverlayClick = ({ currentTarget: self }) => {
+const handleOverlayClick = () => {
   PubSub.publish(prg.hideOverlay, {});
 };
 

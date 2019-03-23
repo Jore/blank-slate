@@ -1,4 +1,3 @@
-import dom from 'common/Dom';
 import prg from 'common/Constants';
 
 import cart from './handlers';

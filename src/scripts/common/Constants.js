@@ -32,39 +32,38 @@ export default {
   // TOGGLE
   toggle:                 'PRG.TOGGLE',
 
-  // modal
+  // MODAL
   hideModal:              'PRG.MODAL.HIDE',
   showModal:              'PRG.MODAL.SHOW',
   openModal:              'PRG.MODAL.OPEN',
   closeModal:             'PRG.MODAL.CLOSE',
   toggleModal:            'PRG.MODAL.TOGGLE',
 
-  // overlay
+  // OVERLAY
   showOverlay:            'PRG.OVERLAY.SHOW',
   hideOverlay:            'PRG.OVERLAY.HIDE',
 
-  // quickshop
+  // QUICKSHOP
   openQuickshop:           'PRG.QUICKSHOP.OPEN',
   closeQuickshop:          'PRG.QUICKSHOP.CLOSE',
   toggleQuickshop:         'PRG.QUICKSHOP.TOGGLE',
 
-  // slider
+  // SLIDER
   updateSliderSlide:       'PRG.SLIDER.UPDATE',
   updateContainerSliders:  'PRG.CONTAINER.SLIDERS.UPDATE',
 
-  // state
+  // STATE
   updateState:            'PRG.STATE.UPDATE',
-
-  // product container
-  updateInventory:        'PRG.STATE.INVENTORY',
-  updateOptionValue:      'PRG.STATE.OPTION_VALUE',
   updateQuantity:         'PRG.STATE.QUANTITY',
-  updateProductQuantity:  'PRG.STATE.QUANTITY',
-  updatePrice:            'PRG.STATE.PRICE',
 
-  updateLineItemQuantity: 'PRG.STATE.QUANTITYLINE_ITEM',
-  updateLineItemQuantity: 'PRG.QUANTITY.UPDATE.LINE_ITEM',
-  updateCart:             'PRG.STATE.UPDATE.CART',
-  updateVariant:          'PRG.VARIANT.UPDATE',
-  updateVariantId:        'PRG.VARIANT.UPDATE.ID',
+  // PRODUCT CONTAINER
+  updateInventory:        'PRG.STATE.INVENTORY.PRODUCT',
+  updateOptionValue:      'PRG.STATE.OPTION_VALUE.PRODUCT',
+  updateProductQuantity:  'PRG.STATE.QUANTITY.PRODUCT',
+  updatePrice:            'PRG.STATE.PRICE.PRODUCT',
+  updateVariant:          'PRG.STATE.VARIANT.PRODUCT',
+  updateVariantId:        'PRG.STATE.VARIANT_ID.PRODUCT',
+
+  // LINE ITEM
+  updateLineItemQuantity: 'PRG.STATE.QUANTITY.LINE_ITEM',
 };

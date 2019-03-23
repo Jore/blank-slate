@@ -16,7 +16,7 @@ const replaceCartState = newCart => {
 };
 
 const updateCartState = data => {
-  const { action, requestData, responseData } = data;
+  const { action, responseData } = data;
 
   if (action === 'add') {
     getState()

@@ -9,11 +9,14 @@ import { state } from 'state';
 export const getState = key => {
   if (key instanceof Element) {
     const { containerId: id } = getContainer({ self: key }).dataset;
+
     return getState(id);
   }
 
+  // eslint-disable-next-line no-unused-vars
   const { cart, ...states } = state;
   const ids = Object.entries(states)
+    // eslint-disable-next-line no-unused-vars
     .reduce((allState, [name, values]) => ({ ...allState, ...values }), {});
 
   if (state[key]) {
@@ -22,7 +25,7 @@ export const getState = key => {
     return ids[key];
   }
 
-  return;
+  return state;
 };
 
 export const setState = data => {
@@ -41,12 +44,15 @@ export const setState = data => {
   }
 
   const topic = `${prg.updateState}.${container.toUpperCase()}.${change.toUpperCase()}`;
+
   PubSub.publish(topic, { id, data, state: newState });
 };
 
 export const clearState = key => {
+  // eslint-disable-next-line no-unused-vars
   const { cart, ...states } = state;
-  const [group] = Object.entries(states).find(([name, values]) => Object.keys(values).includes(key)) || [];
+  // eslint-disable-next-line no-unused-vars
+  const [ group ] = Object.entries(states).find(([name, values]) => Object.keys(values).includes(key)) || [];
 
   if (state[key]) {
     state[key] = {};
@@ -63,8 +69,8 @@ export const parseContainerData = container => {
       const { data } = JSON.parse(json.text);
       const { fromShopify: type } = json.dataset;
       const typeData = containerData[type] || [];
-      const newData = uniqby([ ...typeData, data ].flat(), '_id');
+      const newData = uniqby([...typeData, data].flat(), '_id');
 
-      return { ...containerData, [type]: newData }
+      return { ...containerData, [type]: newData };
     }, {});
 };

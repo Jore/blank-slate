@@ -18,5 +18,5 @@ const handleModalToggleClick = ({ currentTarget: self }) => {
 
 export const bindActions = () => {
   $(dom.modal).on('click', dom.closeModal, handleModalClose);
-  $(dom.toggleModal).on('click', handleModalToggleClick)
+  $(dom.toggleModal).on('click', handleModalToggleClick);
 };

@@ -1,7 +1,3 @@
-  import State from 'state';
-
-import { loadImage, imageSize, removeProtocol } from '@shopify/theme-images';
-
 const defaultSettings = {
   pageDots: false,
   wrapAround: true,

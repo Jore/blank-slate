@@ -6,10 +6,10 @@ import { getContainer, debounce } from 'common/Helpers';
 
 
 const updateAddToCartButtons = data => {
-  const { id, data: { inventory }, state: { quantity }} = data;
+  const { id, data: { inventory }, state: { quantity } } = data;
   const { handle } = State.get(id);
 
-  if (quantity === undefined || handle == 'gift-card') return;
+  if (quantity === undefined || handle === 'gift-card') return;
 
   const $container = getContainer({ id, asJquery: true });
 
@@ -85,7 +85,8 @@ export const init = () => {
 
   containerStates.forEach(state => {
     const { id, inventory, quantity } = state;
-    updateAddToCartButtons({ id, data: { inventory }, state: { quantity }});
+
+    updateAddToCartButtons({ id, data: { inventory }, state: { quantity } });
   });
 };
 

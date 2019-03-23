@@ -9,7 +9,7 @@ const updateQuantity = data => {
   const change = 'quantity';
   const container = 'line-item';
 
-  setState({ container, change, ...data, });
+  setState({ container, change, ...data });
 };
 
 export const initLineItemContainer = lineItemContainer => {
@@ -19,7 +19,7 @@ export const initLineItemContainer = lineItemContainer => {
   const change = 'init';
   const quantity = parseInt($(dom.quantityValue, lineItemContainer).val()) || undefined;
 
-  setState({ id, container, change, ...lineItem, _data: lineItem });
+  setState({ id, container, change, ...lineItem, quantity, _data: lineItem });
 };
 
 export default {

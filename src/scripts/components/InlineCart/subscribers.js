@@ -1,7 +1,6 @@
 import prg from 'common/Constants';
 import inlineCart from './handlers';
 
-
 export const initSubscribers = () => {
   PubSub.subscribe(prg.openInlineCart, (message, data) => {
     return inlineCart.open(data);
