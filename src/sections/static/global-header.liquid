@@ -1,6 +1,5 @@
 {%- include 'section',
-  section_name: 'Global Header',
-  section_snippet: 'global-header',
+  section_name: 'global-header',
   blocks_snippet: 'global-header-case-statement',
   wrapper: 'grid' -%}
 
@@ -8,7 +7,26 @@
   {
     "name": "Global Header",
     "class": "global-header-wrapper",
-    "settings": [],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Classes"
+      },
+      {
+        "id": "container_classes",
+        "type": "text",
+        "label": "Section Container Classes",
+        "placeholder": "flex-12 s-flex-6",
+        "info": "Class string applied to outermost section element"
+      },
+      {
+        "type": "text",
+        "id": "children_classes",
+        "label": "Children Classes",
+        "placeholder": "flex-12 m-flex-4",
+        "info": "Class string applied to every block in section"
+      }
+    ],
     "blocks": [
       {
         "type": "logo",

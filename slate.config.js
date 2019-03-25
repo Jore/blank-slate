@@ -7,7 +7,7 @@ const path = require('path');
 const { ProvidePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const graphqlLoader = require('graphql-tag/loader');
-const PrettierPlugin = require("prettier-webpack-plugin");
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const sectionsBase = 'sections';
 const snippetsBase = 'snippets';
@@ -17,7 +17,11 @@ const externals = {
 };
 
 const plugins = [
-  // new PrettierPlugin(),
+  new StyleLintPlugin({
+    context: path.resolve(__dirname, 'src/styles'),
+    files: ['**/*.{css,scss}'],
+    fix: true,
+  }),
   new ProvidePlugin({
     '$': 'jquery',
     'jQuery': 'jquery',
@@ -69,9 +73,7 @@ const rules = [
     test: /\.js$/,
     exclude: /node_modules/,
     loader: "eslint-loader",
-    options: {
-      // eslint options (if necessary)
-    }
+    options: { fix: true },
   },
 ];
 

@@ -1,39 +1,45 @@
+{%- assign COMPONENT_NAME = 'option-group' -%}
+
 {%- comment -%}
 
   Required arguments:
 
   Optional arguments:
-  - quantity
-  - classes
-  - attrs
+  • quantity
+  • content
+  • name
 
 {%- endcomment -%}
 
 
-{%- capture input_value -%}
-  {%- if quantity != blank -%}{{ quantity }}{%- else -%}1{%- endif -%}
-{%- endcapture -%}
+{%- capture _quantity_select -%}
+  {%- assign _quantity = quantity | default: 1 -%}
+  {%- capture _id -%}{%- include 'id' -%}{%- endcapture -%}
 
-
-<div class="quantity-select {{ classes -}}" {{ attrs -}}>
-
-  {%- include 'button',
-    content: '-',
-    classes: 'quantity-select-control',
-    attrs: 'data-quantity-change=-1' -%}
+  {%- if content -%}
+    {%- include 'label',
+      content: content,
+      for: _id,
+      classes: 'quantity-select-label',
+      attrs: 'data-quantity-label' -%}
+  {%- endif -%}
 
   {%- include 'input',
     type: 'number',
     name: 'quantity',
-    value: input_value,
+    value: _quantity,
+    id: _id,
     classes: 'quantity-select-value',
-    attrs: 'min=1 data-quantity-value readonly' -%}
+    attrs: 'min=1 data-quantity-value' -%}
+{%- endcapture -%}
 
-  {%- include 'button',
-    content: '+',
-    classes: 'quantity-select-control',
-    attrs: 'data-quantity-change=1' -%}
 
-</div>
+{%- include 'container',
+  type: 'quantity-select',
+  content: _quantity_select -%}
 
-{%- assign input_value = nil -%}
+
+{%- assign _quantity_select = nil -%}
+{%- assign _quantity = nil -%}
+{%- assign _id = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

@@ -1,23 +1,27 @@
+{%- assign CONTAINER_TYPE = type -%}
+{%- assign CONTAINER_NAME = name -%}
+
 {% comment %}
 
   Required arguments:
-  - type
-  - content
+  • type
+  • content
 
   Optional arguments:
-  - name
-  - tag
+  • name
+  • tag
 
 {% endcomment %}
 
 
 <{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif %}
-  class="{{- classes -}}"
-  data-container="{{- type -}}"
-  data-container-name="{%- include 'name' -%}"
-  data-container-id="{%- include 'id' -%}"
-  {{ attrs -}}>
+  class="{%- include 'classes' -%}"
+  {% include 'attrs' -%}>
 
   {{- content -}}
 
 </{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif -%}>
+
+
+{%- assign CONTAINER_TYPE = nil -%}
+{%- assign CONTAINER_NAME = nil -%}

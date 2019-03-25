@@ -3,43 +3,44 @@
 {%- comment -%}
 
   Required arguments:
-  - resource
+  • resource
 
   Optional arguments:
-  - alt
-  - size
-  - crop
-  - scale
-  - format
-  - srcset
-  - sizes
-  - sources
-  - lazyload
-  - wrapper
-  - wrapper_tag
-  - picture
-  - classes
-  - attrs
+  • alt
+  • size
+  • srcset
+  • sizes
+  • sources
+  • format
+  • crop
+  • scale
+  • lazyload
+  • wrapper
+  • wrapper_classes
+  • wrappers_attrs
 
 {%- endcomment -%}
 
 
+{%- assign _size = size | default: '800x' -%}
+{%- assign _format = format | default: 'pjpg' -%}
+
 {%- capture _src -%}
   {%- include 'img-url',
     resource: resource,
-    size: size,
+    size: _size,
     crop: crop,
     scale: scale,
-    format: format -%}
+    format: _format -%}
 {%- endcapture -%}
 
 {%- capture _lqip_src -%}
   {%- include 'lqip-img-url',
     resource: resource,
-    size: size,
+    size: _size,
     crop: crop,
     scale: scale,
-    format: format -%}
+    format: _format -%}
 {%- endcapture -%}
 
 {%- capture _srcset -%}
@@ -53,29 +54,23 @@
   {%- include 'sizes' with sizes -%}
 {%- endcapture -%}
 
-{%- assign tag = 'div' -%}
-{%- if picture == true -%}
-  {%- assign tag = 'picture' -%}
-{%- elsif wrapper_tag != blank -%}
-  {%- assign tag = wrapper_tag -%}
+{%- if sources != blank -%}
+  {%- assign _tag = 'picture' -%}
+{%- elsif wrapper != blank -%}
+  {%- assign _tag = wrapper -%}
+{%- elsif wrapper != false -%}
+  {%- assign _tag = 'figure' -%}
 {%- endif -%}
 
-
-{%- unless wrapper == false -%}
-  <{{- tag }} class="xx-image-wrapper {{ classes -}}" {{ attrs -}}>
-{%- endunless -%}
-
+{%- capture _image -%}
   {%- if sources != blank -%}
-
     {{- sources -}}
-
-  {%- else -%}
+  {%- endif -%}
 
     <img
-      class="xx-image {% unless lazyload == false -%} lazyload {%- endunless -%}
-        {%- if wrapper == false -%} {{ classes -}} {%- endif -%}"
-      alt="{%- if alt != blank -%}{{- alt -}}{%- else -%}{{- resource.alt -}}{%- endif -%}"
-      {%- if lazyload != false -%}
+      class="{%- include 'classes' -%} {%- unless lazyload %} lazyload{% endunless -%}"
+      alt="{{ alt | default: resource.alt }}"
+      {%- if lazyload %}
         data-src="{{- _src -}}"
         data-srcset="{{- _srcset -}}"
         src="{{- _lqip_src -}}"
@@ -84,19 +79,33 @@
         src="{{- _src -}}"
       {%- endif -%}
       {%- if sizes != blank -%}data-sizes="{{- _sizes -}}"{%- endif -%}
-      {%- if wrapper == false -%}{{ attrs -}}{%- endif -%} />
+      {%- include 'attrs' -%} />
+{%- endcapture -%}
 
-  {%- endif -%}
 
-{%- unless wrapper == false -%}
-  </{{- tag -}}>
-{%- endunless -%}
+{%- if wrapper == false -%}
 
+  {{- _image -}}
+
+{%- else -%}
+
+  {%- include 'wrapper',
+    type: 'image',
+    content: _image,
+    tag: _tag,
+    classes: wrapper_classes,
+    attrs: wrapper_attrs -%}
+
+{%- endif -%}
+
+
+{%- assign _size = nil -%}
+{%- assign _format = nil -%}
 {%- assign _src = nil -%}
 {%- assign _lqip_src = nil -%}
 {%- assign _srcset = nil -%}
 {%- assign _sizes = nil -%}
-{%- assign tag = nil -%}
-
+{%- assign _tag = nil -%}
+{%- assign _image = nil -%}
 
 {%- assign COMPONENT_NAME = nil -%}

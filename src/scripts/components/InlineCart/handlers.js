@@ -1,6 +1,8 @@
 import dom from 'common/Dom';
 import prg from 'common/Constants';
-import { toggleElement, getAlternativeTemplate } from 'common/Helpers';
+import { getAlternativeTemplate } from 'common/Helpers';
+
+import { toggleElement } from 'components/Toggle';
 
 const updateInlineCartUI = () => {
   const resource = 'cart';

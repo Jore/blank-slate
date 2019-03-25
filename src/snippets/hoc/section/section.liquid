@@ -34,52 +34,45 @@
   {%- include 'override-styles' -%}
 
 
-
-  {%- capture section_content -%}
+  {%- capture _section_content -%}
     {%- if section_snippet != blank -%}
-
       {%- include section_snippet,
         snippet: blocks_snippet -%}
-
     {%- elsif blocks_snippet != blank -%}
-
       {%- include 'section-blocks',
         snippet: blocks_snippet,
         condition: condition_snippet -%}
-
     {%- elsif content != blank -%}
-
       {{- content -}}
-
     {%- endif -%}
   {%- endcapture -%}
 
+  {%- capture _classes -%}
+    {%- include 'context', type: 'section' -%}-section
+  {%- endcapture -%}
+
+  {%- capture _attrs -%}
+    data-section-id="{%- include 'context', type: 'section' -%}"
+  {%- endcapture -%}
 
 
   {%- if container != blank -%}
-
     {%- include 'container',
       type: container,
-      name: _name,
-      content: section_content,
-      classes: '',
-      attrs: '' -%}
-
+      name: section_name,
+      content: _section_content,
+      classes: _classes,
+      attrs: _attrs -%}
   {%- elsif wrapper != blank -%}
-
     {%- include 'wrapper',
       type: wrapper,
-      name: _name,
-      content: section_content,
-      classes: '',
-      attrs: '' -%}
-
+      name: section_name,
+      content: _section_content,
+      classes: _classes,
+      attrs: _attrs -%}
   {%- else -%}
-
-    {{ section_content }}
-
+    {{- _section_content -}}
   {%- endif -%}
-
 
 
   {%- include 'section-container-classes' -%}

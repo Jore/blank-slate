@@ -19,43 +19,9 @@
   width: 40px;
 }
 
-.swatch-cool-blue {
-  background-color: lightblue;
-}
+// stylelint-disable-next-line
 
-.swatch-charcoal-grey {
-  background-color: #333333;
-}
-
-.swatch-pink-rose {
-  background-color: pink;
-}
-
-.swatch-maple-sugar {
-  background-color: peachpuff;
-}
-
-.swatch-haute-red {
-  background-color: crimson;
-}
-
-.swatch-maple-sugar {
-  background-color: peachpuff;
-}
-
-.swatch-pink {
-  background-color: pink;
-}
-
-.swatch-black {
-  background-color: black;
-}
-
-.swatch-wine-tasting {
-  background-color: darkred;
-}
-
-.xx-input--radio[name="Size"] + .swatch {
+.xx-input--radio[name='Size'] + .swatch {
   position: relative;
 
   &::after {

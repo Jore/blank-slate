@@ -1,4 +1,28 @@
 {%- assign COMPONENT_NAME = 'textarea' -%}
 
+{%- comment -%}
+
+  Required arguments:
+  • name
+
+  Optional arguments:
+  • content
+  • rows
+  • cols
+  • id
+
+{%- endcomment -%}
+
+
+<textarea
+  class="{%- include 'classes' %} input-textarea"
+  name="{{- name -}}"
+  {%- if id != blank -%}id="{{- id -}}"{%- endif -%}
+  {% include 'attrs' -%}>
+
+  {{- content -}}
+
+</textarea>
+
 
 {%- assign COMPONENT_NAME = nil -%}

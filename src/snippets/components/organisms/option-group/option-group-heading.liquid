@@ -1,0 +1,42 @@
+{%- capture _option_group_heading -%}
+  {%- assign _title = name -%}
+
+  {%- if show_selected_value == true -%}
+    {%- assign _title = _title | append: ':' -%}
+  {%- endif -%}
+
+  {%- include 'heading',
+    level: 3,
+    content: _title,
+    classes: '',
+    attrs: '' -%}
+
+  {%- if show_selected_value == true -%}
+    {%- include 'text',
+      content: selected_value,
+      classes: '',
+      attrs: 'data-selected-option-value' -%}
+  {%- endif -%}
+
+  {%- if name == size -%}
+    {%- include 'link',
+      href: '#',
+      content: 'View Size Guide',
+      classes: 'size-guide-click',
+      attrs: 'data-toggle-modal="size-guide"' -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _classes -%}
+  option-group-header {{ name | handle }}-option-group-header
+{%- endcapture -%}
+
+{%- include 'wrapper',
+  tag: 'header',
+  content: _option_group_heading,
+  classes: _classes,
+  attrs: '' -%}
+
+{%- assign _option_group_heading = nil -%}
+{%- assign _title = nil -%}
+{%- assign _classes = nil -%}

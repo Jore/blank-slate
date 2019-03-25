@@ -1,0 +1,48 @@
+{%- assign _input_attrs = 'data-option-value required' -%}
+
+{%- capture _label_classes -%}
+  {{ name | handle }}-option-group-label
+{%- endcapture -%}
+
+{%- capture _input_group_classes -%}
+  option-group-input-group {{ name | handle -}}-option-group-input-group
+{%- endcapture -%}
+
+
+{%- if type == 'select' -%}
+  {%- assign _input_group_classes = _input_group_classes | append: ' select-option-group-input-group' -%}
+  {%- assign _input_attrs = _input_attrs | append: ' data-selectize' -%}
+
+  {%- include 'input-group',
+    type: 'select',
+    name: name,
+    value: values,
+    selected_value: selected_value,
+    input_attrs: _input_attrs,
+    input_classes: '',
+    label_classes: _label_classes,
+    classes: _input_group_classes,
+    attrs: '' -%}
+
+{%- elsif type == 'swatches' -%}
+  {%- for value in values -%}
+    {%- if selected_value == value -%}
+      {%- assign _input_attrs = _input_attrs | append: ' checked' -%}
+    {%- endif -%}
+
+    {%- include 'input-group',
+      input: 'radio',
+      name: name,
+      value: value,
+      input_attrs: _input_attrs,
+      input_classes: 'u-visually-hidden',
+      label_classes: _label_classes,
+      classes: _input_group_classes,
+      attrs: '' -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign _input_attrs = nil -%}
+{%- assign _label_classes = nil -%}
+{%- assign _input_group_classes = nil -%}
+{%- assign label_group_classes = nil -%}

@@ -1,6 +1,8 @@
-dist/
 test/
-src/assets/
-slate.config.js
+dist/
 node_modules/
+
+src/assets/
 src/scripts/react/
+
+slate.config.js

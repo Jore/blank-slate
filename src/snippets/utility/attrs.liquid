@@ -1,39 +1,27 @@
-{%- capture _section_type -%}
-  {%- include 'section-context' -%}
+{%- capture _context -%}
+  {%- include 'context' -%}
 {%- endcapture -%}
 
-{%- capture _container_name -%}
-  {%- include 'name', context: 'container' -%}
-{%- endcapture -%}
-
-{%- capture snippet_attrs -%}
-  {%- if attrs != blank -%}
-    {{- attrs -}}
+{%- capture _wrapper_container -%}
+  {%- if _context contains 'wrapper' -%}
+    data-wrapper="{{- WRAPPER_TYPE -}}"
+    {%- if WRAPPER_NAME != blank -%}data-wrapper-name="{{- WRAPPER_NAME -}}"{%- endif -%}
+  {%- elsif _context contains 'container' -%}
+    data-container="{{- CONTAINER_TYPE -}}"
+    data-container-id="{%- include 'id' -%}"
+    {%- if CONTAINER_NAME != blank -%}data-container-name="{{- CONTAINER_NAME -}}"{%- endif -%}
   {%- endif -%}
 {%- endcapture -%}
 
-{%- capture container_id -%}
-  {%- include 'id', prefix: container_name -%}
+{%- capture _attrs -%}
+  {{- attrs }} {{ _wrapper_container -}}
 {%- endcapture -%}
 
-{%- capture container_attrs -%}
-  {%- if _container_name != blank -%}
-    data-container="{{- container_name | handle -}}"
-    data-container-id="{{- container_id -}}"
-    data-container-name="{{- _container_name -}}"
-  {%- endif -%}
-{%- endcapture -%}
 
-{%- capture section_attrs -%}
-  {%- if _section_type == 'block' -%}
-    data-block-id="{{- block.id -}}"
-    data-block-type="{{- block.type -}}"
-    id="shopify-block-{{- block.id -}}"
-    {{ block.shopify_attributes -}}
-  {%- elsif section_type == 'static' or section_type == 'dynamic' -%}
-    data-section-id="{{- section.id -}}"
-    data-section-type="{{- section_type -}}"
-  {%- endif -%}
-{%- endcapture -%}
+{{- _attrs -}}
 
-{{- snippet_attrs }} {{ container_attrs }} {{ section_attrs -}}
+
+{%- assign _context = nil -%}
+{%- assign _wrapper_container = nil -%}
+{%- assign _attrs = nil -%}
+{%- assign attrs = nil -%}

@@ -3,14 +3,16 @@
 {%- comment -%}
 
   Required arguments:
-  - snippet
+  • name
 
 {%- endcomment -%}
 
 
-<div class="xx-svg {{ classes -}}" {{ attrs -}}>
+<div
+  class="{%- include 'classes' %} svg-{{- name -}}"
+  {% include 'attrs' -%}>
 
-  {%- include snippet -%}
+  {%- include name -%}
 
 </div>
 

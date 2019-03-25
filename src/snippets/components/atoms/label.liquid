@@ -3,21 +3,22 @@
 {%- comment -%}
 
   Required arguments:
-  - content
+  • content
 
   Optional arguments:
-  - for
+  • for
 
 {%- endcomment -%}
 
 
 <label
-  class="xx-label {{ classes -}}"
-  {%- if for -%}for="{{- for -}}"{%- endif -%}
-  {{ attrs -}}>
+  class="{%- include 'classes' -%}"
+  {%- if for != blank -%}for="{{- for -}}"{%- endif -%}
+  {% include 'attrs' -%}>
 
   {{- content -}}
 
 </label>
+
 
 {%- assign COMPONENT_NAME = nil -%}

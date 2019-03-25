@@ -1,0 +1,51 @@
+{%- capture _component -%}
+  {%- if COMPONENT_NAME -%}
+    component:{{- COMPONENT_NAME | handle -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _wrapper -%}
+  {%- if WRAPPER_TYPE -%}
+    wrapper:{%- if WRAPPER_NAME != blank -%}{{- WRAPPER_NAME | handle -}}{%- else -%}{{- WRAPPER_TYPE | handle -}}{%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _container -%}
+  {%- if CONTAINER_TYPE -%}
+    container:{%- if CONTAINER_NAME != blank -%}{{- CONTAINER_NAME | handle -}}{%- else -%}{{- CONTAINER_TYPE | handle -}}{%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _block -%}
+  {%- if section.id and is_block == true -%}
+    block:{%- if block_title != blank -%}{{- block_title | handle -}}{%- else -%}{{- block.type | handle -}}{%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _section -%}
+  {%- if section.id -%}
+    section:{%- if section_name != blank -%}{{- section_name | handle -}}{%- elsif section_title != blank -%}{{ section_title | handle }}{%- else -%}{{ section.id | handle }}{%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- case type -%}
+  {%- when 'component' -%}
+    {{- _component | split: ':' | last -}}
+  {%- when 'wrapper' -%}
+    {{- _wrapper | split: ':' | last -}}
+  {%- when 'container' -%}
+    {{- _container | split: ':' | last -}}
+  {%- when 'block' -%}
+    {{- _block | split: ':' | last -}}
+  {%- when 'section' -%}
+    {{- _section | split: ':' | last -}}
+  {%- else -%}
+    {{- _component }} {{ _wrapper }} {{ _container }} {{ _block }} {{ _section -}}
+{%- endcase -%}
+
+
+{%- assign _component = nil -%}
+{%- assign _wrapper = nil -%}
+{%- assign _container = nil -%}
+{%- assign _block = nil -%}
+{%- assign _section = nil -%}

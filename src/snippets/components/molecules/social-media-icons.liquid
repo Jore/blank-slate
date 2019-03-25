@@ -1,35 +1,39 @@
+{%- assign COMPONENT_NAME = 'social-media-icons' -%}
+
 {%- comment -%}
 
   Required arguments:
-  - networks
+  • networks
 
   Optional arguments:
-  - classes
-  - attrs
+  • classes
+  • attrs
 
 {%- endcomment -%}
 
 
-<div class="social-media-icons {{ classes -}}" {{ attrs -}}>
+{%- capture _social_media_icons -%}
+  {%- assign _networks_array = networks | split: ',' -%}
 
-  {%- assign networks_array = networks | split: ' ' -%}
+  {%- for network in _networks_array -%}
+    {%- assign _setting_name = network | append: '_link' -%}
+    {%- capture _attrs -%}data-network="{{- network -}}"{%- endcapture -%}
 
-  {%- for network in networks_array -%}
-
-    {%- assign setting_name = 'social_' | append: network | append: '_link' -%}
-    {%- assign href = settings[setting_name] -%}
-    {%- assign setting_name = nil -%}
-
-    <a href="{{ href }}" data-network="{{ network }}">
-
-      {%- include 'icon', name: network -%}
-
-    </a>
-
-    {%- assign href = nil -%}
-
+    {%- include 'link',
+      href: settings[_setting_name],
+      icon: network,
+      classes: '',
+      attrs: _attrs -%}
   {%- endfor -%}
+{%- endcapture -%}
 
-  {%- assign networks_array = nil -%}
 
-</div>
+{%- include 'wrapper',
+  type: 'social-media-icons',
+  content: _social_media_icons -%}
+
+
+{%- assign _networks_array = nil -%}
+{%- assign _setting_name = nil -%}
+{%- assign _attrs = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

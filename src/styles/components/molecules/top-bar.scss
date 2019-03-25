@@ -6,7 +6,7 @@
 .top-bar {
   display: none;
 
-  @include mq('large') {
+  @include mq('l') {
     display: flex;
     justify-content: center;
     padding-top: 10px;

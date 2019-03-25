@@ -1,24 +1,35 @@
+{%- assign COMPONENT_NAME = 'icon-with-text' -%}
+
 {%- comment -%}
 
   Required arguments:
-  - icon
-  - text
+  • icon
+  • text
 
   Optional arguments:
-  - classes
-  - attrs
+  • classes
+  • attrs
 
 {%- endcomment -%}
 
 
-<div class="icon-with-text {{ classes -}}" {{ attrs -}}>
-
+{%- capture _icon_with_text -%}
   {%- include 'icon',
     name: icon,
     classes: '',
     attrs: '' -%}
 
-  {{- text -}}
+  {%- include 'text',
+    content: text,
+    classes: '',
+    attrs: '' -%}
+{%- endcapture -%}
 
-</div>
 
+{%- include 'wrapper',
+  type: 'icon-with-text',
+  content: _icon_with_text -%}
+
+
+{%- assign _icon_with_text = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

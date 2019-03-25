@@ -3,22 +3,23 @@
 {%- comment -%}
 
   Required arguments:
-  - type
-  - name
+  • type
+  • name
 
   Optional arguments:
-  - value
-  - id
+  • value
+  • id
 
 {%- endcomment -%}
 
 
 <input
-  class="xx-input xx-input--{{- type }} {{ classes -}}"
+  class="{%- include 'classes' %} input-{{- type -}}"
   type="{{- type -}}"
   name="{{- name -}}"
   value="{{- value -}}"
   {%- if id != blank -%}id="{{- id -}}"{%- endif -%}
-  {{ attrs }} />
+  {% include 'attrs' -%} />
+
 
 {%- assign COMPONENT_NAME = nil -%}

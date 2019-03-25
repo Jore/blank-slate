@@ -1,3 +1,5 @@
+{%- assign COMPONENT_NAME = 'global-footer' -%}
+
 {%- case block.type -%}
 
   {%- when 'logo' -%}
@@ -60,3 +62,6 @@
       attrs: '' -%}
 
 {%- endcase -%}
+
+
+{%- assign COMPONENT_NAME = nil -%}

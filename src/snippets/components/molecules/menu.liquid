@@ -1,82 +1,79 @@
-{%- assign component_name = 'Menu' -%}
-
+{%- assign COMPONENT_NAME = 'menu' -%}
 
 {%- comment -%}
 
   Required arguments:
-  - _linklist
+  • linklist
+
+  Optional arguments:
+  • parent_classes
+  • child_classes
+  • grandchild_classes
 
 {%- endcomment -%}
 
 
-<nav class="{% include 'classes' -%}">
-  {%- for parent in linklists[_linklist].links -%}
-    <div class="parent-link {{ parent.handle }} {% if parent.levels > 0 -%}with-children{%- endif -%}">
+<nav
+  class="{%- include 'classes' -%}"
+  {% include 'attrs' -%}>
 
-      {%- capture _parent_classes -%}
-        header--parent-link {{ parent_classes }}
+  {%- for parent in linklists[linklist].links -%}
+    <div class="parent-link-group {{ parent.handle }} {% if parent.levels > 0 -%}with-children{%- endif -%}">
+
+      {%- capture _parent_link_classes -%}
+        parent-link {{ parent_classes -}}
       {%- endcapture -%}
 
       {%- include 'link',
         href: parent.url,
         content: parent.title,
-        classes: _parent_classes,
+        classes: _parent_link_classes,
         attrs: '' -%}
-
-      {%- if parent.handle == 'cuts' -%}
-
-        <div class="child-links">
-
-          {%- include 'pick-your-cut',
-            container_classes: 'flex-full flex max-width desktop-nav-shop-by-cut',
-            blocks: linklists.types.links -%}
-
-        </div>
-
-      {%- endif -%}
 
       {%- if parent.levels > 0 -%}
         <div class="child-links">
-          {%- for child in parent.links -%}
-            {%- capture child_link_classes -%}
-              child-link {{ child.handle }} {{ child_classes }} {% if child.levels > 0 -%}with-grandchildren{%- endif -%}
-            {%- endcapture -%}
 
-            {%- capture child_link_content -%}
-              {%- include 'text',
+          {%- for child in parent.links -%}
+            <div class="child-link-group {{ child.handle }} {% if child.levels > 0 -%}with-grandchild{%- endif -%}">
+
+              {%- capture _child_link_classes -%}
+                child-link {{ child_classes -}}
+              {%- endcapture -%}
+
+              {%- include 'link',
+                href: child.url,
                 content: child.title,
-                classes: 'child-link-text text-two',
+                classes: _child_link_classes,
                 attrs: '' -%}
 
-              {%- if child.levels > 0 -%}
-                <div class="grandchildren-links">
-                  {%- for grandchild in child.links -%}
-                    {%- capture _grandchild_classes -%}
-                      header--grandchild-link {{ grandchild_classes }}
-                    {%- endcapture -%}
+                {%- if child.levels > 0 -%}
+                  <div class="grandchild-links">
+                    {%- for grandchild in child.links -%}
 
-                    {%- include 'link',
-                      href: grandchild.url,
-                      content: grandchild.title,
-                      classes: _grandchild_classes,
-                      attrs: '' -%}
-                  {%- endfor -%}
-                </div>
-              {%- endif -%}
-            {%- endcapture -%}
+                      {%- capture _grandchild_link_classes -%}
+                        grandchild-link {{ grandchild_classes }} {{ grandchild.handle -}}
+                      {%- endcapture -%}
 
-            {%- include 'link',
-              href: child.url,
-              content: child_link_content,
-              classes: child_link_classes,
-              attrs: '' -%}
+                      {%- include 'link',
+                        href: grandchild.url,
+                        content: grandchild.title,
+                        classes: _grandchild_link_classes,
+                        attrs: '' -%}
+
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
+            </div>
           {%- endfor -%}
+
         </div>
       {%- endif -%}
 
     </div>
   {%- endfor -%}
+
 </nav>
 
 
-{%- assign component_name = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

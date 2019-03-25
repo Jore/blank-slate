@@ -18,8 +18,8 @@ export default {
 
   // CART
   addToCart:              'PRG.CART.ADD',
-  removeFromCart:         'PRG.CART.REMOVE',
   updateCart:             'PRG.CART.UPDATE',
+  removeFromCart:         'PRG.CART.REMOVE',
   cartRequestError:       'PRG.CART.REQUEST.ERROR',
   cartRequestSuccess:     'PRG.CART.REQUEST.SUCCESS',
 
@@ -57,12 +57,12 @@ export default {
   updateQuantity:         'PRG.STATE.QUANTITY',
 
   // PRODUCT CONTAINER
-  updateInventory:        'PRG.STATE.INVENTORY.PRODUCT',
-  updateOptionValue:      'PRG.STATE.OPTION_VALUE.PRODUCT',
-  updateProductQuantity:  'PRG.STATE.QUANTITY.PRODUCT',
   updatePrice:            'PRG.STATE.PRICE.PRODUCT',
   updateVariant:          'PRG.STATE.VARIANT.PRODUCT',
   updateVariantId:        'PRG.STATE.VARIANT_ID.PRODUCT',
+  updateInventory:        'PRG.STATE.INVENTORY.PRODUCT',
+  updateOptionValue:      'PRG.STATE.OPTION_VALUE.PRODUCT',
+  updateProductQuantity:  'PRG.STATE.QUANTITY.PRODUCT',
 
   // LINE ITEM
   updateLineItemQuantity: 'PRG.STATE.QUANTITY.LINE_ITEM',

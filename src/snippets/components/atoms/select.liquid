@@ -3,36 +3,42 @@
 {%- comment -%}
 
   Required arguments:
-  - name
-  - values
-  - selected_value
+  • name
+  • value - can be array of strings or `product.options_with_values`
+    - value can have form `<label>::<value>`
+  • selected_value
 
   Optional arguments:
-  - id
-  - classes
-  - attrs
+  • id
 
 {%- endcomment -%}
 
 
-<select class="dropdown xx-input--select {{ classes -}}"
+{%- capture _values_type -%}
+  {%- include 'liquid-type', value: values -%}
+{%- endcapture -%}
+
+{%- assign _values = value -%}
+{%- if _values_type == 'string' -%}
+  {%- assign _values = value | split: ',' -%}
+{%- endif -%}
+
+<select
+  class="{%- include 'classes' %} input-select"
   name="{{- name -}}"
-  value="{{- value -}}"
-  {%- if id != blank or id != '' -%}id="{{- id -}}"{%- endif -%}
-  {{ attrs -}}>
+  {%- if id != blank -%}id="{{- id -}}"{%- endif -%}
+  {% include 'attrs' -%}>
 
-  {%- for value in values -%}
-    {%- assign value_parts = value | split: '::' -%}
-    {%- assign label = value_parts[0] -%}
-    {%- assign _value = value_parts[1] -%}
+  {%- for value in _values -%}
+    {%- assign _value_parts = value | split: '::' -%}
+    {%- assign _label = _value_parts[0] | strip -%}
+    {%- assign _value = _value_parts[1] | strip | default: _label -%}
 
-    {%- if _value == blank -%}
-      {%- assign _value = label -%}
-    {%- endif -%}
+    <option
+      value="{{- _value -}}"
+      {%- if selected_value == _label -%}selected{%- endif -%}>
 
-    <option value="{{- _value -}}" {%- if selected_value == label -%}selected{%- endif -%}>
-
-      {{- label -}}
+      {{- _label -}}
 
     </option>
 
@@ -40,4 +46,10 @@
 
 </select>
 
+
+{%- assign _value_type = nil -%}
+{%- assign _value_parts = nil -%}
+{%- assign _label = nil -%}
+{%- assign _value = nil -%}
+{%- assign _values = nil -%}
 {%- assign COMPONENT_NAME = nil -%}

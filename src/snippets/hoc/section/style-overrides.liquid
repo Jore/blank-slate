@@ -1,0 +1,88 @@
+{%- comment -%}
+
+  String <css_property>::<setting_key>::[css_selector]
+
+  Required arguments:
+  - context
+
+{%- endcomment -%}
+
+{%- capture section_background_color_overrides -%}
+  background-color::section_background_color,
+{%- endcapture -%}
+
+{%- capture images_with_overlay_block_overrides -%}
+  color::overlay_text_color::.overlay-heading,
+  color::overlay_text_color::.overlay-sub-heading,
+  color::button_one_text_color::.overlay-button-one,
+  color::button_two_text_color::.overlay-button-two,
+  background-color::button_one_bg_color::.overlay-button-one,
+  background-color::button_two_bg_color::.overlay-button-two,
+  border-color::button_one_border_color::.overlay-button-one,
+  border-color::button_two_border_color::.overlay-button-two,
+{%- endcapture -%}
+
+{%- capture row_overrides -%}
+  color:heading_text_color::.row-heading,
+  color:heading_text_color::.row-sub-heading,
+{%- endcapture -%}
+
+
+{%- case context -%}
+
+  {%- comment -%}
+
+    Global
+
+  {%- endcomment -%}
+
+    {%- when 'shop-instagram-section' -%}
+      {{ section_background_color_overrides }}
+
+
+  {%- comment -%}
+
+    Dynamic Sections
+
+  {%- endcomment -%}
+
+    {%- when 'images-with-overlay-section' -%}
+      {{ section_background_color_overrides }}
+
+    {%- when 'images-with-overlay-block' -%}
+      {{ images_with_overlay_block_overrides }}
+
+    {%- when 'custom-html-section' -%}
+      {{ section_background_color_overrides }}
+
+    {%- when 'row-section' -%}
+      {{ row_overrides }}
+      {{ section_background_color_overrides }}
+
+
+  {%- comment -%}
+
+    Templates
+
+  {%- endcomment -%}
+
+    {%- when 'home-page-hero-block' -%}
+      {{ images_with_overlay_block_overrides }}
+
+    {%- when 'collection-hero-block' -%}
+      {{ images_with_overlay_block_overrides }}
+
+    {%- when 'collection-page-windows-section' -%}
+      {{ section_background_color_overrides }}
+
+    {%- when 'collection-page-windows-block' -%}
+      {{ images_with_overlay_block_overrides }}
+
+    {%- when 'product-secondary-section' -%}
+      {{ section_background_color_overrides }}
+
+    {%- else -%}
+
+
+{%- endcase -%}
+

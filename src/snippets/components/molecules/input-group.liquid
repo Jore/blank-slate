@@ -1,45 +1,54 @@
+{%- assign COMPONENT_NAME = 'input-group' -%}
+
 {%- comment -%}
 
   Required arguments:
-  - type
-  - name
+  • type
+  • name
 
   Optional arguments:
-  - value
-  - input_classes
-  - input_attrs
-  - label_classes
-  - label_attrs
-  - classes
-  - attrs
+  • value
+  • label_content
+  • input_classes
+  • input_attrs
+  • label_classes
+  • label_attrs
+
 
 {%- endcomment -%}
 
 
-{%- capture id -%}
-  {{- name | handle -}}-{{- value | handle -}}-{{- 'now' | date: '%N' | modulo: 999999999 | plus: 1 -}}
-{%- endcapture -%}
+{%- capture _input_group -%}
+  {%- capture _id -%}{%- include 'id' -%}{%- endcapture -%}
+  {%- assign _type = type | default: 'input' -%}
+  {%- assign _label_content = label_content | default: value -%}
 
-
-<div class="input-group {{ classes -}}" {{ attrs -}}>
-
-  {%- include 'input',
-    type: type,
+  {%- include _type,
+    id: _id,
+    type: input,
+    content: content,
     name: name,
     value: value,
-    id: id,
+    selected_value: selected_value,
     classes: input_classes,
     attrs: input_attrs -%}
 
   {%- include 'label',
-    for: id,
-    content: value,
+    for: _id,
+    content: _label_content,
     classes: label_classes,
     attrs: label_attrs -%}
+{%- endcapture -%}
 
-</div>
+
+{%- include 'wrapper',
+  type: 'input-group',
+  name: '',
+  content: _input_group -%}
 
 
-{%- assign id = nil -%}
-{%- assign input_classes = nil -%}
-{%- assign label_classes = nil -%}
+{%- assign _id = nil -%}
+{%- assign _type = nil -%}
+{%- assign _label_content = nil -%}
+{%- assign _input_group = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

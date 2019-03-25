@@ -3,26 +3,21 @@
 {%- comment -%}
 
   Required arguments:
-  - content
+  • content
 
   Optional arguments:
-  - rte
+  • rte
 
 {%- endcomment -%}
 
 
-{%- assign tag = 'p' -%}
-{%- if rte == true -%}
-  {%- assign tag = 'div' -%}
-{%- endif -%}
-
-<{{- tag }} class="xx-text {% if rte == true %}rte{% endif %} {{ classes -}}" {{ attrs -}}>
+<{%- if rte == true -%}div{%- else -%}p{%- endif %}
+  class="{%- include 'classes' -%} {%- if rte == true %} rte{% endif -%}"
+  {% include 'attrs' -%}>
 
   {{- content -}}
 
-</{{- tag -}}>
+</{%- if rte == true -%}div{%- else -%}p{%- endif -%}>
 
-{%- assign tag = nil -%}
-{%- assign classes = nil -%}
 
 {%- assign COMPONENT_NAME = nil -%}

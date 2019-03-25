@@ -19,64 +19,64 @@
 */
 const dom = {
   // Active Classes
-  isActive: '.is-active',
-  isActiveSelector: '.is-active',
-  isActiveClassName: 'is-active',
+  isActive:            '.is-active',
+  isActiveSelector:    '.is-active',
+  isActiveClassName:   'is-active',
 
   // Overlay
-  overlay: '[data-overlay]',
+  overlay:             '[data-overlay]',
 
   // Toggle
-  toggle: '[data-toggle]',
+  toggle:              '[data-toggle]',
 
   // Modal
-  modal: '[data-modal]',
-  modalContents: '[data-modal-contents]',
-  openModal: '[data-open-modal]',
-  closeModal: '[data-close-modal]',
-  toggleModal: '[data-toggle-modal]',
+  modal:               '[data-modal]',
+  openModal:           '[data-open-modal]',
+  closeModal:          '[data-close-modal]',
+  toggleModal:         '[data-toggle-modal]',
+  modalContents:       '[data-modal-contents]',
 
   // Inline Cart
-  closeInlineCart: '[data-close-inline-cart]',
-  toggleInlineCart: '[data-toggle-inline-cart]',
-  inlineCart: '[data-inline-cart]',
-  inlineCartContents: '[data-inline-cart-contents]',
-  lineItemKey: '[data-line-item-key]',
+  inlineCart:          '[data-inline-cart]',
+  lineItemKey:         '[data-line-item-key]',
+  closeInlineCart:     '[data-close-inline-cart]',
+  toggleInlineCart:    '[data-toggle-inline-cart]',
+  inlineCartContents:  '[data-inline-cart-contents]',
 
   // Containers
-  container: '[data-container]',
-  productContainer: '[data-container="product"]',
-  sliderContainer: '[data-container="slider"]',
+  container:           '[data-container]',
+  sliderContainer:     '[data-container="slider"]',
+  productContainer:    '[data-container="product"]',
 
   // JSON Data
-  shopifyData: '[data-from-shopify]',
-  productData: '[data-from-shopify="product"]',
-  variantData: '[data-from-shopify="variant"]',
-  lineItemData: '[data-from-shopify="line-item"]',
-  imageData: '[data-from-shopify="image"]',
-  optionData: '[data-from-shopify="option"]',
+  imageData:           '[data-from-shopify="image"]',
+  optionData:          '[data-from-shopify="option"]',
+  shopifyData:         '[data-from-shopify]',
+  productData:         '[data-from-shopify="product"]',
+  variantData:         '[data-from-shopify="variant"]',
+  lineItemData:        '[data-from-shopify="line-item"]',
 
   // Cart Controls
-  addToCart: '[data-add-to-cart]',
-  removeFromCart: '[data-remove-from-cart]',
-  quantityValue: '[data-quantity-value]',
-  quantityChange: '[data-quantity-change]',
+  addToCart:           '[data-add-to-cart]',
+  optionValue:         '[data-option-value]',
+  quantityValue:       '[data-quantity-value]',
+  quantityChange:      '[data-quantity-change]',
+  removeFromCart:      '[data-remove-from-cart]',
   selectedOptionValue: '[data-selected-option-value]',
-  optionValue: '[data-option-value]',
 
   // Price
-  price: '[data-price="price"]',
-  compareAtPrice: '[data-price="compare_at_price"]',
+  price:               '[data-price="price"]',
+  compareAtPrice:      '[data-price="compare_at_price"]',
 
   // Slider
+  sliderHasNav:        '[data-has-nav]',
+  galleryThumb:        '[data-gallery-thumb]',
+  gallerySlide:        '[data-gallery-slide]',
+  sliderFilterValue:   '[data-filter-value]',
   productGallerySlide: '[data-product-gallery-slide]',
-  sliderHasNav: '[data-has-nav]',
-  sliderFilterValue: '[data-filter-value]',
-  galleryThumb: '[data-gallery-thumb]',
-  gallerySlide: '[data-gallery-slide]',
 
   // Vendor
-  selectizeInput: '.selectize-control.single .selectize-input',
+  selectizeInput:      '.selectize-control.single .selectize-input',
   selectizeInputInput: '.selectize-control.single .selectize-input input',
 };
 

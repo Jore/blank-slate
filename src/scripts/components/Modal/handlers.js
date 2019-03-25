@@ -1,5 +1,5 @@
 import dom from 'common/Dom';
-import { toggleElement } from 'common/Helpers';
+import { toggleElement } from 'components/Toggle';
 
 import settings from './settings';
 

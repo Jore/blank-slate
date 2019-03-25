@@ -12,20 +12,18 @@
   {%- when 'primary_navigaiton' -%}
 
     {%- include 'menu',
-      _linklist: block.settings.primary_navigation_linklist,
+      linklist: block.settings.primary_navigation_linklist,
       parent_classes: 'text-two',
       child_classes: 'text-two',
-      grandchild_classes: 'text-two',
-      attrs: '' -%}
+      grandchild_classes: 'text-two' -%}
 
   {%- when 'secondary_navigaiton' -%}
 
     {%- include 'menu',
-      _linklist: block.settings.secondary_navigation_linklist,
+      linklist: block.settings.secondary_navigation_linklist,
       parent_classes: 'text-two',
       child_classes: 'text-two',
-      grandchild_classes: 'text-two',
-      attrs: '' -%}
+      grandchild_classes: 'text-two' -%}
 
   {%- when 'search' -%}
 
@@ -42,8 +40,8 @@
 
   {%- when 'cart' -%}
 
-    {%- include 'global-header-cart',
-      cart_icon: block.settings.cart_icon,
-      cart_content: block.settings.cart_content -%}
+    {%- include 'button',
+      icon: cart_icon,
+      content: cart_content -%}
 
 {%- endcase -%}

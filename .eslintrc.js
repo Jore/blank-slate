@@ -54,14 +54,17 @@ module.exports = {
       "afterColon": true,
       "mode": "minimum"
     }],
-    "keyword-spacing": ["error", { "before": true, "after": true }],
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
     "newline-after-var": ["error", "always"],
     "no-array-constructor": "error",
     "no-lonely-if": "error",
     "no-nested-ternary": "error",
     "no-unneeded-ternary": "error",
     "no-useless-rename": "error",
-    "object-curly-spacing": ["error", "always",{ "arraysInObjects": true }],
+    "object-curly-spacing": ["error", "always", { "arraysInObjects": true }],
     "one-var": ["error", "never"],
     "operator-assignment": ["error", "always"],
     "quotes": ["error",  "single", { "allowTemplateLiterals": true }],

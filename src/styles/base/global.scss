@@ -13,9 +13,6 @@ html {
   -webkit-overflow-scrolling: touch; /* [3] */
   min-width: 320px;
   background-color: $color-body-background;
-}
-
-html {
   height: auto;
 
   &.full-height {
@@ -29,6 +26,7 @@ body {
 }
 
 @if ($enable-box-sizing-border-box) {
+
   html {
     box-sizing: border-box;
   }

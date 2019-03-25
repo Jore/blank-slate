@@ -5,33 +5,29 @@
 {% endcomment %}
 
 
-{%- capture _section_name -%}
-  {%- include 'name', context: 'section', handle: true -%}
+{%- capture _block_context -%}
+  {%- include 'context', type: 'block' -%}
 {%- endcapture -%}
 
 {%- capture _section_context -%}
-  {%- include 'section-context' -%}
+  {%- include 'context', type: 'section' -%}
 {%- endcapture -%}
 
-
-{%- if _section_context == 'block' -%}
+{%- if _block_context != blank -%}
   {%- assign _parent_selector = '#shopify-block-' | append: block.id -%}
   {%- assign _settings = block.settings -%}
-{%- else -%}
-  {%- assign _section_context = 'section' -%}
+  {%- assign _context = _block_context | append: '-block' -%}
+{%- elsif _section_context != blank -%}
   {%- assign _parent_selector = '#shopify-section-' | append: section.id -%}
   {%- assign _settings = section.settings -%}
+  {%- assign _context = _block_context | append: '-section' -%}
 {%- endif -%}
 
-
-{%- assign context = _section_name | append: '-' | append: _section_context -%}
-
-
-{%- capture overrides_string -%}
-  {%- include 'style-overrides', context: context -%}
+{%- capture _overrides_string -%}
+  {%- include 'style-overrides', context: _context -%}
 {%- endcapture -%}
 
-{%- assign overrides = overrides_string | strip | split: ',' -%}
+{%- assign _overrides = _overrides_string | strip | split: ',' -%}
 
 {%- for override in overrides -%}
   {%- assign _style_parts = override | strip | split: '::' -%}
@@ -49,3 +45,16 @@
   {%- endunless -%}
 {%- endfor -%}
 
+
+{%- assign _block_context = nil -%}
+{%- assign _section_context = nil -%}
+{%- assign _parent_selector = nil -%}
+{%- assign _settings = nil -%}
+{%- assign _context = nil -%}
+{%- assign _overrides_string = nil -%}
+{%- assign _overrides = nil -%}
+{%- assign _style_parts = nil -%}
+{%- assign _css_property = nil -%}
+{%- assign _setting_name = nil -%}
+{%- assign _selector = nil -%}
+{%- assign _css_property_value = nil -%}

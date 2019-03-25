@@ -10,20 +10,23 @@
 
 {%- endcomment -%}
 
-{%- capture account_content -%}
+{%- capture _account_content -%}
   {%- if customer and account_logout_text -%}
     {{ account_logout_text }}
-  {%- endif -%}
-
-  {%- unless customer and account_login_text == blank -%}
+  {%- elsif customer == blank and account_login_text != blank -%}
     {{ account_login_text }}
-  {%- endunless -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _attrs -%}
+  {{ attrs }}
+  data-toggle-account
 {%- endcapture -%}
 
 {%- include 'button',
   icon: account_icon,
-  content: account_content,
-  classes: 'global-header-account',
-  attrs: 'data-toggle-account' -%}
+  content: _account_content,
+  attrs: _attrs -%}
 
-{%- assign account_content = nil -%}
+{%- assign _account_content = nil -%}
+{%- assign _attrs = nil -%}

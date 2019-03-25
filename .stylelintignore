@@ -1,3 +1,5 @@
 dist/
 node_modules/
-src/assets/styles/vendor/
+
+src/styles/helpers/
+src/styles/vendor/

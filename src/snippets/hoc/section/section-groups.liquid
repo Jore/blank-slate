@@ -8,6 +8,53 @@
 {%- endcomment -%}
 
 
+
+
+{%- if group_items != blank -%}
+  {%- assign group_items_array = group_items | split: ',' | sort -%}
+  {%- assign previous_group_name = nil -%}
+
+  {%- for group_item in group_items_array -%}
+    {%- assign group_parts = group_item | split: '--' -%}
+    {%- assign group_name = group_parts[0] -%}
+    {%- assign block_id = group_parts[1] -%}
+
+    {%- if group_name != previous_group_name -%}
+      {%- if forloop.first != true -%}</section>{%- endif -%}
+      <section class="{%- include 'classes', with_block: true %} {{ group_name | handle -}}">
+    {%- endif -%}
+
+    {%- for block in blocks -%}
+      {%- if block.id == block_id -%}
+
+        {%- capture _classes -%}
+          {% include 'classes', with_group: true -%}
+        {%- endcapture -%}
+
+        {%- include 'override-styles' -%}
+        {%- include snippet, classes: _classes -%}
+        {%- break -%}
+
+      {%- else -%}
+
+        {%- continue -%}
+
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if forloop.last == true -%}
+      </section>
+    {%- endif -%}
+
+    {%- assign previous_group_name = group_name -%}
+  {%- endfor -%}
+{%- endif -%}
+
+
+
+
+
+{%- comment -%}
 {%- assign case_statement_name = section_name | append: '-case-statement' -%}
 
 {%- for block in section.blocks -%}
@@ -47,3 +94,4 @@
 {%- endfor -%}
 
 {%- assign case_statement_name = nil -%}
+{%- endcomment -%}

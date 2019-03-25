@@ -76,6 +76,7 @@
 
       @each $size in $breakpoint {
         @if type-of($size) == string {
+
           .#{$size}-#{$flex-selector} {
             @include mq($screen-width) {
               flex-basis: $width;
@@ -147,6 +148,7 @@
 
   @each $size in $breakpoint {
     @if type-of($size) == string {
+
       .#{$size}-hide {
         @include mq($screen-width) {
           display: none;

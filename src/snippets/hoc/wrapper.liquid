@@ -1,93 +1,27 @@
+{%- assign WRAPPER_TYPE = type -%}
+{%- assign WRAPPER_NAME = name -%}
+
 {% comment %}
 
   Required arguments:
-  - type
-  - content
+  • type
+  • content
 
   Optional arguments:
-  - name
-  - tag
+  • name
+  • tag
 
 {% endcomment %}
 
 
-<{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif %}
-  class="{{- classes -}}"
-  data-wrapper="{{- type -}}"
-  data-wrapper-name="{%- include 'name' -%}"
-  {{ attrs -}}>
+<{%- if tag != blank -%}{{- tag -}}{%- else -%}div{%- endif %}
+  class="{%- include 'classes' -%}"
+  {% include 'attrs' -%}>
 
   {{- content -}}
 
-</{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif -%}>
+</{%- if tag != blank -%}{{- tag -}}{%- else -%}div{%- endif -%}>
 
 
-
-{%- comment -%}
-<a
-  class="xx-link {% if button != blank -%}xx-button{%- endif %} {{ classes -}}"
-  href="{{- href -}}"
-  {%- if target != blank -%}target="{{- target -}}"{%- endif -%}
-  {{ attrs -}}>
-
-  {%- if icon != blank -%}
-
-    {%- include 'icon',
-      name: icon,
-      classes: '',
-      attrs: '' -%}
-
-  {%- endif -%}
-
-  {%- if content != blank -%}
-
-    {{- content -}}
-
-  {%- endif -%}
-
-</a>
-
-<header
-  class="header {{ classes -}}"
-  {{ attrs -}}>
-
-  {%- include 'heading',
-    level: level,
-    title: title,
-    classes: '',
-    attrs: '' -%}
-
-  {{- content -}}
-
-</header>
-{%- endcomment -%}
-
-
-
-
-{%- comment -%}
-
-  Required arguments:
-  - title
-
-  Optional arguments:
-  - level
-  - content
-  - classes
-  - attrs
-
-{%- endcomment -%}
-{%- comment -%}
-
-  Required arguments:
-  - href
-
-  Optional arguments:
-  - content
-  - button
-  - target
-  - icon
-  - classes
-  - attrs
-
-{%- endcomment -%}
+{%- assign WRAPPER_TYPE = nil -%}
+{%- assign WRAPPER_NAME = nil -%}

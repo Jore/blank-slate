@@ -29,11 +29,15 @@
     --color-palette-5: {{ settings.color_palette_5 }};
     --color-body-text: {{ settings.color_body_text }};
     --color-body-background: {{ settings.color_body_background }};
+
     --font-primary: {{ settings.font_primary.family }}, {{ settings.font_primary.fallback_families }};
     --font-primary-light-weight: {{ settings.font_primary_light.weight }};
+    --font-primary-normal-weight: {{ settings.font_primary.weight }};
     --font-primary-bold-weight: {{ settings.font_primary_bold.weight }};
+
     --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
     --font-heading-bold-weight: {{ settings.font_heading_bold.weight }};
+
     --size-main-container: {{ settings.main_container_size }}px;
     --size-spacing-base: {{ settings.base_spacing_size }}px;
     --size-font-base: {{ settings.font_size_base }}px;
@@ -41,6 +45,9 @@
     --size-font-major: {{ settings.font_size_major }}px;
     --size-font-super: {{ settings.font_size_super }}px;
     --size-line-height-base: {{ settings.base_line_height }};
+
+    --size-total-columns: {{ settings.total_grid_columns }};
+
     --duration-transition: {{ settings.transition_duration }}ms;
   }
 </style>

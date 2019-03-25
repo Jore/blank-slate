@@ -3,20 +3,21 @@
 {%- comment -%}
 
   Required arguments:
-  - content
+  • content
 
   Optional arguments:
-  - level
+  • level
 
 {%- endcomment -%}
 
 
-<h{%- unless level -%}2{% else %}{{- level -}}{%- endunless %}
-  class="xx-heading {{ classes -}}"
-  {{ attrs -}}>
+<h{{- level | default: 2 }}
+  class="{%- include 'classes' -%}"
+  {% include 'attrs' -%}>
 
   {{- content -}}
 
-</h{%- unless level -%}2{% else %}{{- level -}}{%- endunless %}>
+</h{{- level | default: 2 -}}>
+
 
 {%- assign COMPONENT_NAME = nil -%}

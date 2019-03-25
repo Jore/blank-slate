@@ -3,25 +3,39 @@
 {%- comment -%}
 
   Required arguments:
-  - _price
-  - type
+  • resource
+  • type
+
+  Optional arguments:
+  • filter
 
 {%- endcomment -%}
 
 
-{% comment %}
-
-  add bracket notation to access prices
-
-{% endcomment %}
-
 <div
-  class="xx-price {{ classes -}}"
+  class="{%- include 'classes' -%}"
   data-price="{{- type -}}"
-  {{ attrs -}}>
+  {% include 'attrs' -%}>
 
-  {{- _price | money -}}
+  {%- case filter -%}
+    {%- when 'money_with_currency' -%}
 
+      {{- resource[type] | money_with_currency -}}
+
+    {%- when 'money_without_trailing_zeros' -%}
+
+      {{- resource[type] | money_without_trailing_zeros -}}
+
+    {%- when 'money_without_currency' -%}
+
+      {{- resource[type] | money_without_currency -}}
+
+    {%- else -%}
+
+      {{- resource[type] | money -}}
+
+  {%- endcase -%}
 </div>
+
 
 {%- assign COMPONENT_NAME = nil -%}

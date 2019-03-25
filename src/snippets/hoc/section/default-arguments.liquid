@@ -23,9 +23,6 @@
   Context: 'block'
   -
 
-
-
-
   You can overwrite these default values by passing in an argument of the same name:
 
   e.g.
@@ -48,6 +45,10 @@
 {%- endif -%}
 
 {%- if context == 'section' -%}
+  {%- if section_title == blank -%}
+    {%- assign section_title = section.settings.title -%}
+  {%- endif -%}
+
   {%- if blocks == blank -%}
     {%- assign blocks = section.blocks -%}
   {%- endif -%}
@@ -123,6 +124,14 @@
 
 
 {%- if context == 'block' -%}
+  {%- if block_title == blank -%}
+    {%- assign block_title = block.settings.title -%}
+  {%- endif -%}
+
+  {%- if block_classes == blank -%}
+    {%- assign block_classes = block.settings.block_classes -%}
+  {%- endif -%}
+
   {%- if snippet == blank -%}
     {%- assign snippet = block.settings.snippet -%}
   {%- endif -%}
@@ -214,4 +223,33 @@
   {%- if button_two_attrs == blank -%}
     {%- assign button_two_attrs = block.settings.button_two_attrs -%}
   {%- endif -%}
+{%- endif -%}
+
+
+{%- if context == 'block:clear' -%}
+  {%- assign block_title = nil -%}
+  {%- assign block_classes = nil -%}
+  {%- assign snippet = nil -%}
+  {%- assign primary_image = nil -%}
+  {%- assign primary_image_size = nil -%}
+  {%- assign primary_image_srcset = nil -%}
+  {%- assign primary_image_sizes = nil -%}
+  {%- assign primary_image_attrs = nil -%}
+  {%- assign second_image = nil -%}
+  {%- assign second_image_size = nil -%}
+  {%- assign second_image_srcset = nil -%}
+  {%- assign second_image_sizes = nil -%}
+  {%- assign overlay_content_classes = nil -%}
+  {%- assign overlay_heading = nil -%}
+  {%- assign overlay_heading_classes = nil -%}
+  {%- assign overlay_sub_heading = nil -%}
+  {%- assign overlay_sub_heading_classes = nil -%}
+  {%- assign button_one_text = nil -%}
+  {%- assign button_one_href = nil -%}
+  {%- assign button_one_classes = nil -%}
+  {%- assign button_one_attrs = nil -%}
+  {%- assign button_two_text = nil -%}
+  {%- assign button_two_href = nil -%}
+  {%- assign button_two_classes = nil -%}
+  {%- assign button_two_attrs = nil -%}
 {%- endif -%}

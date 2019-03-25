@@ -1,17 +1,16 @@
-{%- assign component_name = 'Link' -%}
-
+{%- assign COMPONENT_NAME = 'link' -%}
 
 {%- comment -%}
 
   Required arguments:
-  - href
+  • href
 
   Optional arguments:
-  - content
-  - target
-  - icon
-  - classes
-  - attrs
+  • content
+  • target
+  • icon
+  • classes
+  • attrs
 
 {%- endcomment -%}
 
@@ -19,7 +18,7 @@
 <a class="{%- include 'classes' -%}"
   href="{{- href -}}"
   {%- if target != blank -%}target="{{- target -}}"{%- endif -%}
-  {{ attrs -}}>
+  {% include 'attrs' -%}>
 
   {%- if icon != blank -%}
 
@@ -39,4 +38,4 @@
 </a>
 
 
-{%- assign component_name = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

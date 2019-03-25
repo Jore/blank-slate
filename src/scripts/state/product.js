@@ -79,6 +79,9 @@ const getInitialVariantData = variants => {
 
 export const initProductContainer = productContainer => {
   const { image, option, product, variant: variants } = parseContainerData(productContainer);
+
+  if (!product || !variants) return;
+
   const { containerId: id } = productContainer.dataset;
   const container = 'product';
   const change = 'init';

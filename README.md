@@ -44,6 +44,9 @@ All developers who wish to contribute through code or issues, take a look at the
 
 Copyright © 2018 Shopify. See [LICENSE](https://github.com/Shopify/starter-theme/blob/master/LICENSE) for further details.
 
+===
+
+"extends": "stylelint-config-standard",
 
 ===
 
@@ -130,5 +133,3 @@ src
     ├── product.liquid
     └── search.liquid
 ```
-
-"extends": "stylelint-config-standard",

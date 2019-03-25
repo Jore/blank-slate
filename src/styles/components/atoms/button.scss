@@ -15,7 +15,7 @@
   user-select: none;
   -webkit-appearance: none;
 
-  &.with-icon {
+  &.is-icon {
     padding: 0;
   }
 
@@ -80,7 +80,7 @@
       display: none;
 
       &::after {
-        content: 'Sold Out'
+        content: 'Sold Out';
       }
     }
   }

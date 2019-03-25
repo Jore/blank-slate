@@ -1,0 +1,42 @@
+{%- assign COMPONENT_NAME = 'option-group' -%}
+
+{%- comment -%}
+
+  Required arguments:
+  • type
+  • name
+  • values
+
+  Optional arguments:
+  • selected_value
+  • show_option_name
+  • show_selected_value
+
+{%- endcomment -%}
+
+
+{%- capture _option_group -%}
+  {%- include 'option-group-heading' -%}
+
+  {%- include 'option-group-values' -%}
+{%- endcapture -%}
+
+{%- capture _classes -%}
+  {{ name | handle -}}-option-group {{ type -}}-option-group
+{%- endcapture -%}
+
+{%- capture _attr -%}
+  data-option-group="{{- name -}}"
+{%- endcapture -%}
+
+{%- include 'container',
+  type: 'option-group',
+  content: _option_group,
+  classes: _classes,
+  attrs: _attr -%}
+
+
+{%- assign _option_group = nil -%}
+{%- assign _classes = nil -%}
+{%- assign _attr = nil -%}
+{%- assign COMPONENT_NAME = nil -%}

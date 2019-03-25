@@ -155,7 +155,7 @@
 
 .u-mb-5 {
   // stylelint-disable-next-line
- margin-bottom: 5px !important;
+  margin-bottom: 5px !important;
 }
 
 .u-mb-10 {
@@ -276,7 +276,6 @@
 .u-label-hidden {
   @include visually-hidden;
 
-  // No placeholders, so force show labels
   .u-no-placeholder & {
     @include visually-shown;
   }
@@ -288,6 +287,7 @@
 
 // Skip to content button
 // Overrides .u-visually-hidden when focused
+
 .u-skip-link:focus {
   @include visually-shown(absolute);
 

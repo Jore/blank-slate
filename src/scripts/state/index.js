@@ -18,6 +18,7 @@ const parsers = {
 
 const init = () => {
   return getContainer({})
+    .filter(({ dataset: { container } }) => parsers[container])
     .map(container => parsers[container.dataset.container](container));
 };
 
