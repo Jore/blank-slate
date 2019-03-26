@@ -5,12 +5,11 @@
 {%- endcapture -%}
 
 {%- capture _input_group_classes -%}
-  option-group-input-group {{ name | handle -}}-option-group-input-group
+  {{ name | handle -}}-option-group-input-group
 {%- endcapture -%}
 
 
 {%- if type == 'select' -%}
-  {%- assign _input_group_classes = _input_group_classes | append: ' select-option-group-input-group' -%}
   {%- assign _input_attrs = _input_attrs | append: ' data-selectize' -%}
 
   {%- include 'input-group',
@@ -18,6 +17,7 @@
     name: name,
     value: values,
     selected_value: selected_value,
+    label_content: '',
     input_attrs: _input_attrs,
     input_classes: '',
     label_classes: _label_classes,
@@ -31,9 +31,11 @@
     {%- endif -%}
 
     {%- include 'input-group',
+      type: 'input',
       input: 'radio',
       name: name,
       value: value,
+      label_content: value,
       input_attrs: _input_attrs,
       input_classes: 'u-visually-hidden',
       label_classes: _label_classes,

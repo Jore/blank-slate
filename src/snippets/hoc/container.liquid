@@ -18,6 +18,10 @@
   class="{%- include 'classes' -%}"
   {% include 'attrs' -%}>
 
+  {%- if type == 'product' and _product != blank -%}
+    {%- include 'product-json' -%}
+  {%- endif -%}
+
   {{- content -}}
 
 </{%- if tag != blank -%}{{- tag -}}{%- else -%}section{%- endif -%}>

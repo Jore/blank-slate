@@ -50,6 +50,7 @@ const updateQuantity = data => {
   const container = 'product';
   const change = 'quantity';
 
+
   setState({ ...data, change, container });
 };
 
@@ -72,9 +73,14 @@ const getInitialOptionValues = products => {
 };
 
 const getInitialVariantData = variants => {
-  const { id: variantId, ...initialVariant } = variants.find(variant => variant.isInitialVariant);
+  console.log(variants);
+  // const variant = variants.find(variant => variant.isInitialVariant);
 
-  return { variantId, ...initialVariant };
+  // console.log(variant);
+  // const { id: variantId, ...initialVariant } = variant;
+
+  // return { variantId, ...initialVariant };
+  return {};
 };
 
 export const initProductContainer = productContainer => {

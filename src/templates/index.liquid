@@ -1,114 +1,89 @@
-{%- assign __product = collections.frontpage.products.first -%}
+{%- assign product = all_products['blue-silk-tuxedo'] -%}
 
-{%- capture _content -%}
 
-  {%- include 'button',
-    content: 'button-3',
-    type: 'reset',
-    icon: 'add',
-    classes: 'charlie',
-    attrs: '' -%}
-
-  {%- include 'heading',
-    content: 'heading-1',
-    level: 3,
-    classes: 'delta',
-    attrs: 'data-product-title' -%}
-
-  {%- include 'input',
-    type: 'radio',
-    name: 'gender',
-    value: 'male',
-    classes: 'echo',
-    attrs: 'data-option-value checked' -%}
-
-  {%- include 'label',
-    content: 'input-1',
-    classes: 'foxtrot',
-    attrs: 'data-option-value' -%}
-
-  {%- include 'price',
-    resource: __product,
-    type: 'price',
-    filter: 'money_without_trailing_zeros',
-    classes: 'gulf',
-    attrs: '' -%}
-
-  {%- include 'select',
-    name: __product.options_with_values.first.name,
-    values: __product.options_with_values.first.values,
-    selected_value: __product.options_with_values.first.selected_value,
-    classes: 'india',
-    attrs: 'data-option-value' -%}
-
-  {%- include 'svg',
-    name: 'icon-lock',
-    classes: 'kilo',
-    attrs: '' -%}
-
-  {%- include 'text',
-    content: 'hey how are ya?',
-    classes: 'lima',
-    attrs: '' -%}
-
-  {%- include 'text',
-    content: 'great how are you?',
-    rte: true,
-    classes: 'mike',
-    attrs: '' -%}
-
+{%- capture _slider_content -%}
   {%- include 'image',
-    resource: __product.featured_image,
+    resource: product.featured_image,
     size: '400x',
     wrapper_attrs: '',
     wrapper_classes: 'peru',
     attrs: '' -%}
 
-  {%- include 'quantity-select',
-    tag: 'div',
-    content: 'qty' -%}
+  {%- include 'image',
+    resource: product.featured_image,
+    size: '400x',
+    wrapper_attrs: '',
+    wrapper_classes: 'peru',
+    attrs: '' -%}
 
-  {%- include 'icon-with-text',
-    icon: 'plus',
-    text: 'add',
-    classes: 'romeo',
+  {%- include 'image',
+    resource: product.featured_image,
+    size: '400x',
+    wrapper_attrs: '',
+    wrapper_classes: 'peru',
     attrs: '' -%}
 {%- endcapture -%}
 
+{%- capture _atc_content -%}
+  {%- include 'heading',content: product.title -%}
+  {%- include 'price', resource: product -%}
+  {%- include 'text', content: product.description -%}
+
+  {%- for option in product.options_with_values -%}
+    {%- assign downcased_option_name = option.name | downcase -%}
+
+    {%- assign _type = 'select' -%}
+    {%- if downcased_option_name == 'color' -%}
+      {%- assign _type = 'swatches' -%}
+    {%- endif -%}
+
+    {%- include 'option-group',
+      type: _type,
+      name: option.name,
+      values: option.values,
+      selected_value: option.selected_value,
+      show_option_name: true,
+      show_selected_value: true,
+      classes: '',
+      attrs: '' -%}
+  {%- endfor -%}
+
+  {%- include 'quantity-select' -%}
+
+  {%- include 'button',
+    icon: 'cart',
+    content: 'add',
+    classes: '',
+    attrs: 'data-add-to-cart' -%}
+{%- endcapture -%}
+
+{%- capture _product_content -%}
+  {%- include 'container',
+    type: 'slider',
+    name: 'Product Gallery',
+    content: _content,
+    classes: '',
+    attrs: '' -%}
+
+  {%- include 'container',
+    type: 'form',
+    tag: 'form',
+    name: 'Product Main Add To Cart'
+    content: _atc_content,
+    classes: '',
+    attrs: '' -%}
+{%- endcapture -%}
+
+
+
+
 {%- include 'container',
   type: 'product',
-  name: 'Main Product Container',
-  content: _content,
+  name: 'Product Main',
+  content: _product_content,
+  _product: product,
   classes: '',
   attrs: '' -%}
-
-{%- comment -%}
-{%- include '',
-  content: '',
-  classes: '',
-  attrs: '' -%}
-
-{%- include '',
-  content: '',
-  classes: '',
-  attrs: '' -%}
-
-{%- include '',
-  content: '',
-  classes: '',
-  attrs: '' -%}
-
-{%- include '',
-  content: '',
-  classes: '',
-  attrs: '' -%}
-
-{%- include '',
-  content: '',
-  classes: '',
-  attrs: '' -%}
-{%- endcomment -%}
-
 
 
 {%- comment -%}<div class="home-page-sections-wrapper">

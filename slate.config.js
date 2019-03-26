@@ -52,6 +52,7 @@ const alias = {
   'scripts': path.resolve('./src/scripts'),
   'state': path.resolve('./src/scripts/state'),
   'styles': path.resolve('./src/styles'),
+  'slick': path.resolve('./node_modules/slick-carousel/'),
 };
 
 const rules = [

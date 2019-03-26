@@ -1,73 +1,28 @@
 const defaultSettings = {
-  pageDots: false,
-  wrapAround: true,
+  dots: true,
+  rows: 0,
 };
 
-const mobileRowSlider = {
-  ...defaultSettings,
-  watchCSS: true,
-};
-
-const productGalleryThumbsSettings = {
-  ...defaultSettings,
-  init: false,
-  contain: true,
-  pageDots: false,
-  prevNextButtons: false,
-  groupCells: true,
-};
-
-const productGallerySettings = {
+const productGallery = {
   ...defaultSettings,
   adaptiveHeight: true,
-  wrapAround: true,
-  imagesLoaded: true,
+  lazyLoad: 'progressive',
 };
 
-const homePageHeroSettings = {
+const homePageHero = {
   ...defaultSettings,
-  adaptiveHeight: true,
   autoPlay: true,
-  wrapAround: true,
-  lazyLoad: true,
 };
 
-const additionalProductImages = {
+const testimonials = {
   ...defaultSettings,
-  pageDots: true,
-  cellAlign: 'center',
-  prevNextButtons: true,
-  imagesLoaded: true,
-  wrapAround: false,
+  arrows: false,
+  slidesToShow: 3,
 };
-
-const testimonialQuotes = {
-  ...defaultSettings,
-  prevNextButtons: false,
-  adaptiveHeight: true,
-};
-
-const testimonialLogos = {
-  init: false,
-};
-
-
-const collaborationPageContentImagesSlider = {
-  ...defaultSettings,
-  wrapAround: false,
-  prevNextButtons: true,
-};
-
 
 export default {
   default: defaultSettings,
-  ['Testimonial Quotes']: testimonialQuotes,
-  ['Testimonial Logos']: testimonialLogos,
-  ['Best Sellers Row Slider']: mobileRowSlider,
-  ['Product Page Related Cuts Slider']: mobileRowSlider,
-  ['Product Gallery']: productGallerySettings,
-  ['Product Gallery Thumbs']: productGalleryThumbsSettings,
-  ['Product Secondary Images']: additionalProductImages,
-  ['Home Page Hero']: homePageHeroSettings,
-  ['Collaboration Page Content Images Slider']: collaborationPageContentImagesSlider,
+  ['Product Gallery']: productGallery,
+  ['Home Page Hero']: homePageHero,
+  ['Testimonials']: testimonials,
 };

@@ -4,38 +4,40 @@
 
   Required arguments:
   • resource
-  • type
 
   Optional arguments:
+  • type
   • filter
 
 {%- endcomment -%}
 
+{%- assign _type = type | default: 'price' -%}
 
 <div
   class="{%- include 'classes' -%}"
-  data-price="{{- type -}}"
+  data-price="{{- _type -}}"
   {% include 'attrs' -%}>
 
   {%- case filter -%}
     {%- when 'money_with_currency' -%}
 
-      {{- resource[type] | money_with_currency -}}
+      {{- resource[_type] | money_with_currency -}}
 
     {%- when 'money_without_trailing_zeros' -%}
 
-      {{- resource[type] | money_without_trailing_zeros -}}
+      {{- resource[_type] | money_without_trailing_zeros -}}
 
     {%- when 'money_without_currency' -%}
 
-      {{- resource[type] | money_without_currency -}}
+      {{- resource[_type] | money_without_currency -}}
 
     {%- else -%}
 
-      {{- resource[type] | money -}}
+      {{- resource[_type] | money -}}
 
   {%- endcase -%}
 </div>
 
 
+{%- assign _type = nil -%}
 {%- assign COMPONENT_NAME = nil -%}
